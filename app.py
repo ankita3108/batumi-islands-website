@@ -118,9 +118,8 @@ def handle_enquiry():
         print("[CSV] Error writing enquiry:", repr(e))
 
     # -----------------------------
-    # 2) TRY TO SEND EMAIL
+    # 2) TRY TO SEND EMAIL (with short timeout)
     # -----------------------------
-    # Only attempt if SMTP_USER and SMTP_PASS are configured
     if SMTP_USER and SMTP_PASS and SMTP_HOST:
         try:
             body_lines = [
@@ -145,13 +144,22 @@ def handle_enquiry():
             context = ssl.create_default_context()
 
             if SMTP_PORT == 465:
-                # SSL connection
-                with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context) as server:
+                # SSL mode, with timeout
+                with smtplib.SMTP_SSL(
+                    SMTP_HOST,
+                    SMTP_PORT,
+                    context=context,
+                    timeout=5   # <- IMPORTANT: short timeout to avoid worker hang
+                ) as server:
                     server.login(SMTP_USER, SMTP_PASS)
                     server.send_message(msg)
             else:
-                # STARTTLS (e.g. port 587)
-                with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+                # STARTTLS (e.g. port 587), with timeout
+                with smtplib.SMTP(
+                    SMTP_HOST,
+                    SMTP_PORT,
+                    timeout=5   # <- IMPORTANT: short timeout
+                ) as server:
                     server.ehlo()
                     server.starttls(context=context)
                     server.ehlo()
