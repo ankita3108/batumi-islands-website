@@ -55,10 +55,15 @@ def home():
 @app.route("/api/enquiry", methods=["POST"])
 def handle_enquiry():
     """
-    Handle enquiries from both:
+    Handles enquiries from:
     - Main contact form
     - Quick enquiry modal
-    Expects JSON or form-encoded data.
+
+    Behaviour:
+      - Tries to log the enquiry to enquiries.csv
+      - Tries to send an email
+      - If at least ONE of those succeeds, returns success to the user
+      - Only if BOTH fail, returns an error
     """
     data = request.get_json(silent=True) or request.form
 
@@ -68,11 +73,11 @@ def handle_enquiry():
     phone = data.get("phone", "").strip()
     apartment_type = data.get("apartment_type", "").strip()
     message = data.get("message", "").strip()
-    form_type = data.get("form_type", "website").strip()  # e.g., "quick", "contact"
+    form_type = data.get("form_type", "website").strip()  # e.g. "quick", "contact"
 
-    full_phone = (phone_code + " " + phone).strip()
+    full_phone = (phone_code + " " + phone).strip() if phone_code else phone
 
-    # Basic validation: name and phone are essential
+    # --- Basic validation ---
     if not name or not phone:
         return jsonify({
             "ok": False,
@@ -80,86 +85,106 @@ def handle_enquiry():
             "message": "Name and phone are required."
         }), 400
 
-    # ------------------------
-    # Save enquiry to CSV
-    # ------------------------
+    csv_ok = False
+    email_ok = False
+
+    # -----------------------------
+    # 1) TRY TO LOG TO enquiries.csv
+    # -----------------------------
     try:
         file_exists = os.path.isfile(ENQUIRY_CSV)
         with open(ENQUIRY_CSV, "a", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             if not file_exists:
-                writer.writerow(["name", "email", "phone", "apartment_type", "message", "form_type"])
-            writer.writerow([name, email, full_phone, apartment_type, message, form_type])
+                writer.writerow([
+                    "name",
+                    "email",
+                    "phone",
+                    "apartment_type",
+                    "message",
+                    "form_type"
+                ])
+            writer.writerow([
+                name,
+                email,
+                full_phone,
+                apartment_type,
+                message,
+                form_type
+            ])
+        print(f"[CSV] Enquiry saved to {ENQUIRY_CSV}")
+        csv_ok = True
     except Exception as e:
-        # Log CSV error but do not fail the API
-        print("CSV write error:", repr(e))
+        print("[CSV] Error writing enquiry:", repr(e))
 
-    # ------------------------
-    # Build email content
-    # ------------------------
-    body_lines = [
-        "New enquiry from Batumi Island Estates ({} form):".format(form_type),
-        "",
-        "Name: {}".format(name),
-        "Phone: {}".format(full_phone),
-        "Email: {}".format(email or "—"),
-        "Apartment Type: {}".format(apartment_type or "—"),
-        "",
-        "Message:",
-        message or "—",
-    ]
-    email_body = "\n".join(body_lines)
-
-    # ------------------------
-    # Send email (best-effort, fail gracefully)
-    # ------------------------
-    email_error = None
-
-    if SMTP_USER and SMTP_PASS:
+    # -----------------------------
+    # 2) TRY TO SEND EMAIL
+    # -----------------------------
+    # Only attempt if SMTP_USER and SMTP_PASS are configured
+    if SMTP_USER and SMTP_PASS and SMTP_HOST:
         try:
+            body_lines = [
+                f"New enquiry from Batumi Island Estates ({form_type} form):",
+                "",
+                f"Name: {name}",
+                f"Phone: {full_phone}",
+                f"Email: {email or '—'}",
+                f"Apartment Type: {apartment_type or '—'}",
+                "",
+                "Message:",
+                message or "—",
+            ]
+            email_body = "\n".join(body_lines)
+
             msg = MIMEMultipart()
             msg["From"] = SMTP_USER
             msg["To"] = ENQUIRY_TO
-            msg["Subject"] = "New Batumi Island Estates enquiry ({})".format(form_type)
+            msg["Subject"] = f"New Batumi Island Estates enquiry ({form_type})"
             msg.attach(MIMEText(email_body, "plain", "utf-8"))
 
+            context = ssl.create_default_context()
+
             if SMTP_PORT == 465:
-                # SSL
-                context = ssl.create_default_context()
+                # SSL connection
                 with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context) as server:
                     server.login(SMTP_USER, SMTP_PASS)
                     server.send_message(msg)
             else:
-                # STARTTLS (e.g., port 587)
+                # STARTTLS (e.g. port 587)
                 with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
                     server.ehlo()
-                    server.starttls(context=ssl.create_default_context())
+                    server.starttls(context=context)
                     server.ehlo()
                     server.login(SMTP_USER, SMTP_PASS)
                     server.send_message(msg)
 
+            print("[EMAIL] Enquiry email sent successfully to", ENQUIRY_TO)
+            email_ok = True
+
         except Exception as e:
-            email_error = repr(e)
-            print("Email send error:", email_error)
+            print("[EMAIL] Error sending enquiry email:", repr(e))
     else:
-        email_error = "SMTP credentials not configured"
-        print("Email skipped: SMTP_USER or SMTP_PASS not set")
+        print("[EMAIL] SMTP not configured (missing SMTP_USER/SMTP_PASS/SMTP_HOST), skipping email send.")
 
-    # ------------------------
-    # Response to frontend
-    # ------------------------
-    response = {
-        "ok": True,
-        "message": "Enquiry received. Our team will contact you shortly."
-    }
+    # -----------------------------
+    # 3) FINAL RESPONSE LOGIC
+    # -----------------------------
+    if csv_ok or email_ok:
+        # At least one of the two worked → show success message
+        return jsonify({
+            "ok": True,
+            "message": "Enquiry received. Our team will contact you shortly.",
+            "csvLogged": csv_ok,
+            "emailSent": email_ok
+        })
 
-    if email_error:
-        # Let frontend know email failed but don't break the UX
-        response["emailError"] = True
-        response["emailErrorMessage"] = email_error
-
-    return jsonify(response)
-
+    # If BOTH failed, return error to frontend
+    return jsonify({
+        "ok": False,
+        "message": "Something went wrong while saving your enquiry. Please try again or contact us via WhatsApp / Call.",
+        "csvLogged": csv_ok,
+        "emailSent": email_ok
+    }), 500
 
 # ------------------------
 # DEV ENTRYPOINT
