@@ -22,6 +22,9 @@ from flask import Flask, render_template, request, jsonify
 # CONFIG
 # ------------------------
 
+# Google Sheets webhook (Apps Script URL)
+GOOGLE_SHEETS_WEBHOOK_URL = os.getenv("GOOGLE_SHEETS_WEBHOOK_URL", "")
+
 # SMTP settings – override these with environment variables in production
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))   # 587 for STARTTLS, 465 for SSL
@@ -221,6 +224,28 @@ def send_email(data):
 
     except Exception as e:
         print("[EMAIL] Failed:", repr(e))
+        return False
+
+def send_to_sheets(data):
+    """
+    Sends enquiry data to Google Sheets via Apps Script webhook.
+    Returns True if successful, False otherwise.
+    """
+    if not GOOGLE_SHEETS_WEBHOOK_URL:
+        print("[SHEETS] GOOGLE_SHEETS_WEBHOOK_URL not configured, skipping Sheets send.")
+        return False
+
+    try:
+        resp = requests.post(
+            GOOGLE_SHEETS_WEBHOOK_URL,
+            json=data,
+            timeout=5  # short timeout so Render workers don't hang
+        )
+        resp.raise_for_status()
+        print("[SHEETS] Enquiry sent to Google Sheets.")
+        return True
+    except Exception as e:
+        print("[SHEETS] Error sending to Google Sheets:", repr(e))
         return False
 
 # ------------------------
