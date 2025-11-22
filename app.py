@@ -15,6 +15,7 @@ import smtplib
 import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import requests
 
 from flask import Flask, render_template, request, jsonify
 
@@ -23,7 +24,7 @@ from flask import Flask, render_template, request, jsonify
 # ------------------------
 
 # Google Sheets webhook (Apps Script URL)
-GOOGLE_SHEETS_WEBHOOK_URL = os.getenv("GOOGLE_SHEETS_WEBHOOK_URL", "")
+GOOGLE_SHEETS_WEBHOOK_URL = os.getenv("GOOGLE_SHEETS_WEBHOOK_URL", "https://script.google.com/macros/s/AKfycbxtdfFr6TAiRhxBrwksw4XtZjHu83ToJMN89hrUgOCt_EEknAXgd1t6bOtPAZE-_g/exec")
 
 # SMTP settings – override these with environment variables in production
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
@@ -74,12 +75,13 @@ def handle_enquiry():
     - Quick enquiry modal
 
     Behaviour:
-      - Tries to log the enquiry to enquiries.csv
-      - Tries to send an email
-      - If at least ONE of those succeeds, returns success to the user
+      - Builds a unified enquiry_data dict
+      - Sends to Google Sheets via webhook
+      - Tries to send email (if SMTP configured)
+      - If at least ONE of those succeeds, returns success
       - Only if BOTH fail, returns an error
     """
-    # Accept JSON or form-encoded data
+    # Accept JSON or form data
     raw = request.get_json(silent=True) or request.form
 
     name = raw.get("name", "").strip()
@@ -92,7 +94,7 @@ def handle_enquiry():
 
     full_phone = (phone_code + " " + phone).strip() if phone_code else phone
 
-    # --- Basic validation ---
+    # Basic validation
     if not name or not phone:
         return jsonify({
             "ok": False,
@@ -100,7 +102,7 @@ def handle_enquiry():
             "message": "Name and phone are required."
         }), 400
 
-    # Build unified data dict for helpers
+    # Unified data structure for Sheets & Email
     enquiry_data = {
         "name": name,
         "email": email,
@@ -110,27 +112,25 @@ def handle_enquiry():
         "form_type": form_type,
     }
 
-    # --- 1) Try CSV logging ---
-    csv_ok = save_to_csv(enquiry_data)   # must return True/False
+    # 1) Send to Google Sheets
+    sheets_ok = send_to_sheets(enquiry_data)
 
-    # --- 2) Try email sending (with timeout inside send_email) ---
-    email_ok = send_email(enquiry_data)  # must return True/False
+    # 2) Try sending email (optional)
+    email_ok = send_email(enquiry_data)
 
-    # --- 3) Final response logic ---
-    if csv_ok or email_ok:
-        # At least one of the two worked → show success message
+    # 3) Final response logic
+    if sheets_ok or email_ok:
         return jsonify({
             "ok": True,
             "message": "Enquiry received. Our team will contact you shortly.",
-            "csvLogged": csv_ok,
+            "sheetsLogged": sheets_ok,
             "emailSent": email_ok
         })
 
-    # If BOTH failed, return error to frontend
     return jsonify({
         "ok": False,
         "message": "Something went wrong while saving your enquiry. Please try again or contact us via WhatsApp / Call.",
-        "csvLogged": csv_ok,
+        "sheetsLogged": sheets_ok,
         "emailSent": email_ok
     }), 500
 
@@ -236,14 +236,25 @@ def send_to_sheets(data):
         return False
 
     try:
+        print("[SHEETS] Posting to:", GOOGLE_SHEETS_WEBHOOK_URL)
+        print("[SHEETS] Payload:", data)
+
         resp = requests.post(
             GOOGLE_SHEETS_WEBHOOK_URL,
             json=data,
-            timeout=5  # short timeout so Render workers don't hang
+            timeout=8  # short timeout to avoid worker hang
         )
-        resp.raise_for_status()
-        print("[SHEETS] Enquiry sent to Google Sheets.")
-        return True
+
+        print("[SHEETS] Status:", resp.status_code)
+        print("[SHEETS] Response text:", resp.text[:300])
+
+        if resp.status_code == 200:
+            # Apps Script responded OK – we assume row appended
+            return True
+
+        # Non-200 status
+        return False
+
     except Exception as e:
         print("[SHEETS] Error sending to Google Sheets:", repr(e))
         return False
