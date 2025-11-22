@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    /* Fade-up animation for luxury text and sections */
+    @keyframes fadeUp {
+        0% {
+        opacity: 0;
+        transform: translateY(20px);
+        }
+        100% {
+        opacity: 1;
+        transform: translateY(0);
+        }
+    }
+
+    .animate-fadeUp {
+        animation: fadeUp 1.4s ease-out forwards;
+        animation-delay: 0.3s;
+    }
+
+    /* Luxury Gold Section Divider */
+    .section-divider {
+        width: 140px; /* wider for stronger presence */
+        height: 5px;  /* thicker for a premium feel */
+        margin: 1.2rem auto 2.5rem auto;
+        border-radius: 8px;
+        background: linear-gradient(to right, #d4af37, #f6e27f, #d4af37);
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.55); /* soft gold glow */
+        animation: fadeDivider 1.2s ease-out forwards;
+        opacity: 0;
+        transform-origin: center;
+    }
+
+    @keyframes fadeDivider {
+        0% {
+        transform: scaleX(0.5);
+        opacity: 0;
+        }
+        100% {
+        transform: scaleX(1);
+        opacity: 1;
+        }
+    }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batumi Island Estates | Luxury Island Properties</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- Component Scripts -->
+    <script src="static/components/navbar.js" defer></script>
+    <script src="static/components/property-card.js" defer></script>
+    <script src="static/components/footer.js" defer></script>
+    <script src="static/components/whatsapp-float.js" defer></script>
+    <script src="static/components/contact-form.js" defer></script>
+    <script src="static/components/testimonials.js" defer></script>
+
+    <script src="static/script.js" defer></script>
+</head>
+
+<body class="bg-white font-sans" id="top">
+
+    <!-- NAVBAR -->
+    <custom-navbar></custom-navbar>
+
+    <!-- HERO SECTION -->
+    <section class="video-hero relative h-[90vh] w-full flex items-center justify-center">
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+            <source src="https://huggingface.co/spaces/ankita3108/batumi-bliss-bungalows/resolve/main/videos/islandsport.mp4" type="video/mp4">
+        </video>
+
+        <div class="absolute inset-0 bg-black/40"></div>
+
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                Batumi Island Estates
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto">
+                Your Gateway to Luxury Island Living in the Heart of the Black Sea
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#property-types"
+                   class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-md font-semibold">
+                    Explore Properties
+                </a>
+
+                <button onclick="document.getElementById('quick-contact-modal').classList.remove('hidden')"
+                        class="border border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-gray-900">
+                    Quick Enquiry
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- QUICK CONTACT MODAL -->
+    <div id="quick-contact-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Quick Inquiry</h3>
+                <button onclick="document.getElementById('quick-contact-modal').classList.add('hidden')"
+                        class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <form id="quick-contact-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium">Name</label>
+                    <input type="text" id="quick-name" required class="w-full border p-2 rounded-md">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium">Phone</label>
+                    <div class="flex gap-2">
+                        <select id="quick-country-code" class="border p-2 rounded-md w-24">
+                            <option value="+995">+995 (GE)</option>
+                            <option value="+91">+91 (IN)</option>
+                            <option value="+1">+1 (US)</option>
+                            <option value="+44">+44 (UK)</option>
+                        </select>
+                        <input type="tel" id="quick-phone" required class="border p-2 rounded-md flex-1">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium">Email</label>
+                    <input type="email" id="quick-email" class="w-full border p-2 rounded-md">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium">Apartment Type</label>
+                    <select id="quick-apartment-type" class="w-full border p-2 rounded-md">
+                        <option value="">Select</option>
+                        <option value="studio">Studio</option>
+                        <option value="1bhk">1BHK</option>
+                        <option value="2bhk">2BHK</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium">Message</label>
+                    <textarea id="quick-message" class="w-full border p-2 rounded-md"></textarea>
+                </div>
+
+                <button type="submit"
+                        class="bg-amber-600 text-white w-full py-2 rounded-md hover:bg-amber-700">
+                    Submit Inquiry
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- UPDATED INVESTMENT HIGHLIGHTS (FULLY EXPANDED) -->
+    <section id="investment-highlights" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-12">Why Invest in Batumi Island Estates?</h2>
+            
+            <!-- INTRO PARAGRAPH WITH GOLD UNDERLINE & ANIMATION -->
+            <p class="text-gray-700 leading-relaxed text-sm md:text-base max-w-3xl mx-auto mb-10 font-serif text-justify opacity-0 animate-fadeUp"
+            style="text-align: justify; text-align-last: left; hyphens: auto;">
+                <span class="relative inline-block font-semibold text-gray-900 pb-1">
+                    Batumi Island Estates
+                    <span class="absolute left-0 bottom-0 w-full h-[2px] bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 rounded-full"></span>
+                </span>
+                is one of the few master-planned island developments in the Black Sea, offering an exclusive investment landscape inspired by world-renowned destinations such as 
+                <span class="relative inline-block font-semibold italic text-gray-900 pb-1">
+                    The Palm Jumeirah
+                    <span class="absolute left-0 bottom-0 w-full h-[2px] bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 rounded-full"></span>
+                </span>
+                and 
+                <span class="relative inline-block font-semibold italic text-gray-900 pb-1">
+                    Dubai Islands
+                    <span class="absolute left-0 bottom-0 w-full h-[2px] bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 rounded-full"></span>
+                </span>,
+                delivering exceptional long-term value and true coastal scarcity.
+            </p>
+
+            <!-- CORE BENEFITS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-8 shadow rounded-lg">
+                    <i class="fas fa-chart-line text-amber-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">High ROI</h3>
+                    <p class="text-gray-600">Batumi’s fast-growing tourism, gaming, and leisure market supports strong rental yields,
+                        especially for sea-facing, resort-integrated island properties.</p>
+                </div>
+
+                <div class="bg-white p-8 shadow rounded-lg">
+                    <i class="fas fa-passport text-amber-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Golden Visa</h3>
+                    <p class="text-gray-600">Strategic investments in Georgia can support long-stay options, simplified ownership structures,
+                        and a convenient hub between Europe, the Middle East, and Asia.</p>
+                </div>
+
+                <div class="bg-white p-8 shadow rounded-lg">
+                    <i class="fas fa-umbrella-beach text-amber-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Prime Island Location</h3>
+                    <p class="text-gray-600">Enjoy direct access to the Black Sea, curated promenades, beach clubs, and marina living—
+                        creating both lifestyle appeal and premium pricing power.</p>
+                </div>
+            </div>
+            
+            <div class="section-divider"></div>
+
+            <!-- NEW: DUBAI-STYLE ISLAND MEGA-PROJECT BENEFITS -->
+            <h3 class="text-3xl font-bold mb-8">A World-Class Investment Opportunity on the Black Sea</h3>
+            
+            <p class="text-gray-700 leading-relaxed text-sm md:text-base max-w-3xl mx-auto mb-10 font-serif text-justify opacity-0 animate-fadeUp"
+            style="text-align: justify; text-align-last: left; hyphens: auto;">
+                <span class="relative inline-block font-semibold text-gray-900 pb-1">
+                    Batumi Island Estates
+                    <span class="absolute left-0 bottom-0 w-full h-[2px] bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 rounded-full"></span>
+                </span>
+                is one of the few master-planned island developments in the Black Sea, inspired by visionary concepts like 
+                <span class="relative inline-block font-semibold italic text-gray-900 pb-1">
+                    The Palm Jumeirah
+                    <span class="absolute left-0 bottom-0 w-full h-[2px] bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 rounded-full"></span>
+                </span>
+                and 
+                <span class="relative inline-block font-semibold italic text-gray-900 pb-1">
+                    Dubai Islands
+                    <span class="absolute left-0 bottom-0 w-full h-[2px] bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 rounded-full"></span>
+                </span>,
+                and offering unmatched exclusivity, natural scarcity, and long-term value creation.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+                <!-- 1 ICONIC LANDMARK PROJECT -->
+                <div class="bg-white p-8 rounded-xl shadow">
+                    <i class="fa-solid fa-landmark text-indigo-600 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">First-of-its-Kind Mega Island Project</h4>
+                    <p class="text-gray-600">
+                        One of the only world-class island developments in the Black Sea—creating a landmark destination unlike anything in Europe or Asia.
+                    </p>
+                </div>
+
+                <!-- 2 LIMITED SUPPLY -->
+                <div class="bg-white p-8 rounded-xl shadow">
+                    <i class="fa-solid fa-gem text-purple-600 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Extremely Limited Supply</h4>
+                    <p class="text-gray-600">
+                        Unlike city properties, island real estate is finite—creating strong exclusivity, investor demand, and resale potential.
+                    </p>
+                </div>
+
+                <!-- 3 DUBAI-INSPIRED MASTERPLAN -->
+                <div class="bg-white p-8 rounded-xl shadow">
+                    <i class="fa-solid fa-city text-amber-600 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Dubai-Inspired Luxury Masterplan</h4>
+                    <p class="text-gray-600">
+                        Developed with the same architectural philosophy as Dubai’s iconic island projects—private beaches, marinas, luxury hotels & high-end retail.
+                    </p>
+                </div>
+
+                <!-- 4 FIVE-STAR RESORT -->
+                <div class="bg-white p-8 rounded-xl shadow">
+                    <i class="fa-solid fa-hotel text-red-500 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Luxury 5-Star Resort Ecosystem</h4>
+                    <p class="text-gray-600">
+                        Branded hospitality, fine dining, beach clubs, wellness centers, and entertainment zones elevate the value of every residence.
+                    </p>
+                </div>
+
+                <!-- 5 MARINA ACCESS -->
+                <div class="bg-white p-8 rounded-xl shadow">
+                    <i class="fa-solid fa-anchor text-blue-600 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Private Marina & Yacht Access</h4>
+                    <p class="text-gray-600">
+                        Direct access to a world-class marina elevates tourism appeal and premium rental income.
+                    </p>
+                </div>
+
+                <!-- 6 FUTURE CAPITAL UPSIDE -->
+                <div class="bg-white p-8 rounded-xl shadow">
+                    <i class="fa-solid fa-arrow-trend-up text-green-600 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Strong Future Capital Appreciation</h4>
+                    <p class="text-gray-600">
+                        Early-phase investors benefit the most as the island becomes an international destination for tourism, entertainment, and luxury living.
+                    </p>
+                </div>
+
+                <!-- 7 HARD CURRENCY RETURNS -->
+                <div class="bg-white p-8 rounded-xl shadow">
+                    <i class="fa-solid fa-coins text-yellow-500 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Hard Currency Rental Yield</h4>
+                    <p class="text-gray-600">
+                        Earn from global tourists with strong nightly rates—especially from Europe & Middle East travelers.
+                    </p>
+                </div>
+
+                <!-- 8 LONG-TERM GEOPOLITICAL VALUE -->
+                <div class="bg-white p-8 rounded-xl shadow">
+                    <i class="fa-solid fa-globe-europe text-teal-600 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Growing Strategic Importance</h4>
+                    <p class="text-gray-600">
+                        Georgia is becoming a major Black Sea hub for business, leisure, gaming, and tourism—boosting long-term property value.
+                    </p>
+                </div>
+
+                <!-- 9 ZERO PROPERTY TAX -->
+                <div class="bg-white p-8 rounded-xl shadow">
+                    <i class="fa-solid fa-shield text-red-600 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Zero Annual Property Tax</h4>
+                    <p class="text-gray-600">
+                        Georgia offers unmatched investor-friendly conditions with no annual property tax on individual ownership.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGHLIGHT: BATUMI'S LUXURY TRANSFORMATION -->
+    <section class="py-12 bg-gradient-to-r from-emerald-900 via-slate-900 to-sky-900 text-white">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
+            <!-- Icon / Badge -->
+            <div class="flex-shrink-0">
+                <div class="h-20 w-20 rounded-full bg-white/10 border border-amber-400 flex items-center justify-center shadow-lg">
+                    <i class="fa-solid fa-building-circle-arrow-right text-3xl text-amber-300"></i>
+                </div>
+            </div>
+
+            <!-- Text Content -->
+            <div class="flex-1">
+                <h3 class="text-2xl md:text-3xl font-semibold mb-3">
+                    Batumi’s Luxury Transformation
+                </h3>
+                <p class="text-sm md:text-base leading-relaxed text-justify">
+                    Batumi is undergoing a dramatic evolution from a seasonal seaside town into a year-round luxury
+                    and entertainment hub. New five-star hotels, casinos, branded residences, and international
+                    lifestyle concepts are reshaping the waterfront and attracting a growing base of global investors,
+                    much like the early transformation phases seen in Dubai.
+                </p>
+            </div>
+        </div>
+    </section>
+        
+    <!-- PROPERTY TYPES -->
+    <section id="property-types" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-12 text-center">Our Property Types</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+                <!-- Studio -->
+                <custom-property-card
+                    title="Luxury Studio Apartments"
+                    image1="images/studio/Studio_1.png"
+                    image2="images/studio/Studio_2.png"
+                    image3="images/studio/Studio_3.png"
+                    image4="images/studio/Studio_4.png"
+                    features="Sea View, Smart Home">
+                </custom-property-card>
+
+                <!-- 1BHK -->
+                <custom-property-card
+                    title="Premium 1BHK Apartments"
+                    image1="images/1bhk/Living_1.jpg"
+                    image2="images/1bhk/Living_2.jpg"
+                    image3="images/1bhk/Bedroom_1.jpg"
+                    image4="images/1bhk/Bathroom_1.jpg"
+                    features="Panoramic View, Luxury Bath, Smart Home">
+                </custom-property-card>
+
+                <!-- 2BHK -->
+                <custom-property-card
+                    title="Premium 2BHK Apartments"
+                    image1="images/2bhk/Bedroom_1.png"
+                    image2="images/2bhk/Bedroom_2.png"
+                    image3="images/2bhk/Kitchen.png"
+                    image4="images/2bhk/Bathroom.png"
+                    features="Master Suite, Gourmet Kitchen, Walk-in Closet">
+                </custom-property-card>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="contact-cta text-white p-8 my-16 relative overflow-hidden bg-gradient-to-r from-sky-800 to-blue-900">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Own Your Island Paradise?</h2>
+            <p class="text-xl mb-6">
+                Contact our expert agents today to schedule a viewing or get more information.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="tel:+995574100645"
+                   class="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 inline-flex items-center">
+                    <i class="fas fa-phone mr-2"></i> Call +995 574 100 645
+                </a>
+
+                <a href="mailto:info@batumiislandestates.com"
+                   class="bg-transparent border border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-700 inline-flex items-center">
+                    <i class="fas fa-envelope mr-2"></i> Email Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <custom-testimonials></custom-testimonials>
+
+    <!-- CONTACT FORM -->
+    <section id="contact-form" class="py-16 bg-gray-50">
+        <custom-contact-form></custom-contact-form>
+    </section>
+
+    <!-- FOOTER -->
+    <custom-footer></custom-footer>
+
+    <!-- WHATSAPP -->
+    <custom-whatsapp-float></custom-whatsapp-float>
+
+</body>
+</html>
