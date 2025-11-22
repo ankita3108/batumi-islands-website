@@ -1,6 +1,5 @@
-// components/contact-form.js
-
 // Shared function to send enquiry to backend
+
 async function sendEnquiry(payload, statusEl, submitBtn) {
   if (statusEl) {
     statusEl.textContent = "";
@@ -135,9 +134,9 @@ class CustomContactForm extends HTMLElement {
                 class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
               >
                 <option value="">Select</option>
-                <option value="studio">Luxury Studio</option>
-                <option value="1bhk">1BHK Apartment</option>
-                <option value="2bhk">2BHK Apartment</option>
+                <option value="Luxury Studio">Luxury Studio</option>
+                <option value="1BHK Apartment">1BHK Apartment</option>
+                <option value="2BHK Apartment">2BHK Apartment</option>
               </select>
             </div>
             <div>
@@ -185,23 +184,21 @@ class CustomContactForm extends HTMLElement {
       e.preventDefault();
 
       const formData = new FormData(form);
+
       const payload = {
-        formType: "main",
+        form_type: "contact",                                      // snake_case for backend
         name: formData.get("name") || "",
         email: formData.get("email") || "",
         phone: formData.get("phone") || "",
-        countryCode: formData.get("countryCode") || "",
-        apartmentType: formData.get("apartmentType") || "",
-        message:
-          (formData.get("message") || "") +
-          (formData.get("budget")
-            ? `\n\nApprox. Budget (USD): ${formData.get("budget")}`
-            : "")
+        country_code: formData.get("countryCode") || "",
+        apartment_type: formData.get("apartmentType") || "",       // "Luxury Studio", etc.
+        budget: formData.get("budget") || "",                      // separate budget
+        message: formData.get("message") || ""                     // only message, no budget text
       };
 
       await sendEnquiry(payload, statusEl, submitBtn);
 
-      // If success, we reset form when status is green
+      // If success, reset form when status is green
       if (statusEl && statusEl.className.includes("text-emerald-600")) {
         form.reset();
       }
@@ -219,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const quickForm = document.getElementById("quick-contact-form");
   if (!quickForm) return;
 
-  // create a status text element below the button
+  // status text element
   let quickStatus = document.createElement("p");
   quickStatus.id = "quick-contact-status";
   quickStatus.className = "text-xs text-gray-500 mt-2";
@@ -238,12 +235,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = document.getElementById("quick-message")?.value || "";
 
     const payload = {
-      formType: "quick",
+      form_type: "quick",                      // snake_case
       name,
       email,
       phone,
-      countryCode,
-      apartmentType,
+      country_code: countryCode,
+      apartment_type: apartmentType,           // matches select value
+      budget: "",                              // no budget field in quick form
       message
     };
 
@@ -251,7 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (quickStatus && quickStatus.className.includes("text-emerald-600")) {
       quickForm.reset();
-      // optionally close modal on success:
       const modal = document.getElementById("quick-contact-modal");
       if (modal) {
         setTimeout(() => {
