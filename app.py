@@ -30,7 +30,18 @@ SMTP_PASS = os.getenv("SMTP_PASS", "ifqieuymjxbrgmhx")          # your app passw
 ENQUIRY_TO = os.getenv("ENQUIRY_TO", SMTP_USER)                       # where enquiries are sent
 
 # CSV file to log enquiries
-ENQUIRY_CSV = os.getenv("ENQUIRY_CSV", "enquiry.csv")
+ENQUIRY_CSV = os.getenv("ENQUIRY_CSV", "enquiries.csv")
+
+# Ensure CSV file exists with headers
+def ensure_csv_exists():
+    if not os.path.exists(ENQUIRY_CSV):
+        with open(ENQUIRY_CSV, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(["name", "email", "phone", "apartment_type", "message", "form_type"])
+        print(f"[INFO] Created CSV file: {ENQUIRY_CSV}")
+
+# Call immediately at app startup
+ensure_csv_exists()
 
 # ------------------------
 # FLASK APP
@@ -65,15 +76,16 @@ def handle_enquiry():
       - If at least ONE of those succeeds, returns success to the user
       - Only if BOTH fail, returns an error
     """
-    data = request.get_json(silent=True) or request.form
+    # Accept JSON or form-encoded data
+    raw = request.get_json(silent=True) or request.form
 
-    name = data.get("name", "").strip()
-    email = data.get("email", "").strip()
-    phone_code = data.get("country_code", "").strip()
-    phone = data.get("phone", "").strip()
-    apartment_type = data.get("apartment_type", "").strip()
-    message = data.get("message", "").strip()
-    form_type = data.get("form_type", "website").strip()  # e.g. "quick", "contact"
+    name = raw.get("name", "").strip()
+    email = raw.get("email", "").strip()
+    phone_code = raw.get("country_code", "").strip()
+    phone = raw.get("phone", "").strip()
+    apartment_type = raw.get("apartment_type", "").strip()
+    message = raw.get("message", "").strip()
+    form_type = raw.get("form_type", "website").strip()  # e.g. "quick", "contact"
 
     full_phone = (phone_code + " " + phone).strip() if phone_code else phone
 
@@ -85,98 +97,23 @@ def handle_enquiry():
             "message": "Name and phone are required."
         }), 400
 
-    csv_ok = False
-    email_ok = False
+    # Build unified data dict for helpers
+    enquiry_data = {
+        "name": name,
+        "email": email,
+        "phone": full_phone,
+        "apartment_type": apartment_type,
+        "message": message,
+        "form_type": form_type,
+    }
 
-    # -----------------------------
-    # 1) TRY TO LOG TO enquiries.csv
-    # -----------------------------
-    try:
-        file_exists = os.path.isfile(ENQUIRY_CSV)
-        with open(ENQUIRY_CSV, "a", newline="", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            if not file_exists:
-                writer.writerow([
-                    "name",
-                    "email",
-                    "phone",
-                    "apartment_type",
-                    "message",
-                    "form_type"
-                ])
-            writer.writerow([
-                name,
-                email,
-                full_phone,
-                apartment_type,
-                message,
-                form_type
-            ])
-        print(f"[CSV] Enquiry saved to {ENQUIRY_CSV}")
-        csv_ok = True
-    except Exception as e:
-        print("[CSV] Error writing enquiry:", repr(e))
+    # --- 1) Try CSV logging ---
+    csv_ok = save_to_csv(enquiry_data)   # must return True/False
 
-    # -----------------------------
-    # 2) TRY TO SEND EMAIL (with short timeout)
-    # -----------------------------
-    if SMTP_USER and SMTP_PASS and SMTP_HOST:
-        try:
-            body_lines = [
-                f"New enquiry from Batumi Island Estates ({form_type} form):",
-                "",
-                f"Name: {name}",
-                f"Phone: {full_phone}",
-                f"Email: {email or '—'}",
-                f"Apartment Type: {apartment_type or '—'}",
-                "",
-                "Message:",
-                message or "—",
-            ]
-            email_body = "\n".join(body_lines)
+    # --- 2) Try email sending (with timeout inside send_email) ---
+    email_ok = send_email(enquiry_data)  # must return True/False
 
-            msg = MIMEMultipart()
-            msg["From"] = SMTP_USER
-            msg["To"] = ENQUIRY_TO
-            msg["Subject"] = f"New Batumi Island Estates enquiry ({form_type})"
-            msg.attach(MIMEText(email_body, "plain", "utf-8"))
-
-            context = ssl.create_default_context()
-
-            if SMTP_PORT == 465:
-                # SSL mode, with timeout
-                with smtplib.SMTP_SSL(
-                    SMTP_HOST,
-                    SMTP_PORT,
-                    context=context,
-                    timeout=5   # <- IMPORTANT: short timeout to avoid worker hang
-                ) as server:
-                    server.login(SMTP_USER, SMTP_PASS)
-                    server.send_message(msg)
-            else:
-                # STARTTLS (e.g. port 587), with timeout
-                with smtplib.SMTP(
-                    SMTP_HOST,
-                    SMTP_PORT,
-                    timeout=5   # <- IMPORTANT: short timeout
-                ) as server:
-                    server.ehlo()
-                    server.starttls(context=context)
-                    server.ehlo()
-                    server.login(SMTP_USER, SMTP_PASS)
-                    server.send_message(msg)
-
-            print("[EMAIL] Enquiry email sent successfully to", ENQUIRY_TO)
-            email_ok = True
-
-        except Exception as e:
-            print("[EMAIL] Error sending enquiry email:", repr(e))
-    else:
-        print("[EMAIL] SMTP not configured (missing SMTP_USER/SMTP_PASS/SMTP_HOST), skipping email send.")
-
-    # -----------------------------
-    # 3) FINAL RESPONSE LOGIC
-    # -----------------------------
+    # --- 3) Final response logic ---
     if csv_ok or email_ok:
         # At least one of the two worked → show success message
         return jsonify({
@@ -193,6 +130,98 @@ def handle_enquiry():
         "csvLogged": csv_ok,
         "emailSent": email_ok
     }), 500
+
+    # -----------------------------
+    # 1) TRY TO LOG TO enquiries.csv
+    # -----------------------------
+def save_to_csv(data):
+    try:
+        file_exists = os.path.exists(ENQUIRY_CSV)
+
+        with open(ENQUIRY_CSV, "a", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+
+            # Write header only if file was empty
+            if os.path.getsize(ENQUIRY_CSV) == 0:
+                writer.writerow(["name", "email", "phone", "apartment_type", "message", "form_type"])
+
+            writer.writerow([
+                data.get("name", ""),
+                data.get("email", ""),
+                data.get("phone", ""),
+                data.get("apartment_type", ""),
+                data.get("message", ""),
+                data.get("form_type", ""),
+            ])
+
+        print("[INFO] Enquiry saved to CSV.")
+        return True
+
+    except Exception as e:
+        print(f"[ERROR] CSV write failed: {e}")
+        return False
+
+    # -----------------------------
+    # 2) TRY TO SEND EMAIL (with short timeout)
+    # -----------------------------
+def send_email(data):
+    """
+    Sends enquiry email. Returns True if email was sent, False if failed.
+    Email errors NEVER stop the app (worker-safe).
+    """
+    if not (SMTP_USER and SMTP_PASS and SMTP_HOST):
+        print("[EMAIL] SMTP missing, skipping email send.")
+        return False
+
+    try:
+        name = data.get("name", "")
+        email = data.get("email", "")
+        phone = data.get("phone", "")
+        apartment_type = data.get("apartment_type", "")
+        message = data.get("message", "")
+        form_type = data.get("form_type", "")
+
+        body = f"""
+        New enquiry ({form_type}):
+
+        Name: {name}
+        Email: {email or "—"}
+        Phone: {phone or "—"}
+        Apartment Type: {apartment_type or "—"}
+
+        Message:
+        {message or "—"}
+        """
+
+        msg = MIMEMultipart()
+        msg["From"] = SMTP_USER
+        msg["To"] = ENQUIRY_TO
+        msg["Subject"] = f"New Batumi Island Estates enquiry ({form_type})"
+        msg.attach(MIMEText(body, "plain", "utf-8"))
+
+        context = ssl.create_default_context()
+
+        # SSL mode (port 465)
+        if str(SMTP_PORT) == "465":
+            with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context, timeout=5) as server:
+                server.login(SMTP_USER, SMTP_PASS)
+                server.send_message(msg)
+
+        # STARTTLS (port 587)
+        else:
+            with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=5) as server:
+                server.ehlo()
+                server.starttls(context=context)
+                server.ehlo()
+                server.login(SMTP_USER, SMTP_PASS)
+                server.send_message(msg)
+
+        print("[EMAIL] Sent successfully.")
+        return True
+
+    except Exception as e:
+        print("[EMAIL] Failed:", repr(e))
+        return False
 
 # ------------------------
 # DEV ENTRYPOINT
