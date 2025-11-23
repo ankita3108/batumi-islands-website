@@ -236,13 +236,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const payload = {
       form_type: "quick",                      // snake_case
-      name,
-      email,
-      phone,
+      name: name,
+      email: email,
+      phone: phone,
       country_code: countryCode,
       apartment_type: apartmentType,           // matches select value
       budget: "",                              // no budget field in quick form
-      message
+      message: message
     };
 
     await sendEnquiry(payload, quickStatus, quickSubmit);
