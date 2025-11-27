@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17756439458"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17756439458');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life in Georgia | Batumi Island Estates</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- Shared styles & animations -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fade-up animation */
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeUp {
+            animation: fadeUp 1.4s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        /* Luxury Gold Section Divider */
+        .section-divider {
+            width: 140px;
+            height: 5px;
+            margin: 1.2rem auto 2.5rem auto;
+            border-radius: 8px;
+            background: linear-gradient(to right, #d4af37, #f6e27f, #d4af37);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.55);
+            animation: fadeDivider 1.2s ease-out forwards;
+            opacity: 0;
+            transform-origin: center;
+        }
+
+        @keyframes fadeDivider {
+            0% {
+                transform: scaleX(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+        }
+
+        /* Soft animated gradient background for cards */
+        .geo-gradient-card {
+            background: radial-gradient(circle at top left, rgba(248, 250, 252, 1), rgba(226, 232, 240, 1));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geo-gradient-card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background: radial-gradient(circle at top, rgba(251, 191, 36, 0.18), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .geo-gradient-card:hover::before {
+            opacity: 1;
+        }
+
+        .video-hero-life {
+            height: 80vh;
+        }
+
+        .video-hero-life video {
+            filter: saturate(1.1) contrast(1.05);
+        }
+    </style>
+
+    <!-- Component Scripts (same as index) -->
+    <script src="static/components/navbar.js" defer></script>
+    <script src="static/components/property-card.js" defer></script>
+    <script src="static/components/footer.js" defer></script>
+    <script src="static/components/whatsapp-float.js" defer></script>
+    <script src="static/components/contact-form.js" defer></script>
+    <script src="static/components/testimonials.js" defer></script>
+
+    <script src="static/script.js" defer></script>
+</head>
+
+<body class="bg-white font-sans" id="top">
+
+    <!-- NAVBAR -->
+    <custom-navbar></custom-navbar>
+
+    <!-- HERO: LIFE IN GEORGIA -->
+    <section class="video-hero-life relative w-full flex items-center justify-center">
+        <!-- Background Video (replace src with your final lifestyle video) -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+            <source src="https://huggingface.co/spaces/ankita3108/batumi-bliss-bungalows/resolve/main/videos/islandsport.mp4" type="video/mp4">
+        </video>
+
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/45"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                Life in Georgia
+            </h1>
+            <p class="text-base md:text-lg text-gray-100 mb-6 leading-relaxed">
+                A vibrant blend of European charm, Black Sea coastal living, warm hospitality, and a rapidly 
+                modernising lifestyle—Georgia offers a unique environment where culture, freedom, and opportunity 
+                come together for global residents and investors.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-4">
+                <a href="#georgia-lifestyle"
+                   class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-md font-semibold shadow-lg transition">
+                    Explore Georgian Lifestyle
+                </a>
+                <a href="#europe-alignment"
+                   class="border border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-gray-900 transition">
+                    Georgia & Europe: How They Align
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: GEORGIA LIFESTYLE HIGHLIGHTS -->
+    <section id="georgia-lifestyle" class="py-16 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                Everyday Life in Georgia
+            </h2>
+
+            <div class="section-divider"></div>
+
+            <p class="text-gray-700 leading-relaxed text-sm md:text-base max-w-3xl mx-auto mb-10 font-serif text-justify"
+               style="text-align: justify; text-align-last: left; hyphens: auto;">
+                Georgia blends its rich history, dynamic city life, and deep-rooted traditions with modern, 
+                European-facing aspirations. From Tbilisi’s creative districts and Batumi’s seaside promenade, 
+                to ancient wine regions and alpine escapes, the country offers a lifestyle that is relaxed, warm, 
+                and increasingly cosmopolitan.
+            </p>
+
+            <!-- Animated Lifestyle Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
+                <!-- Card 1 -->
+                <div class="geo-gradient-card rounded-xl shadow hover:shadow-xl p-8 transition transform hover:-translate-y-1">
+                    <div class="mb-4">
+                        <i class="fa-solid fa-wine-glass text-amber-600 text-4xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Wine, Cuisine & Hospitality</h3>
+                    <p class="text-gray-700 text-sm leading-relaxed">
+                        Recognised as the cradle of wine, Georgia is known for its generous feasts, 
+                        family-style dining, and a culture where guests are treated like family.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="geo-gradient-card rounded-xl shadow hover:shadow-xl p-8 transition transform hover:-translate-y-1">
+                    <div class="mb-4">
+                        <i class="fa-solid fa-mountain-sun text-blue-700 text-4xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Diverse Landscapes in a Compact Country</h3>
+                    <p class="text-gray-700 text-sm leading-relaxed">
+                        From ski slopes and mountain trails to warm Black Sea beaches, Georgia offers 
+                        weekend escapes and lifestyle variety within a few hours’ drive.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="geo-gradient-card rounded-xl shadow hover:shadow-xl p-8 transition transform hover:-translate-y-1">
+                    <div class="mb-4">
+                        <i class="fa-solid fa-people-group text-emerald-700 text-4xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Community, Safety & Warmth</h3>
+                    <p class="text-gray-700 text-sm leading-relaxed">
+                        A family-oriented culture, walkable cities, and welcoming local communities create 
+                        a sense of belonging for both residents and international buyers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: ANIMATED VIDEO STORYTELLING BLOCK -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-10 items-center">
+            <!-- Video / Animation Placeholder -->
+            <div class="w-full lg:w-1/2 relative rounded-2xl overflow-hidden shadow-xl">
+                <!-- Replace this with your animated lifestyle video for Georgia -->
+                <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                    <source src="https://huggingface.co/spaces/ankita3108/batumi-bliss-bungalows/resolve/main/videos/islandsport.mp4" type="video/mp4">
+                </video>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 text-white">
+                    <h3 class="text-xl font-semibold mb-1">
+                        Animated Journey Through Life in Georgia
+                    </h3>
+                    <p class="text-sm text-gray-100">
+                        Showcase the rhythm of Georgian cities, coastal evenings in Batumi, mountain retreats, 
+                        and cultural festivals through a single cinematic storyline.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Text Content -->
+            <div class="w-full lg:w-1/2">
+                <h2 class="text-2xl md:text-3xl font-bold mb-3">
+                    Storytelling Through Animated Lifestyle Visuals
+                </h2>
+                <div class="section-divider" style="margin-left: 0; margin-right: 0;"></div>
+                <p class="text-gray-700 text-sm md:text-base leading-relaxed mb-4 text-justify">
+                    This dedicated “Life in Georgia” experience can be anchored by a short animated video that 
+                    captures the country’s rhythm—from early morning café culture and work-life balance, 
+                    to evening walks on the Batumi boulevard, ski escapes in Gudauri, and wine evenings in Kakheti.
+                </p>
+                <p class="text-gray-700 text-sm md:text-base leading-relaxed text-justify">
+                    The same visual story can position Georgia not only as a property investment destination, 
+                    but as a place to live, work remotely, retire, or maintain a second home—bridging the emotional 
+                    connection between lifestyle and long-term ownership.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: GEORGIA & EUROPE ALIGNMENT -->
+    <section id="europe-alignment" class="py-16 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">
+                How Georgia Aligns with Modern European Living
+            </h2>
+
+            <div class="section-divider"></div>
+
+            <p class="text-sm md:text-base max-w-3xl mx-auto mb-10 leading-relaxed text-justify text-gray-100">
+                Georgia is increasingly integrated with European economic, lifestyle, and tourism flows while 
+                still maintaining its distinct cultural identity and cost advantages. For investors and residents, 
+                it offers a bridge between East and West, combining European-facing standards with a more relaxed, 
+                approachable pace of life.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Alignment Card 1 -->
+                <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-2">
+                        European Lifestyle, Lower Cost of Living
+                    </h3>
+                    <p class="text-sm leading-relaxed text-gray-100">
+                        Café culture, walkable neighborhoods, international schools, and modern shopping centres 
+                        align closely with many European capitals—yet housing, dining, and services often remain 
+                        significantly more affordable.
+                    </p>
+                </div>
+
+                <!-- Alignment Card 2 -->
+                <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-2">
+                        Increasing Connectivity & Tourism Flows
+                    </h3>
+                    <p class="text-sm leading-relaxed text-gray-100">
+                        Direct and connecting flights from key European cities, rising tourist arrivals, and 
+                        a growing base of digital nomads and remote workers connect Georgia into broader EU traffic.
+                    </p>
+                </div>
+
+                <!-- Alignment Card 3 -->
+                <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-2">
+                        Investor-Friendly, Long-Term Oriented
+                    </h3>
+                    <p class="text-sm leading-relaxed text-gray-100">
+                        Clear ownership rights, simple purchase processes, and a forward-looking tourism and 
+                        infrastructure strategy align Georgia with other emerging European investment hotspots.
+                    </p>
+                </div>
+
+                <!-- Alignment Card 4 -->
+                <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-2">
+                        Cultural Depth Meets Modern Aspirations
+                    </h3>
+                    <p class="text-sm leading-relaxed text-gray-100">
+                        Historic architecture, music, food, and traditions exist alongside modern hospitality, 
+                        co-working hubs, and contemporary art—creating a lifestyle that resonates with sophisticated 
+                        European travellers and long-stay residents.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA: LINK BACK TO MAIN INVESTMENT PAGE -->
+    <section class="py-12 bg-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3">
+                See How Life in Georgia Connects with Your Investment
+            </h2>
+            <p class="text-gray-700 text-sm md:text-base mb-6 leading-relaxed max-w-2xl mx-auto">
+                Combine the emotional appeal of living in Georgia with the financial strength of 
+                investing in Batumi Island Estates—one of the most unique island developments in the Black Sea region.
+            </p>
+            <a href="index.html#investment-highlights"
+               class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-amber-600 text-white font-semibold hover:bg-amber-700 shadow-lg">
+                Back to Investment Highlights
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <custom-footer></custom-footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <custom-whatsapp-float></custom-whatsapp-float>
+
+</body>
+</html>

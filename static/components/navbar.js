@@ -20,10 +20,11 @@ class CustomNavbar extends HTMLElement {
 
           <!-- Desktop Links -->
           <div class="hidden md:flex items-center gap-8 text-sm font-medium nav-links">
-            <a href="#top" class="hover:text-amber-500 transition-colors">Home</a>
-            <a href="#investment-highlights" class="hover:text-amber-500 transition-colors">Why Batumi</a>
-            <a href="#property-types" class="hover:text-amber-500 transition-colors">Properties</a>
-            <a href="#contact-form" class="hover:text-amber-500 transition-colors">Enquire</a>
+            <a href="#top" class="nav-luxury">Home</a>
+            <a href="#investment-highlights" class="nav-luxury">Why Batumi</a>
+            <a href="#property-types" class="nav-luxury">Properties</a>
+            <a href="/life-in-georgia.html" class="nav-luxury">Life in Georgia</a>
+            <a href="#contact-form" class="nav-luxury">Enquire</a>
           </div>
 
           <!-- Desktop CTA -->
@@ -46,10 +47,11 @@ class CustomNavbar extends HTMLElement {
 
         <!-- Mobile menu -->
         <div class="md:hidden bg-black/70 backdrop-blur-sm text-white px-4 pb-4 space-y-3 hidden" data-mobile-menu>
-          <a href="#top" class="block text-sm py-1 mobile-link">Home</a>
-          <a href="#investment-highlights" class="block text-sm py-1 mobile-link">Why Batumi</a>
-          <a href="#property-types" class="block text-sm py-1 mobile-link">Properties</a>
-          <a href="#contact-form" class="block text-sm py-1 mobile-link">Enquire</a>
+          <a href="#top" class="block text-sm py-1 mobile-link nav-luxury">Home</a>
+          <a href="#investment-highlights" class="block text-sm py-1 mobile-link nav-luxury">Why Batumi</a>
+          <a href="#property-types" class="block text-sm py-1 mobile-link nav-luxury">Properties</a>
+          <a href="/life-in-georgia.html" class="block text-sm py-1 mobile-link nav-luxury">Life in Georgia</a>
+          <a href="#contact-form" class="block text-sm py-1 mobile-link nav-luxury">Enquire</a>
           <a href="tel:+995574100645"
              class="inline-flex items-center justify-center mt-2 px-4 py-2 rounded-full border border-white text-xs font-semibold">
             Call: +995 574 100 645

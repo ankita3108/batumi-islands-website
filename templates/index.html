@@ -10,11 +10,41 @@
 
     gtag('config', 'AW-17756439458');
     </script>
-    
+
     <style>
         html {
             scroll-behavior: smooth;
         }
+    /* Luxury Gold Hover Animation */
+        .nav-luxury {
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.35s ease;
+        }
+
+        .nav-luxury:hover {
+            color: #fbbf24 !important;        /* Gold hover color */
+            transform: translateY(-2px);      /* Luxury float-up */
+        }
+
+        /* Gold underline animation */
+        .nav-luxury::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(to right, #fbbf24, #facc15, #fbbf24);
+            box-shadow: 0 0 6px rgba(251, 191, 36, 0.5);
+            transition: width 0.35s ease-in-out;
+            border-radius: 6px;
+        }
+
+        .nav-luxury:hover::after {
+            width: 100%;
+        }
+
     /* Fade-up animation for luxury text and sections */
     @keyframes fadeUp {
         0% {
