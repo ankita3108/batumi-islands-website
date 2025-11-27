@@ -267,6 +267,9 @@ def send_to_sheets(data):
         print("[SHEETS] Error sending to Sheets:", repr(e))
         return False
 
+@app.route("/life-in-georgia")
+def life_in_georgia():
+    return send_from_directory("static/pages", "life-in-georgia.html")
 # ------------------------
 # DEV ENTRYPOINT
 # ------------------------
