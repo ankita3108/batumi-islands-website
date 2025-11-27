@@ -16,7 +16,7 @@ import smtplib
 from datetime import datetime
 
 import requests
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
