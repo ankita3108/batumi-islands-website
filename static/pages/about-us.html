@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Batumi Island Estates</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Main Styles for Divider + Fade Animation -->
+    <style>
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeUp { animation: fadeUp 1.2s ease-out forwards; }
+
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            margin: 1rem auto 2rem auto;
+            border-radius: 9999px;
+            background-image: linear-gradient(to right, #fbbf24, #facc15, #f97316);
+        }
+    </style>
+
+    <script src="/components/navbar.js"></script>
+    <script src="/components/footer.js"></script>
+</head>
+
+<body class="bg-white font-sans">
+
+<custom-navbar></custom-navbar>
+
+<!-- HERO SECTION -->
+<section class="relative h-[55vh] flex items-center justify-center bg-cover bg-center"
+         style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');">
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="relative text-center text-white px-6 animate-fadeUp max-w-3xl">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-wide mb-4">About Us</h1>
+        <p class="text-lg md:text-xl text-white/90">
+            Building trust, creating value, and shaping the future of premium island living in Georgia.
+        </p>
+    </div>
+</section>
+
+<!-- MAIN ABOUT SECTION -->
+<section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center animate-fadeUp">
+
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-3 tracking-wide">
+            Our Story & Commitment
+        </h2>
+
+        <div class="section-divider"></div>
+
+        <p class="text-gray-600 leading-relaxed text-lg max-w-4xl mx-auto text-justify">
+            Founded in 2022, Batumi Island Estates began with a single mission — to redefine luxury property 
+            acquisition in Georgia by providing international buyers with a seamless, trustworthy, and highly 
+            efficient real estate experience. Over the years, our passion for excellence, transparency, and 
+            personalized service has positioned us as a preferred real estate partner for investors across 
+            Europe, the Middle East, and Asia.
+        </p>
+
+        <p class="text-gray-600 leading-relaxed text-lg max-w-4xl mx-auto mt-6 text-justify">
+            In the last year alone, we successfully assisted over <strong>100+ clients</strong> in securing 
+            premium island properties, helping them navigate each step — from market analysis to final purchase — 
+            with complete confidence. Our team of experts ensures every client receives unparalleled guidance, 
+            backed by deep local insight and years of experience in Georgia’s fast-growing luxury real estate market.
+        </p>
+
+        <p class="text-gray-600 leading-relaxed text-lg max-w-4xl mx-auto mt-6 text-justify">
+            Our commitment extends beyond property transactions. We take pride in our <strong>exceptional service 
+            delivery</strong>, ensuring that every investor enjoys a smooth, hassle-free purchase experience. With 
+            a proven track record of delivering satisfaction, trust, and tangible value, Batumi Island Estates continues 
+            to raise the benchmark for professionalism and quality in the Georgian real estate landscape.
+        </p>
+    </div>
+</section>
+
+<!-- SERVICE HIGHLIGHTS -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6 animate-fadeUp">
+
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800">
+            Why Choose Batumi Island Estates?
+        </h2>
+
+        <div class="section-divider"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12">
+
+            <div class="p-8 bg-white shadow-xl rounded-2xl hover:shadow-2xl transition-all duration-300 text-center">
+                <i class="fas fa-user-check text-amber-500 text-5xl mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Trusted Expertise</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Our team consists of market specialists who understand Georgia’s luxury property ecosystem 
+                    better than anyone else — offering you only the most valuable opportunities.
+                </p>
+            </div>
+
+            <div class="p-8 bg-white shadow-xl rounded-2xl hover:shadow-2xl transition-all duration-300 text-center">
+                <i class="fas fa-handshake text-amber-500 text-5xl mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">100+ Happy Investors</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    We proudly served over 100 international clients last year alone, achieving a 98% satisfaction 
+                    rate and enabling smooth property acquisition from start to finish.
+                </p>
+            </div>
+
+            <div class="p-8 bg-white shadow-xl rounded-2xl hover:shadow-2xl transition-all duration-300 text-center">
+                <i class="fas fa-globe-europe text-amber-500 text-5xl mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Seamless Global Service</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    From virtual tours to full documentation support, our international clients experience 
+                    effortless and secure property buying — no matter where they are located.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- COMPANY TIMELINE -->
+<section class="py-20 bg-white animate-fadeUp">
+    <div class="max-w-5xl mx-auto px-6">
+
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800">
+            Our Journey Through Excellence
+        </h2>
+        <div class="section-divider"></div>
+
+        <div class="relative border-l-4 border-amber-400 ml-6 mt-12">
+
+            <!-- 2022 -->
+            <div class="mb-12 ml-8">
+                <div class="w-4 h-4 bg-amber-500 rounded-full absolute -left-[10px] top-1.5"></div>
+                <h3 class="text-xl font-semibold text-gray-800">2022 — Our Foundation</h3>
+                <p class="text-gray-600 text-justify mt-2 leading-relaxed">
+                    Batumi Island Estates was founded with the vision of transforming Georgia’s real 
+                    estate market by delivering transparent, world-class property consultancy for 
+                    international buyers.
+                </p>
+            </div>
+
+            <!-- 2023 -->
+            <div class="mb-12 ml-8">
+                <div class="w-4 h-4 bg-amber-500 rounded-full absolute -left-[10px] top-1.5"></div>
+                <h3 class="text-xl font-semibold text-gray-800">2023 — Expanding Expertise</h3>
+                <p class="text-gray-600 text-justify mt-2 leading-relaxed">
+                    We built a strong portfolio of premium properties, assisted 60+ clients globally, 
+                    and established new partnerships with developers across Batumi and Tbilisi.
+                </p>
+            </div>
+
+            <!-- 2024 -->
+            <div class="mb-12 ml-8">
+                <div class="w-4 h-4 bg-amber-500 rounded-full absolute -left-[10px] top-1.5"></div>
+                <h3 class="text-xl font-semibold text-gray-800">2024 — Crossing 100+ Clients</h3>
+                <p class="text-gray-600 text-justify mt-2 leading-relaxed">
+                    We surpassed the milestone of 100 international investors, achieving over 98% 
+                    satisfaction and launching our tech-enabled concierge service for seamless property buying.
+                </p>
+            </div>
+
+            <!-- 2025 -->
+            <div class="mb-12 ml-8">
+                <div class="w-4 h-4 bg-amber-500 rounded-full absolute -left-[10px] top-1.5"></div>
+                <h3 class="text-xl font-semibold text-gray-800">2025 — Luxury Expansion</h3>
+                <p class="text-gray-600 text-justify mt-2 leading-relaxed">
+                    Our offerings expanded to curated island properties, luxury lifestyle support, 
+                    and elite client services for high-net-worth investors across Europe and the Gulf region.
+                </p>
+            </div>
+
+            <!-- FUTURE -->
+            <div class="ml-8">
+                <div class="w-4 h-4 bg-amber-500 rounded-full absolute -left-[10px] top-1.5"></div>
+                <h3 class="text-xl font-semibold text-gray-800">2026 & Beyond — A Global Vision</h3>
+                <p class="text-gray-600 text-justify mt-2 leading-relaxed">
+                    Our next chapter focuses on cutting-edge digital buying experiences, international 
+                    partnerships, and expanding our footprint as the leading luxury real estate agency in Georgia.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS CAROUSEL -->
+<section class="py-24 bg-gray-50 animate-fadeUp">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+            What Our Global Investors Say
+        </h2>
+        <div class="section-divider"></div>
+
+        <!-- Carousel Container -->
+        <div class="relative mt-12">
+
+            <div id="testimonial-carousel" class="overflow-hidden">
+                
+                <!-- Testimonial Slides -->
+                <div class="carousel-track flex transition-transform duration-700 ease-out">
+
+                    <!-- 1 -->
+                    <div class="min-w-full px-6">
+                        <div class="bg-white shadow-xl rounded-2xl p-10">
+                            <p class="text-gray-600 italic leading-relaxed">
+                                “A seamless investment experience. The team guided me from first call to final paperwork. 
+                                Truly world-class service!”
+                            </p>
+                            <h4 class="font-semibold text-gray-800 mt-4">— Daniel M., UK • Tech Executive</h4>
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="min-w-full px-6">
+                        <div class="bg-white shadow-xl rounded-2xl p-10">
+                            <p class="text-gray-600 italic leading-relaxed">
+                                “Bought a luxury studio on the island. Exceptional transparency and professional support.”
+                            </p>
+                            <h4 class="font-semibold text-gray-800 mt-4">— Sara K., UAE • Business Owner</h4>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="min-w-full px-6">
+                        <div class="bg-white shadow-xl rounded-2xl p-10">
+                            <p class="text-gray-600 italic leading-relaxed">
+                                “Highly recommended for international buyers. Smooth process and great insights.”
+                            </p>
+                            <h4 class="font-semibold text-gray-800 mt-4">— Luca R., Italy • Hospitality Investor</h4>
+                        </div>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="min-w-full px-6">
+                        <div class="bg-white shadow-xl rounded-2xl p-10">
+                            <p class="text-gray-600 italic leading-relaxed">
+                                “Professional, honest, and extremely helpful. The best agency in Georgia!”
+                            </p>
+                            <h4 class="font-semibold text-gray-800 mt-4">— Aisha M., Qatar • Real Estate Portfolio</h4>
+                        </div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="min-w-full px-6">
+                        <div class="bg-white shadow-xl rounded-2xl p-10">
+                            <p class="text-gray-600 italic leading-relaxed">
+                                “A hassle-free purchase process. They handled everything — even remote signing!”
+                            </p>
+                            <h4 class="font-semibold text-gray-800 mt-4">— Carlos D., Brazil • Finance Consultant</h4>
+                        </div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="min-w-full px-6">
+                        <div class="bg-white shadow-xl rounded-2xl p-10">
+                            <p class="text-gray-600 italic leading-relaxed">
+                                “Their knowledge of Batumi’s luxury market is unmatched.”
+                            </p>
+                            <h4 class="font-semibold text-gray-800 mt-4">— Helene S., France • Entrepreneur</h4>
+                        </div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="min-w-full px-6">
+                        <div class="bg-white shadow-xl rounded-2xl p-10">
+                            <p class="text-gray-600 italic leading-relaxed">
+                                “Perfect for foreigners investing for the first time. Very trustworthy team.”
+                            </p>
+                            <h4 class="font-semibold text-gray-800 mt-4">— Amir H., Saudi Arabia • Oil & Energy</h4>
+                        </div>
+                    </div>
+
+                    <!-- Add up to 15 testimonials -->
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full">
+                &#10094;
+            </button>
+
+            <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full">
+                &#10095;
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+<script>
+    const track = document.querySelector('.carousel-track');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let index = 0;
+
+    nextBtn.addEventListener('click', () => {
+        index = (index + 1) % track.children.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+    });
+
+    prevBtn.addEventListener('click', () => {
+        index = (index - 1 + track.children.length) % track.children.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+    });
+</script>
+
+
+<custom-footer></custom-footer>
+
+</body>
+</html>

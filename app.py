@@ -270,6 +270,11 @@ def send_to_sheets(data):
 @app.route("/life-in-georgia")
 def life_in_georgia():
     return send_from_directory("static/pages", "life-in-georgia.html")
+
+@app.route("/about")
+def about():
+    return send_from_directory("static/pages", "about.html")
+
 # ------------------------
 # DEV ENTRYPOINT
 # ------------------------

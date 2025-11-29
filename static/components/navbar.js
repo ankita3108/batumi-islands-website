@@ -24,6 +24,7 @@ class CustomNavbar extends HTMLElement {
             <a href="/#investment-highlights" class="nav-luxury text-white">Why Batumi</a>
             <a href="/#property-types" class="nav-luxury text-white">Properties</a>
             <a href="/life-in-georgia" class="nav-luxury text-white">Life in Georgia</a>
+            <a href="/about" class="nav-luxury text-white">About Us</a>
             <a href="/#contact-form" class="nav-luxury text-white">Enquire</a>
           </div>
 
@@ -51,6 +52,7 @@ class CustomNavbar extends HTMLElement {
           <a href="/#investment-highlights" class="block text-sm py-1 mobile-link nav-luxury">Why Batumi</a>
           <a href="/#property-types" class="block text-sm py-1 mobile-link nav-luxury">Properties</a>
           <a href="/life-in-georgia" class="block text-sm py-1 mobile-link nav-luxury">Life in Georgia</a>
+          <a href="/about" class="nav-luxury text-white">About Us</a>
           <a href="/#contact-form" class="block text-sm py-1 mobile-link nav-luxury">Enquire</a>
           <a href="tel:+995574100645"
              class="inline-flex items-center justify-center mt-2 px-4 py-2 rounded-full border border-white text-xs font-semibold">
