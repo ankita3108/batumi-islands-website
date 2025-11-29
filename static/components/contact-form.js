@@ -1,5 +1,4 @@
 // Shared function to send enquiry to backend
-
 async function sendEnquiry(payload, statusEl, submitBtn) {
   if (statusEl) {
     statusEl.textContent = "";
@@ -131,7 +130,6 @@ class CustomContactForm extends HTMLElement {
             </div>
           </div>
 
-
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">Apartment Type</label>
@@ -196,7 +194,8 @@ class CustomContactForm extends HTMLElement {
         name: formData.get("name") || "",
         email: formData.get("email") || "",
         phone: formData.get("phone") || "",
-        country_code: formData.get("countryCode") || "",
+        // FIX: read from "country_code" (matches input name)
+        country_code: formData.get("country_code") || "",
         apartment_type: formData.get("apartmentType") || "",       // "Luxury Studio", etc.
         budget: formData.get("budget") || "",                      // separate budget
         message: formData.get("message") || ""                     // only message, no budget text
@@ -236,8 +235,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.getElementById("quick-name")?.value || "";
     const email = document.getElementById("quick-email")?.value || "";
     const phone = document.getElementById("quick-phone")?.value || "";
-    const countryCode = document.getElementById("quick-country-code")?.value || "";
-    const apartmentType = document.getElementById("quick-apartment-type")?.value || "";
+
+    // More robust country code lookup (id OR name)
+    let countryCodeInput =
+      document.getElementById("quick-country-code") ||
+      quickForm.querySelector('[name="country_code"]') ||
+      quickForm.querySelector('[name="countryCode"]');
+
+    const countryCode = countryCodeInput ? countryCodeInput.value || "" : "";
+
+    const apartmentType =
+      document.getElementById("quick-apartment-type")?.value || "";
     const message = document.getElementById("quick-message")?.value || "";
 
     const payload = {
