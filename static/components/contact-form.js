@@ -101,30 +101,36 @@ class CustomContactForm extends HTMLElement {
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- COUNTRY CODE (SEARCHABLE) -->
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">Country Code *</label>
-              <select 
-                name="countryCode"
-                class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
-              >
-                <option value="+995">+995 (GE)</option>
-                <option value="+91">+91 (IN)</option>
-                <option value="+971">+971 (AE)</option>
-                <option value="+44">+44 (UK)</option>
-                <option value="+1">+1 (US)</option>
-                <option value="+49">+49 (DE)</option>
-              </select>
+              <input
+                type="text"
+                name="country_code"
+                list="country-codes"
+                placeholder="+995"
+                required
+                class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
+                      focus:outline-none focus:ring-amber-500 focus:border-amber-500"
+              />
+              <p class="text-xs text-gray-500 mt-1">
+                Type your country name or dialing code (e.g., India, +91, Georgia, +995).
+              </p>
             </div>
+
+            <!-- PHONE NUMBER -->
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
               <input 
                 type="tel" 
                 name="phone" 
                 required
-                class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
+                class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
+                      focus:outline-none focus:ring-amber-500 focus:border-amber-500"
               />
             </div>
           </div>
+
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
