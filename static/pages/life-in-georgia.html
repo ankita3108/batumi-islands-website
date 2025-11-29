@@ -6,41 +6,58 @@
     
     <!-- CULTURE SLIDESHOW STYLES -->
 <style>
-    .culture-slide { display: none; position: relative; }
-    .culture-slide.active { display: block; }
+    .culture-slide {
+        display: none;
+        position: relative;
+    }
 
+    .culture-slide.active {
+        display: block;
+    }
+
+    /* FIXED CAPTION POSITION – bottom right corner */
     .culture-caption {
         position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0,0,0,0.5);
-        padding: 1.5rem 2rem;
+        bottom: 30px;
+        right: 30px;
+        text-align: right;  /* aligns text naturally */
+        background: rgba(0, 0, 0, 0.55);
+        padding: 1.1rem 1.5rem;
         border-radius: 12px;
         color: white;
-        text-align: center;
-        max-width: 80%;
+        width: auto;
+        max-width: 380px;
         backdrop-filter: blur(6px);
         border: 1px solid rgba(255,255,255,0.2);
-        animation: fadeUp 1.2s ease-out;
+
+        /* Remove center-floating animation */
+        animation: fadeIn 0.9s ease-out;
     }
 
     .culture-caption h3 {
-        font-size: 1.75rem;
+        font-size: 1.4rem;
         font-weight: bold;
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.35rem;
+        line-height: 1.2;
     }
 
     .culture-caption p {
-        font-size: 1rem;
+        font-size: 0.95rem;
         opacity: 0.9;
+        line-height: 1.35;
     }
 
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Arrow styling */
     .culture-nav {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: rgba(255,255,255,0.1);
+        background: rgba(255, 255, 255, 0.15);
         padding: 1rem;
         border-radius: 50%;
         cursor: pointer;
@@ -54,9 +71,12 @@
     }
 
     .culture-nav:hover {
-        background: rgba(255,255,255,0.25);
+        background: rgba(255, 255, 255, 0.3);
         transform: translateY(-50%) scale(1.15);
     }
+
+    #culture-prev { left: 20px; }
+    #culture-next { right: 20px; }
 </style>
 
 <!-- CULTURE SLIDESHOW SCRIPT -->
@@ -384,7 +404,7 @@
                     <!-- Slide 4 -->
                     <div class="culture-slide">
                         <img src="/static/images/culture/culture-4.jpg"
-                            class="w-full h-[500px] object-cover opacity-90" alt="Mountains of Georgia">
+                            class="w-full h-[500px] object-cover opacity-90" alt="Batumi Coastal Glow">
                         <div class="culture-caption">
                             <h3>Batumi’s Coastal Glow</h3>
                             <p>A modern seaside paradise where culture, architecture, and lifestyle connect.</p>
