@@ -93,6 +93,15 @@
             color: #d4a037;
         }
     </style>
+    <!-- Component Scripts (same as index) -->
+    <script src="static/components/navbar.js" defer></script>
+    <script src="static/components/property-card.js" defer></script>
+    <script src="static/components/footer.js" defer></script>
+    <script src="static/components/whatsapp-float.js" defer></script>
+    <script src="static/components/contact-form.js" defer></script>
+    <script src="static/components/testimonials.js" defer></script>
+
+    <script src="static/script.js" defer></script>
 </head>
 
 <body class="bg-white text-gray-900">
@@ -354,5 +363,11 @@
         track.style.transform = `translateX(-${index * 100}%)`;
     });
 </script>
+
+    <!-- FOOTER -->
+    <custom-footer></custom-footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <custom-whatsapp-float></custom-whatsapp-float>
 </body>
 </html>
