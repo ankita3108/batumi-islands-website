@@ -164,14 +164,30 @@
                 <div>
                     <label class="block text-sm font-medium">Phone</label>
                     <div class="flex gap-2">
-                        <select id="quick-country-code" class="border p-2 rounded-md w-24">
-                            <option value="+995">+995 (GE)</option>
-                            <option value="+91">+91 (IN)</option>
-                            <option value="+1">+1 (US)</option>
-                            <option value="+44">+44 (UK)</option>
-                        </select>
-                        <input type="tel" id="quick-phone" required class="border p-2 rounded-md flex-1">
+                        <!-- SEARCHABLE COUNTRY CODE -->
+                        <input
+                        type="text"
+                        id="quick-country-code"
+                        name="country_code"
+                        list="country-codes"
+                        placeholder="+995"
+                        required
+                        class="mt-1 block w-28 border border-gray-300 rounded-md px-3 py-2 text-sm
+                                focus:outline-none focus:ring-amber-500 focus:border-amber-500"
+                        />
+                        <!-- PHONE NUMBER -->
+                        <input
+                        type="tel"
+                        id="quick-phone"
+                        name="phone"
+                        required
+                        class="mt-1 flex-1 block border border-gray-300 rounded-md px-3 py-2 text-sm
+                                focus:outline-none focus:ring-amber-500 focus:border-amber-500"
+                        />
                     </div>
+                     <p class="text-xs text-gray-500">
+                        Type your country name or dialing code (e.g., Georgia, +995, India, +91).
+                    </p>
                 </div>
 
                 <div>
@@ -468,7 +484,7 @@
     <!-- GLOBAL COUNTRY CODE LIST (USED BY BOTH FORMS) -->
      
     <datalist id="country-codes">
-        
+
     <!-- Africa -->
     <option value="+213">Algeria (+213)</option>
     <option value="+244">Angola (+244)</option>
