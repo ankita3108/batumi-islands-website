@@ -157,62 +157,88 @@
 
             <form id="quick-contact-form" class="space-y-4">
                 <div>
-                    <label class="block text-sm font-medium">Name</label>
-                    <input type="text" id="quick-name" required class="w-full border p-2 rounded-md">
+                    <label for="quick-name" class="block text-sm font-medium text-gray-700">Name *</label>
+                    <input
+                    type="text"
+                    id="quick-name"
+                    name="name"
+                    required
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3
+                            focus:outline-none focus:ring-amber-500 focus:border-amber-500 text-sm"
+                    />
                 </div>
 
-                <div>
-                    <label class="block text-sm font-medium">Phone</label>
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Phone *</label>
                     <div class="flex gap-2">
-                        <!-- SEARCHABLE COUNTRY CODE -->
-                        <input
+                    <input
                         type="text"
                         id="quick-country-code"
                         name="country_code"
                         list="country-codes"
-                        placeholder="+995"
+                        placeholder="+995 (Georgia)"
                         required
-                        class="mt-1 block w-28 border border-gray-300 rounded-md px-3 py-2 text-sm
-                                focus:outline-none focus:ring-amber-500 focus:border-amber-500"
-                        />
-                        <!-- PHONE NUMBER -->
-                        <input
+                        class="mt-1 block w-28 border border-gray-300 rounded-md py-2 px-3 text-sm
+                            focus:outline-none focus:ring-amber-500 focus:border-amber-500"
+                    />
+                    <input
                         type="tel"
                         id="quick-phone"
                         name="phone"
                         required
-                        class="mt-1 flex-1 block border border-gray-300 rounded-md px-3 py-2 text-sm
-                                focus:outline-none focus:ring-amber-500 focus:border-amber-500"
-                        />
+                        class="mt-1 flex-1 block border border-gray-300 rounded-md shadow-sm py-2 px-3
+                            focus:outline-none focus:ring-amber-500 focus:border-amber-500 text-sm"
+                    />
                     </div>
-                     <p class="text-xs text-gray-500">
-                        Type your country name or dialing code (e.g., Georgia, +995, India, +91).
-                    </p>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium">Email</label>
-                    <input type="email" id="quick-email" class="w-full border p-2 rounded-md">
+                    <label for="quick-email" class="block text-sm font-medium text-gray-700">Email *</label>
+                    <input
+                    type="email"
+                    id="quick-email"
+                    name="email"
+                    required
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3
+                            focus:outline-none focus:ring-amber-500 focus:border-amber-500 text-sm"
+                    />
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium">Apartment Type</label>
-                    <select id="quick-apartment-type" class="w-full border p-2 rounded-md">
-                        <option value="">Select type</option>
-                        <option value="studio">Luxury Studio</option>
-                        <option value="1bhk">1BHK Apartment</option>
-                        <option value="2bhk">2BHK Apartment</option>
-                        <option value="other">Other</option>
+                    <label for="quick-apartment-type" class="block text-sm font-medium text-gray-700">Apartment Type *</label>
+                    <select
+                    id="quick-apartment-type"
+                    name="apartment_type"
+                    required
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3
+                            focus:outline-none focus:ring-amber-500 focus:border-amber-500 text-sm"
+                    >
+                    <option value="">Select type</option>
+                    <option value="Luxury Studio">Luxury Studio</option>
+                    <option value="1BHK Apartment">1BHK Apartment</option>
+                    <option value="2BHK Apartment">2BHK Apartment</option>
                     </select>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium">Message</label>
-                    <textarea id="quick-message" class="w-full border p-2 rounded-md"></textarea>
+                    <label for="quick-message" class="block text-sm font-medium text-gray-700">Message *</label>
+                    <textarea
+                    id="quick-message"
+                    name="message"
+                    rows="3"
+                    required
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3
+                            focus:outline-none focus:ring-amber-500 focus:border-amber-500 text-sm"
+                    ></textarea>
                 </div>
 
-                <button type="submit"
-                        class="bg-amber-600 text-white w-full py-2 rounded-md hover:bg-amber-700">
+                <p id="quick-form-status" class="text-sm mt-1 text-center"></p>
+
+                <button
+                    type="submit"
+                    class="w-full bg-amber-600 text-white py-2 px-4 rounded-md hover:bg-amber-700
+                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 text-sm font-semibold"
+                >
                     Submit Inquiry
                 </button>
             </form>

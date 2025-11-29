@@ -1,4 +1,24 @@
-// Shared function to send enquiry to backend
+// ======================================================
+// Shared Validation Functions
+// ======================================================
+
+// Validate email using a clean regex
+function isValidEmail(email) {
+  if (!email) return false;
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email.trim());
+}
+
+// Validate phone (digits only, min 6 max 15)
+function isValidPhone(phone) {
+  if (!phone) return false;
+  const cleaned = phone.replace(/\D/g, "");
+  return cleaned.length >= 6 && cleaned.length <= 15;
+}
+
+// ======================================================
+// Shared Submit Function
+// ======================================================
 async function sendEnquiry(payload, statusEl, submitBtn) {
   if (statusEl) {
     statusEl.textContent = "";
@@ -9,7 +29,7 @@ async function sendEnquiry(payload, statusEl, submitBtn) {
     submitBtn.textContent = "Sending...";
   }
 
-  // basic validation
+  // Basic backend validation for consistency
   if (!payload.name || !payload.phone) {
     if (statusEl) {
       statusEl.textContent = "Please provide your name and phone number.";
@@ -25,9 +45,7 @@ async function sendEnquiry(payload, statusEl, submitBtn) {
   try {
     const res = await fetch("/api/enquiry", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
 
@@ -38,20 +56,16 @@ async function sendEnquiry(payload, statusEl, submitBtn) {
     }
 
     if (statusEl) {
-      if (data.dryRun) {
-        statusEl.textContent =
-          "Thank you. Your enquiry has been received (test mode). Email sending is not yet configured.";
-      } else {
-        statusEl.textContent =
-          "Thank you. Your enquiry has been received. Our team will connect with you shortly.";
-      }
+      statusEl.textContent =
+        "Thank you! Your enquiry has been received. Our team will contact you shortly.";
       statusEl.className = "text-xs text-emerald-600";
     }
   } catch (err) {
     console.error("Enquiry error:", err);
+
     if (statusEl) {
       statusEl.textContent =
-        "Something went wrong while sending your enquiry. Please try again or use WhatsApp / Call.";
+        "Something went wrong while sending your enquiry. Please try again.";
       statusEl.className = "text-xs text-red-500";
     }
   } finally {
@@ -62,9 +76,9 @@ async function sendEnquiry(payload, statusEl, submitBtn) {
   }
 }
 
-/* =========================
-   MAIN CONTACT FORM COMPONENT
-   ========================= */
+// ======================================================
+// MAIN CONTACT FORM COMPONENT
+// ======================================================
 class CustomContactForm extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -73,103 +87,66 @@ class CustomContactForm extends HTMLElement {
           Request Detailed Investment Information
         </h2>
         <p class="text-sm text-gray-600 mb-6 text-center">
-          Share your details and our team will connect with you for floor plans, yields,
-          payment terms and availability.
+          Share your details and our team will reach out with floor plans, yields, and investment options.
         </p>
 
         <form id="main-enquiry-form" class="space-y-4">
+          <!-- NAME + EMAIL -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-              <input 
-                type="text" 
-                name="name" 
-                required
-                class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
-              />
+              <label class="block text-sm font-medium mb-1">Full Name *</label>
+              <input type="text" name="name" required class="w-full border rounded-md px-3 py-2" />
             </div>
+
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-              <input 
-                type="email" 
-                name="email"
-                placeholder="you@example.com"
-                class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
-              />
+              <label class="block text-sm font-medium mb-1">Email *</label>
+              <input type="email" name="email" required class="w-full border rounded-md px-3 py-2" />
             </div>
           </div>
 
+          <!-- COUNTRY CODE + PHONE -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- COUNTRY CODE (SEARCHABLE) -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Country Code *</label>
-              <input
-                type="text"
-                name="country_code"
-                list="country-codes"
-                placeholder="+995"
-                required
-                class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
-                      focus:outline-none focus:ring-amber-500 focus:border-amber-500"
-              />
-              <p class="text-xs text-gray-500 mt-1">
-                Type your country name or dialing code (e.g., India, +91, Georgia, +995).
-              </p>
+              <label class="block text-sm font-medium mb-1">Country Code *</label>
+              <input type="text" name="country_code" required placeholder="+995" class="w-full border rounded-md px-3 py-2" />
             </div>
 
-            <!-- PHONE NUMBER -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
-              <input 
-                type="tel" 
-                name="phone" 
-                required
-                class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
-                      focus:outline-none focus:ring-amber-500 focus:border-amber-500"
-              />
+              <label class="block text-sm font-medium mb-1">Phone Number *</label>
+              <input type="tel" name="phone" required class="w-full border rounded-md px-3 py-2" />
             </div>
           </div>
 
+          <!-- APARTMENT TYPE + BUDGET -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Apartment Type</label>
-              <select 
-                name="apartmentType"
-                class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
-              >
+              <label class="block text-sm font-medium mb-1">Apartment Type *</label>
+              <select name="apartmentType" required class="w-full border rounded-md px-3 py-2">
                 <option value="">Select</option>
                 <option value="Luxury Studio">Luxury Studio</option>
                 <option value="1BHK Apartment">1BHK Apartment</option>
                 <option value="2BHK Apartment">2BHK Apartment</option>
               </select>
             </div>
+
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Approx. Budget (USD)</label>
-              <input 
-                type="text" 
-                name="budget"
-                placeholder="e.g. 150,000"
-                class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
-              />
+              <label class="block text-sm font-medium mb-1">Approx. Budget (USD) *</label>
+              <input type="text" name="budget" required class="w-full border rounded-md px-3 py-2" />
             </div>
           </div>
 
+          <!-- MESSAGE -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Message / Requirements</label>
-            <textarea 
-              name="message"
-              rows="4"
-              placeholder="Tell us your investment goals, stay duration, rental expectations, etc."
-              class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
-            ></textarea>
+            <label class="block text-sm font-medium mb-1">Message *</label>
+            <textarea name="message" rows="4" required class="w-full border rounded-md px-3 py-2"></textarea>
           </div>
 
           <div class="flex items-center justify-between flex-col sm:flex-row gap-3">
-            <p id="main-enquiry-status" class="text-xs text-gray-500 text-left"></p>
+            <p id="main-enquiry-status" class="text-xs text-gray-500"></p>
             <button 
               type="submit"
               id="main-enquiry-submit"
-              class="inline-flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-6 py-2 rounded-md"
+              class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-md"
             >
               Submit Enquiry
             </button>
@@ -182,29 +159,50 @@ class CustomContactForm extends HTMLElement {
     const statusEl = this.querySelector("#main-enquiry-status");
     const submitBtn = this.querySelector("#main-enquiry-submit");
 
-    if (!form) return;
-
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const formData = new FormData(form);
+      const fd = new FormData(form);
+
+      const email = fd.get("email");
+      const phone = fd.get("phone");
+      const countryCode = fd.get("country_code");
+
+      // -------------------------
+      // VALIDATION
+      // -------------------------
+      if (!isValidEmail(email)) {
+        statusEl.textContent = "Please enter a valid email address.";
+        statusEl.className = "text-xs text-red-500";
+        return;
+      }
+
+      if (!isValidPhone(phone)) {
+        statusEl.textContent = "Please enter a valid phone number.";
+        statusEl.className = "text-xs text-red-500";
+        return;
+      }
+
+      if (!countryCode.startsWith("+")) {
+        statusEl.textContent = "Country code must start with + (Example: +995).";
+        statusEl.className = "text-xs text-red-500";
+        return;
+      }
 
       const payload = {
-        form_type: "contact",                                      // snake_case for backend
-        name: formData.get("name") || "",
-        email: formData.get("email") || "",
-        phone: formData.get("phone") || "",
-        // FIX: read from "country_code" (matches input name)
-        country_code: formData.get("country_code") || "",
-        apartment_type: formData.get("apartmentType") || "",       // "Luxury Studio", etc.
-        budget: formData.get("budget") || "",                      // separate budget
-        message: formData.get("message") || ""                     // only message, no budget text
+        form_type: "contact",
+        name: fd.get("name"),
+        email,
+        phone,
+        country_code: countryCode,
+        apartment_type: fd.get("apartmentType"),
+        budget: fd.get("budget"),
+        message: fd.get("message")
       };
 
       await sendEnquiry(payload, statusEl, submitBtn);
 
-      // If success, reset form when status is green
-      if (statusEl && statusEl.className.includes("text-emerald-600")) {
+      if (statusEl.className.includes("text-emerald-600")) {
         form.reset();
       }
     });
@@ -213,62 +211,77 @@ class CustomContactForm extends HTMLElement {
 
 customElements.define("custom-contact-form", CustomContactForm);
 
-/* =========================
-   QUICK CONTACT MODAL FORM
-   ========================= */
-
+// ======================================================
+// QUICK ENQUIRY FORM
+// ======================================================
 document.addEventListener("DOMContentLoaded", () => {
-  const quickForm = document.getElementById("quick-contact-form");
-  if (!quickForm) return;
+  const form = document.getElementById("quick-contact-form");
+  if (!form) return;
 
-  // status text element
-  let quickStatus = document.createElement("p");
-  quickStatus.id = "quick-contact-status";
-  quickStatus.className = "text-xs text-gray-500 mt-2";
-  quickForm.appendChild(quickStatus);
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const statusEl = document.createElement("p");
+  statusEl.id = "quick-contact-status";
+  statusEl.className = "text-xs text-gray-500 mt-2";
+  form.appendChild(statusEl);
 
-  const quickSubmit = quickForm.querySelector('button[type="submit"]');
-
-  quickForm.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById("quick-name")?.value || "";
-    const email = document.getElementById("quick-email")?.value || "";
-    const phone = document.getElementById("quick-phone")?.value || "";
+    const name = form.querySelector("#quick-name").value.trim();
+    const email = form.querySelector("#quick-email").value.trim();
+    const phone = form.querySelector("#quick-phone").value.trim();
+    const apartmentType = form.querySelector("#quick-apartment-type").value.trim();
+    const message = form.querySelector("#quick-message").value.trim();
 
-    // More robust country code lookup (id OR name)
     let countryCodeInput =
       document.getElementById("quick-country-code") ||
-      quickForm.querySelector('[name="country_code"]') ||
-      quickForm.querySelector('[name="countryCode"]');
+      form.querySelector('[name="country_code"]');
 
-    const countryCode = countryCodeInput ? countryCodeInput.value || "" : "";
+    const countryCode = countryCodeInput.value.trim();
 
-    const apartmentType =
-      document.getElementById("quick-apartment-type")?.value || "";
-    const message = document.getElementById("quick-message")?.value || "";
+    // VALIDATION
+    if (!name || !email || !phone || !message) {
+      statusEl.textContent = "All fields are mandatory.";
+      statusEl.className = "text-xs text-red-500";
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      statusEl.textContent = "Please enter a valid email.";
+      statusEl.className = "text-xs text-red-500";
+      return;
+    }
+
+    if (!isValidPhone(phone)) {
+      statusEl.textContent = "Please enter a valid phone number.";
+      statusEl.className = "text-xs text-red-500";
+      return;
+    }
+
+    if (!countryCode.startsWith("+")) {
+      statusEl.textContent = "Country code must start with +.";
+      statusEl.className = "text-xs text-red-500";
+      return;
+    }
 
     const payload = {
-      form_type: "quick",                      // snake_case
-      name: name,
-      email: email,
-      phone: phone,
+      form_type: "quick",
+      name,
+      email,
+      phone,
       country_code: countryCode,
-      apartment_type: apartmentType,           // matches select value
-      budget: "",                              // no budget field in quick form
-      message: message
+      apartment_type: apartmentType,
+      budget: "",
+      message
     };
 
-    await sendEnquiry(payload, quickStatus, quickSubmit);
+    await sendEnquiry(payload, statusEl, submitBtn);
 
-    if (quickStatus && quickStatus.className.includes("text-emerald-600")) {
-      quickForm.reset();
-      const modal = document.getElementById("quick-contact-modal");
-      if (modal) {
-        setTimeout(() => {
-          modal.classList.add("hidden");
-        }, 800);
-      }
+    if (statusEl.className.includes("text-emerald-600")) {
+      form.reset();
+      setTimeout(() => {
+        document.getElementById("quick-contact-modal")?.classList.add("hidden");
+      }, 800);
     }
   });
 });
