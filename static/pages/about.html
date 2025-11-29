@@ -101,12 +101,20 @@
     <custom-navbar></custom-navbar>
 
     <!-- HERO SECTION -->
-    <section class="relative h-[55vh] md:h-[70vh] flex items-center justify-center bg-cover bg-center" 
-        style="background-image: url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1500&q=80');">
-        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-        <h1 class="relative z-10 text-white text-4xl md:text-6xl font-bold text-center drop-shadow-lg">
-            About Batumi Island Estates
+    <section
+    class="relative h-[55vh] md:h-[70vh] flex items-center justify-center bg-cover bg-center"
+    style="background-image: url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1600&q=80');"
+    >
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div class="relative z-10 text-center px-4">
+        <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-lg">
+        About Batumi Island Estates
         </h1>
+        <p class="text-gray-100 text-base md:text-lg max-w-2xl mx-auto">
+        A specialised luxury subsidiary of Batumi Estates, dedicated to premium island and
+        waterfront properties on the Batumi Islands.
+        </p>
+    </div>
     </section>
 
     <div class="gold-divider"></div>
@@ -128,39 +136,76 @@
 
     </section>
 
-    <!-- TIMELINE SECTION -->
+    <!-- OUR JOURNEY / TIMELINE -->
     <section class="py-20 bg-gray-50">
-        <h2 class="text-center text-3xl md:text-4xl font-bold">Our Journey</h2>
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+        <h2 class="text-center text-3xl md:text-4xl font-bold text-gray-900">
+        Our Journey
+        </h2>
         <div class="gold-divider"></div>
 
-        <div class="timeline container mx-auto px-8 md:px-20">
+        <div class="mt-12 border-l-4 border-amber-400 pl-6 space-y-10">
 
-            <div class="timeline-item">
-                <div class="timeline-point"></div>
-                <h3 class="text-xl font-semibold">2022 — Foundation of Batumi Estates</h3>
-                <p class="text-gray-700 mt-2">Established with a mission to provide transparent, premium, and efficient property buying experiences in Georgia.</p>
+        <!-- 2022 -->
+        <div>
+            <div class="flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full bg-amber-400 shadow-md"></span>
+            <h3 class="text-lg md:text-xl font-semibold text-gray-900">
+                2022 — Foundation of Batumi Estates
+            </h3>
             </div>
+            <p class="mt-2 text-sm md:text-base text-gray-700">
+            Established with a mission to provide transparent, premium, and efficient property
+            buying experiences in Georgia.
+            </p>
+        </div>
 
-            <div class="timeline-item">
-                <div class="timeline-point"></div>
-                <h3 class="text-xl font-semibold">2023 — Global Expansion</h3>
-                <p class="text-gray-700 mt-2">Reached clients across 25+ countries and expanded partnerships with developers and government bodies.</p>
+        <!-- 2023 -->
+        <div>
+            <div class="flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full bg-amber-400 shadow-md"></span>
+            <h3 class="text-lg md:text-xl font-semibold text-gray-900">
+                2023 — Global Expansion
+            </h3>
             </div>
+            <p class="mt-2 text-sm md:text-base text-gray-700">
+            Reached clients across 25+ countries and expanded partnerships with developers and
+            government bodies.
+            </p>
+        </div>
 
-            <div class="timeline-item">
-                <div class="timeline-point"></div>
-                <h3 class="text-xl font-semibold">2024 — Launch of Batumi Island Estates</h3>
-                <p class="text-gray-700 mt-2">Exclusive division created to focus on the landmark Batumi Islands megaproject — Georgia’s first luxury man-made islands.</p>
+        <!-- 2024 -->
+        <div>
+            <div class="flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full bg-amber-400 shadow-md"></span>
+            <h3 class="text-lg md:text-xl font-semibold text-gray-900">
+                2024 — Launch of Batumi Island Estates
+            </h3>
             </div>
+            <p class="mt-2 text-sm md:text-base text-gray-700">
+            Exclusive division created to focus on the landmark Batumi Islands megaproject —
+            Georgia’s first luxury man-made islands.
+            </p>
+        </div>
 
-            <div class="timeline-item">
-                <div class="timeline-point"></div>
-                <h3 class="text-xl font-semibold">2025 — 100+ Global Investors Served</h3>
-                <p class="text-gray-700 mt-2">A milestone year of rapid growth, exceptional service ratings, and expanding investment portfolios.</p>
+        <!-- 2025 -->
+        <div>
+            <div class="flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full bg-amber-400 shadow-md"></span>
+            <h3 class="text-lg md:text-xl font-semibold text-gray-900">
+                2025 — 100+ Global Investors Served
+            </h3>
             </div>
+            <p class="mt-2 text-sm md:text-base text-gray-700">
+            A milestone year of rapid growth, exceptional service ratings, and expanding
+            investment portfolios.
+            </p>
+        </div>
 
         </div>
+    </div>
     </section>
+
 
     <!-- WHY CHOOSE US SECTION -->
     <section class="py-20 px-6 md:px-16 lg:px-32 text-center bg-white">
@@ -187,80 +232,127 @@
         </div>
     </section>
 
-    <!-- TESTIMONIAL CAROUSEL -->
-    <section class="py-20 bg-gray-50">
-        <h2 class="text-center text-3xl md:text-4xl font-bold">What Our Global Clients Say</h2>
-        <div class="gold-divider"></div>
-
-        <div class="container mx-auto px-8 md:px-28 text-center">
+    <!-- TESTIMONIALS CAROUSEL -->
+    <section class="py-24 bg-gray-50 animate-fadeUp">
+        <div class="max-w-6xl mx-auto px-6 text-center">
             
-            <div id="testimonial-container">
-                
-                <!-- Slides added via JS -->
-            
-            </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+                What Our Global Investors Say
+            </h2>
+            <div class="section-divider"></div>
 
-            <div class="flex justify-center gap-6 mt-6">
-                <span class="slider-btn" onclick="prevSlide()">&#10094;</span>
-                <span class="slider-btn" onclick="nextSlide()">&#10095;</span>
+            <!-- Carousel Container -->
+            <div class="relative mt-12">
+
+                <div id="testimonial-carousel" class="overflow-hidden">
+                    
+                    <!-- Testimonial Slides -->
+                    <div class="carousel-track flex transition-transform duration-700 ease-out">
+
+                        <!-- 1 -->
+                        <div class="min-w-full px-6">
+                            <div class="bg-white shadow-xl rounded-2xl p-10">
+                                <p class="text-gray-600 italic leading-relaxed">
+                                    “A seamless investment experience. The team guided me from first call to final paperwork. 
+                                    Truly world-class service!”
+                                </p>
+                                <h4 class="font-semibold text-gray-800 mt-4">— Daniel M., UK • Tech Executive</h4>
+                            </div>
+                        </div>
+
+                        <!-- 2 -->
+                        <div class="min-w-full px-6">
+                            <div class="bg-white shadow-xl rounded-2xl p-10">
+                                <p class="text-gray-600 italic leading-relaxed">
+                                    “Bought a luxury studio on the island. Exceptional transparency and professional support.”
+                                </p>
+                                <h4 class="font-semibold text-gray-800 mt-4">— Sara K., UAE • Business Owner</h4>
+                            </div>
+                        </div>
+
+                        <!-- 3 -->
+                        <div class="min-w-full px-6">
+                            <div class="bg-white shadow-xl rounded-2xl p-10">
+                                <p class="text-gray-600 italic leading-relaxed">
+                                    “Highly recommended for international buyers. Smooth process and great insights.”
+                                </p>
+                                <h4 class="font-semibold text-gray-800 mt-4">— Luca R., Italy • Hospitality Investor</h4>
+                            </div>
+                        </div>
+
+                        <!-- 4 -->
+                        <div class="min-w-full px-6">
+                            <div class="bg-white shadow-xl rounded-2xl p-10">
+                                <p class="text-gray-600 italic leading-relaxed">
+                                    “Professional, honest, and extremely helpful. The best agency in Georgia!”
+                                </p>
+                                <h4 class="font-semibold text-gray-800 mt-4">— Aisha M., Qatar • Real Estate Portfolio</h4>
+                            </div>
+                        </div>
+
+                        <!-- 5 -->
+                        <div class="min-w-full px-6">
+                            <div class="bg-white shadow-xl rounded-2xl p-10">
+                                <p class="text-gray-600 italic leading-relaxed">
+                                    “A hassle-free purchase process. They handled everything — even remote signing!”
+                                </p>
+                                <h4 class="font-semibold text-gray-800 mt-4">— Carlos D., Brazil • Finance Consultant</h4>
+                            </div>
+                        </div>
+
+                        <!-- 6 -->
+                        <div class="min-w-full px-6">
+                            <div class="bg-white shadow-xl rounded-2xl p-10">
+                                <p class="text-gray-600 italic leading-relaxed">
+                                    “Their knowledge of Batumi’s luxury market is unmatched.”
+                                </p>
+                                <h4 class="font-semibold text-gray-800 mt-4">— Helene S., France • Entrepreneur</h4>
+                            </div>
+                        </div>
+
+                        <!-- 7 -->
+                        <div class="min-w-full px-6">
+                            <div class="bg-white shadow-xl rounded-2xl p-10">
+                                <p class="text-gray-600 italic leading-relaxed">
+                                    “Perfect for foreigners investing for the first time. Very trustworthy team.”
+                                </p>
+                                <h4 class="font-semibold text-gray-800 mt-4">— Amir H., Saudi Arabia • Oil & Energy</h4>
+                            </div>
+                        </div>
+
+                        <!-- Add up to 15 testimonials -->
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full">
+                    &#10094;
+                </button>
+
+                <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full">
+                    &#10095;
+                </button>
+
             </div>
 
         </div>
     </section>
 
-    <custom-footer></custom-footer>
+<script>
+    const track = document.querySelector('.carousel-track');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let index = 0;
 
-    <!-- TESTIMONIALS JS -->
-    <script>
-        const testimonials = [
-            "Amazing service! Helped us secure beachfront property smoothly.",
-            "Highly professional team. Great guidance for international investors.",
-            "Transparent, fast, and extremely helpful throughout.",
-            "The best property advisory service in Georgia.",
-            "Exceptional client handling and documentation support.",
-            "Luxury projects explained clearly — very impressive.",
-            "Trusted partner for international buyers.",
-            "Fantastic experience buying in Batumi Islands.",
-            "Strongly recommend their expert team!",
-            "Smoothest property purchase of my life.",
-            "Reliable, punctual, and very informed.",
-            "Guided me through every step — amazing service.",
-            "Top-tier understanding of Georgian real estate.",
-            "Perfect for luxury and island property investors.",
-            "Professional, efficient, and very knowledgeable."
-        ];
+    nextBtn.addEventListener('click', () => {
+        index = (index + 1) % track.children.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+    });
 
-        let currentIndex = 0;
-
-        function renderTestimonials() {
-            const container = document.getElementById("testimonial-container");
-            container.innerHTML = testimonials.map((msg, i) => `
-                <div class="testimonial-slide ${i === 0 ? "active" : ""}">
-                    <div class="testimonial-card">
-                        <p class="text-lg text-gray-800 italic">"${msg}"</p>
-                    </div>
-                </div>
-            `).join("");
-        }
-
-        function showSlide(i) {
-            const slides = document.querySelectorAll(".testimonial-slide");
-            slides.forEach(slide => slide.classList.remove("active"));
-            slides[i].classList.add("active");
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % testimonials.length;
-            showSlide(currentIndex);
-        }
-
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-            showSlide(currentIndex);
-        }
-
-        renderTestimonials();
-    </script>
-
+    prevBtn.addEventListener('click', () => {
+        index = (index - 1 + track.children.length) % track.children.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+    });
+</script>
 </body>
 </html>
