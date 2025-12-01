@@ -44,8 +44,9 @@ class CustomFooter extends HTMLElement {
             <div>
               <h4 class="text-sm font-semibold mb-3">Contact</h4>
               <ul class="space-y-2 text-sm text-slate-400">
-                <li><strong>Batumi Island Estates – Sales & Advisory Office</strong><br />
-                  18 Andria Pirveltsodebuli Highway III Deadlock,<br />
+                <li><strong>Batumi Island Estates </strong><br /> 
+                </li>
+                <li>18 Andria Pirveltsodebuli Highway III<br />
                   Batumi, Georgia 
                 </li>
                 <li>
