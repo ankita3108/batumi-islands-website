@@ -44,7 +44,10 @@ class CustomFooter extends HTMLElement {
             <div>
               <h4 class="text-sm font-semibold mb-3">Contact</h4>
               <ul class="space-y-2 text-sm text-slate-400">
-                <li>Batumi, Georgia</li>
+                <li><strong>Batumi Island Estates – Sales & Advisory Office</strong><br />
+                  18 Andria Pirveltsodebuli Highway III Deadlock,<br />
+                  Batumi, Georgia 
+                </li>
                 <li>
                   <a href="tel:+995574100645" class="hover:text-amber-400 transition-colors">
                     +995 574 100 645
