@@ -383,30 +383,54 @@
         // ---------------------------
         // Brochure form handling
         // ---------------------------
-        document.getElementById("brochureForm").addEventListener("submit", async function(e){
-        e.preventDefault();
+        document.getElementById("brochureForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
 
-        const email = document.getElementById("brochureEmail").value.trim();
-        const msg = document.getElementById("brochureMessage");
+            const emailInput = document.getElementById("brochureEmail");
+            const msg = document.getElementById("brochureMessage");
+            const button = this.querySelector("button[type='submit']");
 
-        msg.innerText = "Sending...";
-        msg.style.color = "gray";
-
-        const response = await fetch("/api/send-brochure", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email })
-        });
-
-        const data = await response.json();
-
-        if (data.ok) {
-            msg.innerText = "Brochure sent! Please check your inbox.";
-            msg.style.color = "green";
-        } else {
-            msg.innerText = data.message || "Error sending brochure.";
+            const email = emailInput.value.trim();
+            if (!email) {
+            msg.innerText = "Please enter your email address.";
             msg.style.color = "red";
-        }
+            return;
+            }
+
+            msg.innerText = "Sending...";
+            msg.style.color = "gray";
+            button.disabled = true;
+
+            try {
+            const response = await fetch("/api/send-brochure", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            let data = {};
+            try {
+                data = await response.json();
+            } catch (_) {
+                // If backend returned HTML instead of JSON
+                data = {};
+            }
+
+            if (response.ok && data.ok) {
+                msg.innerText = data.message || "Brochure sent! Please check your inbox.";
+                msg.style.color = "green";
+                emailInput.value = "";
+            } else {
+                msg.innerText = (data && data.message) || "Error sending brochure. Please try again.";
+                msg.style.color = "red";
+            }
+            } catch (err) {
+            console.error("Brochure error:", err);
+            msg.innerText = "Network error. Please try again.";
+            msg.style.color = "red";
+            } finally {
+            button.disabled = false;
+            }
         });
     </script>
 

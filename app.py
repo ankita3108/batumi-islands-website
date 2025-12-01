@@ -292,7 +292,7 @@ def about():
 
 EMAIL_REGEX = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
-@app.route("/api/brochure", methods=["POST"])
+@app.route("/api/send-brochure", methods=["POST"])
 def send_brochure():
     """
     Sends a brochure download LINK (not an attachment) to the user.
