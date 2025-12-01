@@ -44,6 +44,7 @@ BROCHURE_DOWNLOAD_URL = os.getenv(
     "BROCHURE_DOWNLOAD_URL",
     "https://www.batumiislandestates.net/static/brochures/Batumi-Island-Estates.pdf"
 )
+FROM_EMAIL = os.getenv("FROM_EMAIL", SMTP_USER_BRO)
 
 # CSV file to log enquiries
 ENQUIRY_CSV = os.getenv("ENQUIRY_CSV", "enquiries.csv")
@@ -291,6 +292,10 @@ def about():
     return send_from_directory("static/pages", "about.html")
 
 EMAIL_REGEX = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
+# ------------------------
+#  SEND BROCHURE ENDPOINT
+# ------------------------
 
 @app.route("/api/send-brochure", methods=["POST"])
 def send_brochure():
