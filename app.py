@@ -35,10 +35,10 @@ SMTP_PASS = os.getenv("SMTP_PASS", "ifqieuymjxbrgmhx")          # your app passw
 ENQUIRY_TO = os.getenv("ENQUIRY_TO", SMTP_USER)                       # where enquiries are sent
 
 ## SMTP settings for brochure emails
-SMTP_HOST_BRO = os.getenv("SMTP_HOST_BROCHURE")
+SMTP_HOST_BRO = os.getenv("SMTP_HOST_BROCHURE", "smtp.secureserver.net")
 SMTP_PORT_BRO = int(os.getenv("SMTP_PORT_BROCHURE", "465"))
-SMTP_USER_BRO = os.getenv("SMTP_USER_BROCHURE")
-SMTP_PASS_BRO = os.getenv("SMTP_PASS_BROCHURE")
+SMTP_USER_BRO = os.getenv("SMTP_USER_BROCHURE", "info@batumiislandestates.net")
+SMTP_PASS_BRO = os.getenv("SMTP_PASS_BROCHURE", "Ankita@1989")
 BROCHURE_FROM_NAME = os.getenv("BROCHURE_FROM_NAME", "Batumi Island Estates")
 BROCHURE_DOWNLOAD_URL = os.getenv(
     "BROCHURE_DOWNLOAD_URL",
