@@ -23,6 +23,7 @@ class CustomNavbar extends HTMLElement {
             <a href="/#top" class="nav-luxury text-white">Home</a>
             <a href="/#investment-highlights" class="nav-luxury text-white">Why Batumi</a>
             <a href="/#property-types" class="nav-luxury text-white">Properties</a>
+            <a href="/project-details" class="hover:text-amber-500">Project Details</a>
             <a href="/life-in-georgia" class="nav-luxury text-white">Life in Georgia</a>
             <a href="/about" class="nav-luxury text-white">About Us</a>
             <a href="/#contact-form" class="nav-luxury text-white">Enquire</a>
@@ -51,6 +52,7 @@ class CustomNavbar extends HTMLElement {
           <a href="/#top" class="block text-sm py-1 mobile-link nav-luxury">Home</a>
           <a href="/#investment-highlights" class="block text-sm py-1 mobile-link nav-luxury">Why Batumi</a>
           <a href="/#property-types" class="block text-sm py-1 mobile-link nav-luxury">Properties</a>
+          <a href="/project-details" class="hover:text-amber-500">Project Details</a>
           <a href="/life-in-georgia" class="block text-sm py-1 mobile-link nav-luxury">Life in Georgia</a>
           <a href="/about" class="nav-luxury text-white">About Us</a>
           <a href="/#contact-form" class="block text-sm py-1 mobile-link nav-luxury">Enquire</a>
