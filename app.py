@@ -35,7 +35,7 @@ SMTP_PASS = os.getenv("SMTP_PASS", "ifqieuymjxbrgmhx")          # your app passw
 ENQUIRY_TO = os.getenv("ENQUIRY_TO", SMTP_USER)                       # where enquiries are sent
 
 ## SMTP settings for brochure emails
-SMTP_HOST_BRO = os.getenv("SMTP_HOST_BROCHURE", "smtp.secureserver.net")
+SMTP_HOST_BRO = os.getenv("SMTP_HOST_BROCHURE", "smtpout.secureserver.net")
 SMTP_PORT_BRO = int(os.getenv("SMTP_PORT_BROCHURE", "465"))
 SMTP_USER_BRO = os.getenv("SMTP_USER_BROCHURE", "info@batumiislandestates.net")
 SMTP_PASS_BRO = os.getenv("SMTP_PASS_BROCHURE", "Ankita@1989")
@@ -362,7 +362,7 @@ def send_brochure():
                 SMTP_HOST_BRO,
                 int(SMTP_PORT_BRO),
                 context=context,
-                timeout=8,
+                timeout=15,
             ) as server:
                 server.login(SMTP_USER_BRO, SMTP_PASS_BRO)
                 server.send_message(msg)
