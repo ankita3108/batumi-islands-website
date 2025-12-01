@@ -11,14 +11,14 @@ Batumi Island Estates - Flask backend
 
 import os
 import csv
-import ssl
-import smtplib
+import ssl, smtplib
 from datetime import datetime
 
 import requests
 from flask import Flask, render_template, request, jsonify, send_from_directory
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import re
 
 # ------------------------
 # CONFIG
@@ -33,6 +33,17 @@ SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))   # 587 for STARTTLS, 465 for SSL
 SMTP_USER = os.getenv("SMTP_USER", "gupta.ankita3122@gmail.com")      # your email
 SMTP_PASS = os.getenv("SMTP_PASS", "ifqieuymjxbrgmhx")          # your app password
 ENQUIRY_TO = os.getenv("ENQUIRY_TO", SMTP_USER)                       # where enquiries are sent
+
+## SMTP settings for brochure emails
+SMTP_HOST_BRO = os.getenv("SMTP_HOST_BROCHURE")
+SMTP_PORT_BRO = int(os.getenv("SMTP_PORT_BROCHURE", "465"))
+SMTP_USER_BRO = os.getenv("SMTP_USER_BROCHURE")
+SMTP_PASS_BRO = os.getenv("SMTP_PASS_BROCHURE")
+BROCHURE_FROM_NAME = os.getenv("BROCHURE_FROM_NAME", "Batumi Island Estates")
+BROCHURE_DOWNLOAD_URL = os.getenv(
+    "BROCHURE_DOWNLOAD_URL",
+    "https://www.batumiislandestates.net/static/brochures/Batumi-Island-Estates.pdf"
+)
 
 # CSV file to log enquiries
 ENQUIRY_CSV = os.getenv("ENQUIRY_CSV", "enquiries.csv")
@@ -278,6 +289,109 @@ def project_details():
 @app.route("/about")
 def about():
     return send_from_directory("static/pages", "about.html")
+
+EMAIL_REGEX = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
+@app.route("/api/brochure", methods=["POST"])
+def send_brochure():
+    """
+    Sends a brochure download LINK (not an attachment) to the user.
+    Uses the same SMTP_* environment variables as the enquiry emails.
+    """
+    data = request.get_json(silent=True) or request.form
+    email_to = (data.get("email") or "").strip()
+
+    # --- Basic validation ---
+    if not email_to or not EMAIL_REGEX.match(email_to):
+        return jsonify({
+            "ok": False,
+            "message": "Please enter a valid email address."
+        }), 400
+
+    # If SMTP is not configured, just pretend success (you can change this behaviour)
+    if not (SMTP_HOST_BRO and SMTP_USER_BRO and SMTP_PASS_BRO):
+        print("[BROCHURE] SMTP not configured – returning success without sending email.")
+        return jsonify({
+            "ok": True,
+            "message": "Thank you. A link to download the brochure will appear here soon.",
+            "emailSent": False
+        })
+
+    subject = "Your Batumi Island Estates Brochure"
+    body_lines = [
+        "Dear Investor,",
+        "",
+        "Thank you for your interest in Batumi Island Estates.",
+        "You can download the latest project brochure at the link below:",
+        "",
+        BROCHURE_DOWNLOAD_URL,
+        "",
+        "Inside, you'll find:",
+        "• Masterplan & island concept",
+        "• Unit layouts & specifications",
+        "• Investment highlights and yield projections",
+        "",
+        "If you would like a guided walkthrough on Google Meet, simply reply",
+        "to this email and our team will schedule a session at your convenience.",
+        "",
+        "Warm regards,",
+        "Batumi Island Estates Team",
+        "info@batumiislandestates.net"
+    ]
+    body = "\n".join(body_lines)
+
+    msg = MIMEMultipart()
+    msg["From"] = FROM_EMAIL
+    msg["To"] = email_to
+    msg["Subject"] = subject
+    msg.attach(MIMEText(body, "plain", "utf-8"))
+
+    email_ok = False
+
+    try:
+        context = ssl.create_default_context()
+
+        if int(SMTP_PORT_BRO) == 465:
+            # SSL
+            with smtplib.SMTP_SSL(
+                SMTP_HOST_BRO,
+                int(SMTP_PORT_BRO),
+                context=context,
+                timeout=8,
+            ) as server:
+                server.login(SMTP_USER_BRO, SMTP_PASS_BRO)
+                server.send_message(msg)
+        else:
+            # STARTTLS
+            with smtplib.SMTP(
+                SMTP_HOST_BRO,
+                int(SMTP_PORT_BRO),
+                timeout=8,
+            ) as server:
+                server.ehlo()
+                server.starttls(context=context)
+                server.ehlo()
+                server.login(SMTP_USER_BRO, SMTP_PASS_BRO)
+                server.send_message(msg)
+
+        print(f"[BROCHURE] Brochure link email sent to {email_to}")
+        email_ok = True
+
+    except Exception as e:
+        print("[BROCHURE] Error sending brochure email:", repr(e))
+
+    if email_ok:
+        return jsonify({
+            "ok": True,
+            "message": "Thank you. The brochure download link has been emailed to you.",
+            "emailSent": True
+        })
+    else:
+        return jsonify({
+            "ok": False,
+            "message": "We could not send the email right now. Please try again later.",
+            "emailSent": False
+        }), 500
 
 # ------------------------
 # DEV ENTRYPOINT

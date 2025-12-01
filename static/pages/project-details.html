@@ -251,39 +251,33 @@
     </section>
 
 
-    <!-- Brochure Download CTA -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 text-center fade-up">
+    <!-- DOWNLOAD BROCHURE FORM -->
+    <section id="brochure-download" class="py-12 bg-gray-50 mt-12 fade-up">
+    <div class="max-w-xl mx-auto text-center">
+        <h2 class="text-2xl font-bold text-gray-900">Download the Official Project Brochure</h2>
+        <div class="section-divider"></div>
+        <p class="text-gray-700 mt-2 text-sm">Enter your email to receive the brochure instantly.</p>
 
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900">
-                Download the Full Project Brochure
-            </h2>
-            <div class="section-divider"></div>
+        <form id="brochureForm" class="mt-6 space-y-4">
+        <input 
+            type="email"
+            id="brochureEmail"
+            name="email"
+            placeholder="Enter your email address"
+            required
+            class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-amber-500 focus:border-amber-500"
+        />
 
-            <p class="text-gray-700 md:text-lg max-w-2xl mx-auto text-justify">
-                Enter your email below to receive a detailed brochure with floor plans, finishes,
-                construction timelines, amenities, payment milestones, and long-term investment insights.
-            </p>
+        <button 
+            type="submit"
+            class="w-full bg-amber-600 text-white py-2 rounded-md font-semibold hover:bg-amber-700 transition"
+        >
+            Download Brochure
+        </button>
 
-            <form id="brochure-form" class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-                <input 
-                    type="email" 
-                    id="brochure-email" 
-                    placeholder="Enter your best email address" 
-                    required
-                    class="border border-gray-300 rounded-md px-4 py-3 w-full sm:w-80 focus:ring-amber-500 focus:border-amber-500 text-sm"
-                />
-
-                <button 
-                    type="submit"
-                    class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-md font-semibold text-sm transition"
-                >
-                    Get Brochure
-                </button>
-            </form>
-
-            <p id="brochure-status" class="text-sm mt-3 text-gray-600"></p>
-        </div>
+        <p id="brochureMessage" class="text-sm mt-2 text-center"></p>
+        </form>
+    </div>
     </section>
 
     <!-- Schedule Google Meet -->
@@ -389,25 +383,30 @@
         // ---------------------------
         // Brochure form handling
         // ---------------------------
-        document.getElementById("brochure-form")?.addEventListener("submit", (e) => {
-            e.preventDefault();
+        document.getElementById("brochureForm").addEventListener("submit", async function(e){
+        e.preventDefault();
 
-            const email = document.getElementById("brochure-email").value.trim();
-            const statusEl = document.getElementById("brochure-status");
+        const email = document.getElementById("brochureEmail").value.trim();
+        const msg = document.getElementById("brochureMessage");
 
-            const emailValid = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+        msg.innerText = "Sending...";
+        msg.style.color = "gray";
 
-            if (!emailValid) {
-                statusEl.textContent = "Please enter a valid email address.";
-                statusEl.className = "text-sm text-red-600 mt-3";
-                return;
-            }
+        const response = await fetch("/api/send-brochure", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email })
+        });
 
-            statusEl.textContent = "Thank you. Your brochure link will be shared on your email shortly.";
-            statusEl.className = "text-sm text-emerald-600 mt-3";
+        const data = await response.json();
 
-            // If later you want backend:
-            // fetch("/api/brochure", { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({ email }) })
+        if (data.ok) {
+            msg.innerText = "Brochure sent! Please check your inbox.";
+            msg.style.color = "green";
+        } else {
+            msg.innerText = data.message || "Error sending brochure.";
+            msg.style.color = "red";
+        }
         });
     </script>
 
