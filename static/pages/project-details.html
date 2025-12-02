@@ -11,6 +11,10 @@
     <!-- Navbar & Footer -->
     <script src="/static/components/navbar.js" defer></script>
     <script src="/static/components/footer.js" defer></script>
+    <script src="/static/components/whatsapp-float.js" defer></script>
+
+    <!-- 🔠 Global translations -->
+    <script src="/static/script.js" defer></script>
 
     <style>
         /* Smooth fade-up animation */
@@ -50,43 +54,47 @@
 
     <!-- HERO BANNER WITH FULL-WIDTH VIDEO -->
     <section class="relative w-full h-[480px] md:h-[650px] overflow-hidden">
-    <video
-        autoplay
-        muted
-        loop
-        playsinline
-        class="absolute inset-0 w-full h-full object-cover"
-    >
-        <source
-        src="https://huggingface.co/spaces/ankita3108/batumi-bliss-bungalows/resolve/main/videos/Progress Islands - November 2025 edited.mp4"
-        type="video/mp4"
-        />
-        Your browser does not support the video tag.
-    </video>
+        <video
+            autoplay
+            muted
+            loop
+            playsinline
+            class="absolute inset-0 w-full h-full object-cover"
+        >
+            <source
+                src="https://huggingface.co/spaces/ankita3108/batumi-bliss-bungalows/resolve/main/videos/Progress Islands - November 2025 edited.mp4"
+                type="video/mp4"
+            />
+            Your browser does not support the video tag.
+        </video>
 
-    <!-- Dark overlay -->
-    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        <!-- Dark overlay -->
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
 
-    <!-- Centered text content -->
-    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
-        <h1 class="text-3xl md:text-5xl font-bold drop-shadow-xl">
-        Batumi Island Estates
-        </h1>
-        <p class="mt-3 text-sm md:text-lg max-w-xl mx-auto drop-shadow">
-        Live the future of waterfront luxury—bridges, canals, integrated resorts,
-        and Black Sea island living.
-        </p>
-    </div>
+        <!-- Centered text content -->
+        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+            <h1 class="text-3xl md:text-5xl font-bold drop-shadow-xl"
+                data-translate="project_hero_title">
+                Batumi Island Estates
+            </h1>
+            <p class="mt-3 text-sm md:text-lg max-w-xl mx-auto drop-shadow"
+               data-translate="project_hero_subtitle">
+                Live the future of waterfront luxury—bridges, canals, integrated resorts,
+                and Black Sea island living.
+            </p>
+        </div>
     </section>
 
-    <!-- SECTION: Construction Progress (video already above) + Intro -->
+    <!-- SECTION: Construction Progress -->
     <section class="py-14 md:py-16 bg-gray-50">
         <div class="max-w-5xl mx-auto px-4 text-center fade-up">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900"
+                data-translate="project_progress_title">
                 Live Construction Progress
             </h2>
             <div class="section-divider"></div>
-            <p class="mt-4 text-gray-700 text-sm md:text-base max-w-3xl mx-auto text-justify">
+            <p class="mt-4 text-gray-700 text-sm md:text-base max-w-3xl mx-auto text-justify"
+               data-translate="project_progress_body">
                 The video above showcases the real-time progress of infrastructure, bridges, landscaping,
                 and premium residential zones across the islands. As each phase advances, Batumi Island
                 Estates moves closer to delivering a fully integrated luxury waterfront community in the
@@ -95,222 +103,243 @@
         </div>
     </section>
 
-    <!-- SECTION: Post-Construction Island Visuals (Luxury Culture-Style Carousel) -->
+    <!-- SECTION: Post-Construction Island Visuals (Luxury Carousel) -->
     <section class="py-16 bg-white fade-up">
-    <div class="max-w-6xl mx-auto px-4">
-        
-        <!-- Title -->
-        <div class="text-center">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900">
-            Island Vision After Completion
-        </h2>
-        <div class="section-divider"></div>
-        <p class="mt-4 text-gray-700 md:text-lg max-w-3xl mx-auto text-justify">
-            Explore how Batumi Island Estates will transform into a fully integrated luxury waterfront community —
-            with promenades, landscaped terraces, resort pools, cafés, shopping boulevards, and an illuminated skyline
-            reflecting across the serene Black Sea.
-        </p>
+        <div class="max-w-6xl mx-auto px-4">
+            
+            <!-- Title -->
+            <div class="text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900"
+                    data-translate="project_islandvision_title">
+                    Island Vision After Completion
+                </h2>
+                <div class="section-divider"></div>
+                <p class="mt-4 text-gray-700 md:text-lg max-w-3xl mx-auto text-justify"
+                   data-translate="project_islandvision_body">
+                    Explore how Batumi Island Estates will transform into a fully integrated luxury waterfront community —
+                    with promenades, landscaped terraces, resort pools, cafés, shopping boulevards, and an illuminated skyline
+                    reflecting across the serene Black Sea.
+                </p>
+            </div>
+
+            <!-- LUXURY CAROUSEL -->
+            <div class="relative mt-10 group">
+                <div
+                    id="islandCultureCarousel"
+                    class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4
+                           scrollbar-thin scrollbar-thumb-amber-400/70 scrollbar-track-gray-200"
+                >
+
+                    <!-- SLIDE 1 -->
+                    <article
+                        class="relative min-w-[260px] md:min-w-[320px] lg:min-w-[360px]
+                               snap-center rounded-2xl overflow-hidden shadow-xl bg-black/60"
+                    >
+                        <img
+                            src="/static/images/island-vision/island1.jpeg"
+                            alt="Island promenade and luxury towers"
+                            class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+                        <div class="absolute bottom-4 right-4 text-right max-w-[80%]">
+                            <div class="inline-block bg-black/60 px-3 py-1 rounded-full text-[11px]
+                                        uppercase tracking-wide text-amber-300 border border-amber-400/70"
+                                 data-translate="project_slide1_tag">
+                                Waterfront Promenade
+                            </div>
+                            <h3 class="mt-2 text-white text-base md:text-lg font-semibold"
+                                data-translate="project_slide1_title">
+                                Seafront Towers & Marina Living
+                            </h3>
+                            <p class="mt-1 text-xs md:text-sm text-gray-200"
+                               data-translate="project_slide1_body">
+                                Panoramic towers overlooking the sea with private marina access for residents.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- SLIDE 2 -->
+                    <article
+                        class="relative min-w-[260px] md:min-w-[320px] lg:min-w-[360px]
+                               snap-center rounded-2xl overflow-hidden shadow-xl bg-black/60"
+                    >
+                        <img
+                            src="/static/images/island-vision/island2.jpeg"
+                            alt="Resort pool decks and terraces"
+                            class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+                        <div class="absolute bottom-4 right-4 text-right max-w-[80%]">
+                            <div class="inline-block bg-black/60 px-3 py-1 rounded-full text-[11px]
+                                        uppercase tracking-wide text-amber-300 border border-amber-400/70"
+                                 data-translate="project_slide2_tag">
+                                Resort Amenities
+                            </div>
+                            <h3 class="mt-2 text-white text-base md:text-lg font-semibold"
+                                data-translate="project_slide2_title">
+                                Infinity Pools & Landscaped Terraces
+                            </h3>
+                            <p class="mt-1 text-xs md:text-sm text-gray-200"
+                               data-translate="project_slide2_body">
+                                Elevated decks, lounge cabanas and lush green walkways for relaxation.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- SLIDE 3 -->
+                    <article
+                        class="relative min-w-[260px] md:min-w-[320px] lg:min-w-[360px]
+                               snap-center rounded-2xl overflow-hidden shadow-xl bg-black/60"
+                    >
+                        <img
+                            src="/static/images/island-vision/island3.png"
+                            alt="Island skyline at night"
+                            class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+                        <div class="absolute bottom-4 right-4 text-right max-w-[80%]">
+                            <div class="inline-block bg-black/60 px-3 py-1 rounded-full text-[11px]
+                                        uppercase tracking-wide text-amber-300 border border-amber-400/70"
+                                 data-translate="project_slide3_tag">
+                                Night Skyline
+                            </div>
+                            <h3 class="mt-2 text-white text-base md:text-lg font-semibold"
+                                data-translate="project_slide3_title">
+                                Illuminated Waterfront Living
+                            </h3>
+                            <p class="mt-1 text-xs md:text-sm text-gray-200"
+                               data-translate="project_slide3_body">
+                                The island glowing under the night sky, creating a new landmark of Georgia.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- SLIDE 4 -->
+                    <article
+                        class="relative min-w-[260px] md:min-w-[320px] lg:min-w-[360px]
+                               snap-center rounded-2xl overflow-hidden shadow-xl bg-black/60"
+                    >
+                        <img
+                            src="/static/images/island-vision/island4.png"
+                            alt="Island boulevard retail zone"
+                            class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+                        <div class="absolute bottom-4 right-4 text-right max-w-[80%]">
+                            <div class="inline-block bg-black/60 px-3 py-1 rounded-full text-[11px]
+                                        uppercase tracking-wide text-amber-300 border border-amber-400/70"
+                                 data-translate="project_slide4_tag">
+                                Boulevard Living
+                            </div>
+                            <h3 class="mt-2 text-white text-base md:text-lg font-semibold"
+                                data-translate="project_slide4_title">
+                                Cafés • Retail • Island Promenade
+                            </h3>
+                            <p class="mt-1 text-xs md:text-sm text-gray-200"
+                               data-translate="project_slide4_body">
+                                A premium lifestyle boulevard featuring boutique retail and seaside cafés.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- LEFT ARROW -->
+                <button
+                    type="button"
+                    class="hidden md:flex group-hover:flex items-center justify-center
+                           absolute left-0 top-1/2 -translate-y-1/2
+                           w-10 h-10 rounded-full
+                           bg-black/40 text-white text-xl font-semibold shadow-lg
+                           hover:bg-black/60 transition"
+                    onclick="document.getElementById('islandCultureCarousel').scrollBy({ left: -350, behavior: 'smooth' })"
+                    aria-label="Scroll left"
+                >
+                    ‹
+                </button>
+
+                <!-- RIGHT ARROW -->
+                <button
+                    type="button"
+                    class="hidden md:flex group-hover:flex items-center justify-center
+                           absolute right-0 top-1/2 -translate-y-1/2
+                           w-10 h-10 rounded-full
+                           bg-black/40 text-white text-xl font-semibold shadow-lg
+                           hover:bg-black/60 transition"
+                    onclick="document.getElementById('islandCultureCarousel').scrollBy({ left: 350, behavior: 'smooth' })"
+                    aria-label="Scroll right"
+                >
+                    ›
+                </button>
+
+            </div>  
         </div>
-
-        <!-- CULTURE-STYLE LUXURY CAROUSEL -->
-        <div class="relative mt-10 group">
-        
-        <!-- Scrollable row (same structure as Life in Georgia) -->
-        <div
-            id="islandCultureCarousel"
-            class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4
-                scrollbar-thin scrollbar-thumb-amber-400/70 scrollbar-track-gray-200"
-        >
-
-            <!-- SLIDE 1 -->
-            <article
-            class="relative min-w-[260px] md:min-w-[320px] lg:min-w-[360px]
-                    snap-center rounded-2xl overflow-hidden shadow-xl bg-black/60"
-            >
-            <img
-                src="/static/images/island-vision/island1.jpeg"
-                alt="Island promenade and luxury towers"
-                class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-
-            <div class="absolute bottom-4 right-4 text-right max-w-[80%]">
-                <div class="inline-block bg-black/60 px-3 py-1 rounded-full text-[11px]
-                            uppercase tracking-wide text-amber-300 border border-amber-400/70">
-                Waterfront Promenade
-                </div>
-                <h3 class="mt-2 text-white text-base md:text-lg font-semibold">
-                Seafront Towers & Marina Living
-                </h3>
-                <p class="mt-1 text-xs md:text-sm text-gray-200">
-                Panoramic towers overlooking the sea with private marina access for residents.
-                </p>
-            </div>
-            </article>
-
-            <!-- SLIDE 2 -->
-            <article
-            class="relative min-w-[260px] md:min-w-[320px] lg:min-w-[360px]
-                    snap-center rounded-2xl overflow-hidden shadow-xl bg-black/60"
-            >
-            <img
-                src="/static/images/island-vision/island2.jpeg"
-                alt="Resort pool decks and terraces"
-                class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-
-            <div class="absolute bottom-4 right-4 text-right max-w-[80%]">
-                <div class="inline-block bg-black/60 px-3 py-1 rounded-full text-[11px]
-                            uppercase tracking-wide text-amber-300 border border-amber-400/70">
-                Resort Amenities
-                </div>
-                <h3 class="mt-2 text-white text-base md:text-lg font-semibold">
-                Infinity Pools & Landscaped Terraces
-                </h3>
-                <p class="mt-1 text-xs md:text-sm text-gray-200">
-                Elevated decks, lounge cabanas and lush green walkways for relaxation.
-                </p>
-            </div>
-            </article>
-
-            <!-- SLIDE 3 -->
-            <article
-            class="relative min-w-[260px] md:min-w-[320px] lg:min-w-[360px]
-                    snap-center rounded-2xl overflow-hidden shadow-xl bg-black/60"
-            >
-            <img
-                src="/static/images/island-vision/island3.png"
-                alt="Island skyline at night"
-                class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-
-            <div class="absolute bottom-4 right-4 text-right max-w-[80%]">
-                <div class="inline-block bg-black/60 px-3 py-1 rounded-full text-[11px]
-                            uppercase tracking-wide text-amber-300 border border-amber-400/70">
-                Night Skyline
-                </div>
-                <h3 class="mt-2 text-white text-base md:text-lg font-semibold">
-                Illuminated Waterfront Living
-                </h3>
-                <p class="mt-1 text-xs md:text-sm text-gray-200">
-                The island glowing under the night sky, creating a new landmark of Georgia.
-                </p>
-            </div>
-            </article>
-
-            <!-- SLIDE 4 -->
-            <article
-            class="relative min-w-[260px] md:min-w-[320px] lg:min-w-[360px]
-                    snap-center rounded-2xl overflow-hidden shadow-xl bg-black/60"
-            >
-            <img
-                src="/static/images/island-vision/island4.png"
-                alt="Island boulevard retail zone"
-                class="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-
-            <div class="absolute bottom-4 right-4 text-right max-w-[80%]">
-                <div class="inline-block bg-black/60 px-3 py-1 rounded-full text-[11px]
-                            uppercase tracking-wide text-amber-300 border border-amber-400/70">
-                Boulevard Living
-                </div>
-                <h3 class="mt-2 text-white text-base md:text-lg font-semibold">
-                Cafés • Retail • Island Promenade
-                </h3>
-                <p class="mt-1 text-xs md:text-sm text-gray-200">
-                A premium lifestyle boulevard featuring boutique retail and seaside cafés.
-                </p>
-            </div>
-            </article>
-
-        </div>
-
-        <!-- LEFT ARROW -->
-        <button
-            type="button"
-            class="hidden md:flex group-hover:flex items-center justify-center
-                absolute left-0 top-1/2 -translate-y-1/2
-                w-10 h-10 rounded-full
-                bg-black/40 text-white text-xl font-semibold shadow-lg
-                hover:bg-black/60 transition"
-            onclick="document.getElementById('islandCultureCarousel').scrollBy({ left: -350, behavior: 'smooth' })"
-            aria-label="Scroll left"
-        >
-            ‹
-        </button>
-
-        <!-- RIGHT ARROW -->
-        <button
-            type="button"
-            class="hidden md:flex group-hover:flex items-center justify-center
-                absolute right-0 top-1/2 -translate-y-1/2
-                w-10 h-10 rounded-full
-                bg-black/40 text-white text-xl font-semibold shadow-lg
-                hover:bg-black/60 transition"
-            onclick="document.getElementById('islandCultureCarousel').scrollBy({ left: 350, behavior: 'smooth' })"
-            aria-label="Scroll right"
-        >
-            ›
-        </button>
-
-        </div>  
-    </div>
     </section>
 
 
     <!-- DOWNLOAD BROCHURE FORM -->
     <section id="brochure-download" class="py-12 bg-gray-50 mt-12 fade-up">
-    <div class="max-w-xl mx-auto text-center">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Download the Official Project Brochure</h2>
-        <div class="section-divider"></div>
-        <p class="text-gray-700 mt-2 text-sm md:text-base">Enter your email to receive the brochure instantly.</p>
+        <div class="max-w-xl mx-auto text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900"
+                data-translate="brochure_title">
+                Download the Official Project Brochure
+            </h2>
+            <div class="section-divider"></div>
+            <p class="text-gray-700 mt-2 text-sm md:text-base"
+               data-translate="brochure_subtitle">
+                Enter your email to receive the brochure instantly.
+            </p>
 
-        <form id="brochureForm" class="mt-6 space-y-4">
-        <input 
-            type="email"
-            id="brochureEmail"
-            name="email"
-            placeholder="Enter your email address"
-            required
-            class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-amber-500 focus:border-amber-500"
-        />
+            <form id="brochureForm" class="mt-6 space-y-4">
+                <input 
+                    type="email"
+                    id="brochureEmail"
+                    name="email"
+                    placeholder="Enter your email address"
+                    data-placeholder="brochure_ph_email"
+                    required
+                    class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-amber-500 focus:border-amber-500"
+                />
 
-        <button 
-            type="submit"
-            class="w-full bg-amber-600 text-white py-2 rounded-md font-semibold hover:bg-amber-700 transition"
-        >
-            Download Brochure
-        </button>
+                <button 
+                    type="submit"
+                    class="w-full bg-amber-600 text-white py-2 rounded-md font-semibold hover:bg-amber-700 transition"
+                    data-translate="brochure_btn">
+                    Download Brochure
+                </button>
 
-        <p id="brochureMessage" class="text-sm mt-2 text-center"></p>
-        </form>
-    </div>
+                <p id="brochureMessage" class="text-sm mt-2 text-center"></p>
+            </form>
+        </div>
     </section>
 
     <!-- Schedule Google Meet -->
     <section class="py-16 bg-white">
         <div class="max-w-4xl mx-auto px-4 text-center fade-up">
 
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900"
+                data-translate="gmeet_title">
                 Schedule a Google Meet Consultation
             </h2>
             <div class="section-divider"></div>
 
-            <p class="text-gray-700 text-sm md:text-base max-w-2xl mx-auto text-justify">
+            <p class="text-gray-700 text-sm md:text-base max-w-2xl mx-auto text-justify"
+               data-translate="gmeet_body">
                 Book a personalised consultation with our senior advisory team to walk through
                 the project details, investment structures, and your personalised acquisition path
                 at Batumi Island Estates.
             </p>
 
-            <!-- 🔁 Use your actual Google Calendar booking URL here -->
             <a 
                 href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2mCm-eumumt_jnfeH1rGpO9hR_IjqeaPmY-NyTQ6pj1_oFiKOnRvVj5BpZo2uzdO78taCrf1LV"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-block mt-6 bg-amber-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-amber-700 transition text-sm md:text-base">
+                class="inline-block mt-6 bg-amber-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-amber-700 transition text-sm md:text-base"
+                data-translate="gmeet_btn">
                 Schedule a Google Meet
             </a>
         </div>
@@ -324,78 +353,64 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        const carousel = document.getElementById("islandCultureCarousel");
-        if (!carousel) return;
+            const carousel = document.getElementById("islandCultureCarousel");
+            if (!carousel) return;
 
-        const cards = carousel.querySelectorAll("article");
-        if (!cards.length) return;
+            const cards = carousel.querySelectorAll("article");
+            if (!cards.length) return;
 
-        // Compute one scroll "step" = card width + gap
-        const getStep = () => {
-            const first = cards[0].getBoundingClientRect();
-            // 24px ≈ gap-6 between cards; adjust if you change gap
-            return first.width + 24;
-        };
+            const getStep = () => {
+                const first = cards[0].getBoundingClientRect();
+                return first.width + 24; // gap-6 ≈ 24px
+            };
 
-        let step = getStep();
-
-        // Recalculate on resize
-        window.addEventListener("resize", () => {
-            step = getStep();
-        });
-
-        let autoTimer = null;
-
-        function doAutoScroll() {
-            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-            const nextScroll = carousel.scrollLeft + step;
-
-            if (nextScroll >= maxScroll - 5) {
-            // Go back to start
-            carousel.scrollTo({
-                left: 0,
-                behavior: "smooth",
+            let step = getStep();
+            window.addEventListener("resize", () => {
+                step = getStep();
             });
-            } else {
-            carousel.scrollTo({
-                left: nextScroll,
-                behavior: "smooth",
-            });
+
+            let autoTimer = null;
+
+            function doAutoScroll() {
+                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                const nextScroll = carousel.scrollLeft + step;
+
+                if (nextScroll >= maxScroll - 5) {
+                    carousel.scrollTo({ left: 0, behavior: "smooth" });
+                } else {
+                    carousel.scrollTo({ left: nextScroll, behavior: "smooth" });
+                }
             }
-        }
 
-        function startAuto() {
-            stopAuto();
-            autoTimer = setInterval(doAutoScroll, 6000); // every 6 seconds
-        }
-
-        function stopAuto() {
-            if (autoTimer) {
-            clearInterval(autoTimer);
-            autoTimer = null;
+            function startAuto() {
+                stopAuto();
+                autoTimer = setInterval(doAutoScroll, 6000);
             }
-        }
 
-        // Pause when user hovers over the carousel
-        carousel.addEventListener("mouseenter", stopAuto);
-        carousel.addEventListener("mouseleave", startAuto);
-
-        // Also restart autoplay after user clicks the left/right arrows
-        const wrapper = carousel.parentElement;
-        if (wrapper) {
-            wrapper.addEventListener("click", (e) => {
-            if (e.target.closest("button")) {
-                startAuto();
+            function stopAuto() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
             }
-            });
-        }
 
-        // Start autoplay on load
-        startAuto();
+            carousel.addEventListener("mouseenter", stopAuto);
+            carousel.addEventListener("mouseleave", startAuto);
+
+            const wrapper = carousel.parentElement;
+            if (wrapper) {
+                wrapper.addEventListener("click", (e) => {
+                    if (e.target.closest("button")) {
+                        startAuto();
+                    }
+                });
+            }
+
+            startAuto();
         });
 
         // ---------------------------
-        // Brochure form handling
+        // Brochure form handling (multi-language)
         // ---------------------------
         document.getElementById("brochureForm").addEventListener("submit", async function (e) {
             e.preventDefault();
@@ -406,44 +421,58 @@
 
             const email = emailInput.value.trim();
             if (!email) {
-            msg.innerText = "Please enter your email address.";
-            msg.style.color = "red";
-            return;
+                msg.innerText = (typeof bieT === "function")
+                  ? bieT("brochure_msg_empty", "Please enter your email address.")
+                  : "Please enter your email address.";
+                msg.style.color = "red";
+                return;
             }
 
-            msg.innerText = "Sending...";
+            msg.innerText = (typeof bieT === "function")
+              ? bieT("brochure_msg_sending", "Sending...")
+              : "Sending...";
             msg.style.color = "gray";
             button.disabled = true;
 
             try {
-            const response = await fetch("/api/send-brochure", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email })
-            });
+                const response = await fetch("/api/send-brochure", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email })
+                });
 
-            let data = {};
-            try {
-                data = await response.json();
-            } catch (_) {
-                // If backend returned HTML instead of JSON
-                data = {};
-            }
+                let data = {};
+                try {
+                    data = await response.json();
+                } catch (_) {
+                    data = {};
+                }
 
-            if (response.ok && data.ok) {
-                msg.innerText = data.message || "Brochure sent! Please check your inbox.";
-                msg.style.color = "green";
-                emailInput.value = "";
-            } else {
-                msg.innerText = (data && data.message) || "Error sending brochure. Please try again.";
-                msg.style.color = "red";
-            }
+                if (response.ok && data.ok) {
+                    msg.innerText =
+                      (data && data.message) ||
+                      ((typeof bieT === "function")
+                        ? bieT("brochure_msg_success", "Brochure sent! Please check your inbox.")
+                        : "Brochure sent! Please check your inbox.");
+                    msg.style.color = "green";
+                    emailInput.value = "";
+                } else {
+                    msg.innerText =
+                      (data && data.message) ||
+                      ((typeof bieT === "function")
+                        ? bieT("brochure_msg_error", "Error sending brochure. Please try again.")
+                        : "Error sending brochure. Please try again.");
+                    msg.style.color = "red";
+                }
             } catch (err) {
-            console.error("Brochure error:", err);
-            msg.innerText = "Network error. Please try again.";
-            msg.style.color = "red";
+                console.error("Brochure error:", err);
+                msg.innerText =
+                  (typeof bieT === "function")
+                    ? bieT("brochure_msg_network", "Network error. Please try again.")
+                    : "Network error. Please try again.";
+                msg.style.color = "red";
             } finally {
-            button.disabled = false;
+                button.disabled = false;
             }
         });
     </script>

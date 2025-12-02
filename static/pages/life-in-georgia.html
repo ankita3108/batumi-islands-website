@@ -82,30 +82,30 @@
 <!-- CULTURE SLIDESHOW SCRIPT -->
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-    const slides = document.querySelectorAll(".culture-slide");
-    let index = 0;
+        const slides = document.querySelectorAll(".culture-slide");
+        let index = 0;
 
-    function showSlide(i) {
-        slides.forEach(slide => slide.classList.remove("active"));
-        slides[i].classList.add("active");
-    }
+        function showSlide(i) {
+            slides.forEach(slide => slide.classList.remove("active"));
+            slides[i].classList.add("active");
+        }
 
-    document.getElementById("culture-next").onclick = () => {
-        index = (index + 1) % slides.length;
-        showSlide(index);
-    };
+        document.getElementById("culture-next").onclick = () => {
+            index = (index + 1) % slides.length;
+            showSlide(index);
+        };
 
-    document.getElementById("culture-prev").onclick = () => {
-        index = (index - 1 + slides.length) % slides.length;
-        showSlide(index);
-    };
+        document.getElementById("culture-prev").onclick = () => {
+            index = (index - 1 + slides.length) % slides.length;
+            showSlide(index);
+        };
 
-    // Auto-slide every 5 seconds
-    setInterval(() => {
-        index = (index + 1) % slides.length;
-        showSlide(index);
-    }, 5000);
-});
+        // Auto-slide every 5 seconds
+        setInterval(() => {
+            index = (index + 1) % slides.length;
+            showSlide(index);
+        }, 5000);
+    });
 </script>
 
 <script>
@@ -202,15 +202,16 @@
         }
     </style>
 
-    <!-- Component Scripts (same as index) -->
-    <script src="static/components/navbar.js" defer></script>
-    <script src="static/components/property-card.js" defer></script>
-    <script src="static/components/footer.js" defer></script>
-    <script src="static/components/whatsapp-float.js" defer></script>
-    <script src="static/components/contact-form.js" defer></script>
-    <script src="static/components/testimonials.js" defer></script>
+    <!-- Component Scripts -->
+    <script src="/static/components/navbar.js" defer></script>
+    <script src="/static/components/property-card.js" defer></script>
+    <script src="/static/components/footer.js" defer></script>
+    <script src="/static/components/whatsapp-float.js" defer></script>
+    <script src="/static/components/contact-form.js" defer></script>
+    <script src="/static/components/testimonials.js" defer></script>
 
-    <script src="static/script.js" defer></script>
+    <!-- TRANSLATION SCRIPT -->
+    <script src="/static/script.js" defer></script>
 </head>
 
 <body class="bg-white font-sans" id="top">
@@ -220,7 +221,7 @@
 
     <!-- HERO: LIFE IN GEORGIA -->
     <section class="video-hero-life relative w-full flex items-center justify-center">
-        <!-- Background Video (replace src with your final lifestyle video) -->
+        <!-- Background Video -->
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
             <source src="https://huggingface.co/spaces/ankita3108/batumi-bliss-bungalows/resolve/main/videos/Georgia_culture_video.mp4" type="video/mp4">
         </video>
@@ -230,10 +231,12 @@
 
         <!-- Content -->
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4"
+                data-translate="life_hero_title">
                 Life in Georgia
             </h1>
-            <p class="text-base md:text-lg text-gray-100 mb-6 leading-relaxed">
+            <p class="text-base md:text-lg text-gray-100 mb-6 leading-relaxed"
+               data-translate="life_hero_body">
                 A vibrant blend of European charm, Black Sea coastal living, warm hospitality, and a rapidly 
                 modernising lifestyle—Georgia offers a unique environment where culture, freedom, and opportunity 
                 come together for global residents and investors.
@@ -241,11 +244,13 @@
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center mt-4">
                 <a href="#georgia-lifestyle"
-                   class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-md font-semibold shadow-lg transition">
+                   class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-md font-semibold shadow-lg transition"
+                   data-translate="life_hero_btn_lifestyle">
                     Explore Georgian Lifestyle
                 </a>
                 <a href="#europe-alignment"
-                   class="border border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-gray-900 transition">
+                   class="border border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-gray-900 transition"
+                   data-translate="life_hero_btn_alignment">
                     Georgia & Europe: How They Align
                 </a>
             </div>
@@ -256,13 +261,15 @@
     <section id="georgia-lifestyle" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-6 text-center">
 
-            <h2 class="text-4xl font-bold text-gray-800 mb-4 tracking-wide">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4 tracking-wide"
+                data-translate="life_lifestyle_title">
                 Georgia: Where Natural Beauty Meets Modern Living
             </h2>
 
             <div class="section-divider"></div>
 
-            <p class="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto mb-10">
+            <p class="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto mb-10"
+               data-translate="life_lifestyle_body">
                 Georgia offers one of the most unique lifestyle experiences in Europe—balancing untouched natural landscapes, rich cultural heritage, 
                 and a rapidly evolving modern economy. From the serene Black Sea coastline to the futuristic skyline of Tbilisi, the country offers 
                 a rare blend of beauty, opportunity, and affordability that appeals to both residents and global investors.
@@ -276,8 +283,12 @@
                     <div class="text-amber-600 text-5xl mb-4 group-hover:scale-110 transition-all">
                         <i class="fas fa-mountain"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Spectacular Natural Beauty</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2"
+                        data-translate="life_card1_title">
+                        Spectacular Natural Beauty
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed"
+                       data-translate="life_card1_body">
                         Snow-capped mountains, ancient forests, crystal lakes, and dramatic coastlines make Georgia one of the 
                         world’s most stunning year-round destinations.
                     </p>
@@ -288,8 +299,12 @@
                     <div class="text-amber-600 text-5xl mb-4 group-hover:scale-110 transition-all">
                         <i class="fas fa-city"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">European-Modern Lifestyle</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2"
+                        data-translate="life_card2_title">
+                        European-Modern Lifestyle
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed"
+                       data-translate="life_card2_body">
                         Trendy cafés, international schools, modern business hubs, high-speed internet, and 
                         vibrant nightlife make cities like Tbilisi and Batumi ideal for modern living.
                     </p>
@@ -300,8 +315,12 @@
                     <div class="text-amber-600 text-5xl mb-4 group-hover:scale-110 transition-all">
                         <i class="fas fa-robot"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Thriving Tech & Innovation Hub</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2"
+                        data-translate="life_card3_title">
+                        Thriving Tech & Innovation Hub
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed"
+                       data-translate="life_card3_body">
                         Georgia is rapidly emerging as a digital-first economy—attracting startups, tech talent, 
                         and investors through low taxes, easy regulations, and a pro-innovation government.
                     </p>
@@ -312,8 +331,12 @@
                     <div class="text-amber-600 text-5xl mb-4 group-hover:scale-110 transition-all">
                         <i class="fas fa-globe-europe"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Strategic Location</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2"
+                        data-translate="life_card4_title">
+                        Strategic Location
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed"
+                       data-translate="life_card4_body">
                         Positioned between Europe and Asia, Georgia is a gateway for trade, travel, and commerce, 
                         making it an ideal base for global business operations.
                     </p>
@@ -324,8 +347,12 @@
                     <div class="text-amber-600 text-5xl mb-4 group-hover:scale-110 transition-all">
                         <i class="fas fa-hand-holding-heart"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Welcoming Culture</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2"
+                        data-translate="life_card5_title">
+                        Welcoming Culture
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed"
+                       data-translate="life_card5_body">
                         Georgia’s warm hospitality, friendly community, and safety make it one of the most 
                         comfortable destinations for expats and global investors.
                     </p>
@@ -336,8 +363,12 @@
                     <div class="text-amber-600 text-5xl mb-4 group-hover:scale-110 transition-all">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">High Growth Potential</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2"
+                        data-translate="life_card6_title">
+                        High Growth Potential
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed"
+                       data-translate="life_card6_body">
                         With rising tourism, increasing FDI, and large-scale coastal developments, 
                         Georgia is one of the most promising emerging markets in Europe.
                     </p>
@@ -352,18 +383,19 @@
     <section id="georgia-culture" class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6 text-center">
 
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 tracking-wide animate-fadeUp">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 tracking-wide animate-fadeUp"
+                data-translate="life_culture_title">
                 Experience Georgia’s Rich Culture & Heritage
             </h2>
 
             <div class="section-divider mb-10"></div>
 
-            <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-16 animate-fadeUp">
+            <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-16 animate-fadeUp"
+               data-translate="life_culture_body">
                 Georgia’s soul is shaped by centuries of tradition, breathtaking folklore, vibrant art, and 
                 warm hospitality. From ancient wine-making rituals to soulful polyphonic music and the 
                 architectural blend of old and new, every moment in Georgia tells a story worth feeling—and living.
             </p>
-
 
             <!-- SLIDESHOW WRAPPER -->
             <div class="relative max-w-6xl mx-auto">
@@ -376,8 +408,10 @@
                         <img src="/static/images/culture/culture-1.jpg" 
                             class="w-full h-[500px] object-cover opacity-90" alt="Traditional Georgian Dance">
                         <div class="culture-caption">
-                            <h3>Traditional Georgian Dance</h3>
-                            <p>An artistic celebration of courage, elegance, and centuries-old cultural pride.</p>
+                            <h3 data-translate="life_culture_slide1_title">Traditional Georgian Dance</h3>
+                            <p data-translate="life_culture_slide1_body">
+                                An artistic celebration of courage, elegance, and centuries-old cultural pride.
+                            </p>
                         </div>
                     </div>
 
@@ -386,8 +420,10 @@
                         <img src="/static/images/culture/culture-2.jpg"
                             class="w-full h-[500px] object-cover opacity-90" alt="Georgian Supra and Wine Culture">
                         <div class="culture-caption">
-                            <h3>Ancient Wine Culture</h3>
-                            <p>Home to the world’s oldest wine tradition—over 8,000 years of craftsmanship.</p>
+                            <h3 data-translate="life_culture_slide2_title">Ancient Wine Culture</h3>
+                            <p data-translate="life_culture_slide2_body">
+                                Home to the world’s oldest wine tradition—over 8,000 years of craftsmanship.
+                            </p>
                         </div>
                     </div>
 
@@ -396,8 +432,10 @@
                         <img src="/static/images/culture/culture-3.jpg" 
                             class="w-full h-[500px] object-cover opacity-90" alt="Old Tbilisi Architecture">
                         <div class="culture-caption">
-                            <h3>Tbilisi’s Architectural Charm</h3>
-                            <p>A harmonious blend of historic streets, modern elegance, and vibrant city life.</p>
+                            <h3 data-translate="life_culture_slide3_title">Tbilisi’s Architectural Charm</h3>
+                            <p data-translate="life_culture_slide3_body">
+                                A harmonious blend of historic streets, modern elegance, and vibrant city life.
+                            </p>
                         </div>
                     </div>
 
@@ -406,20 +444,20 @@
                         <img src="/static/images/culture/culture-4.jpg"
                             class="w-full h-[500px] object-cover opacity-90" alt="Batumi Coastal Glow">
                         <div class="culture-caption">
-                            <h3>Batumi’s Coastal Glow</h3>
-                            <p>A modern seaside paradise where culture, architecture, and lifestyle connect.</p>
+                            <h3 data-translate="life_culture_slide4_title">Batumi’s Coastal Glow</h3>
+                            <p data-translate="life_culture_slide4_body">
+                                A modern seaside paradise where culture, architecture, and lifestyle connect.
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Navigation Arrows -->
-                <button id="culture-prev" 
-                        class="culture-nav left-4">
+                <button id="culture-prev" class="culture-nav left-4">
                     <i class="fas fa-chevron-left"></i>
                 </button>
 
-                <button id="culture-next" 
-                        class="culture-nav right-4">
+                <button id="culture-next" class="culture-nav right-4">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -429,13 +467,15 @@
     <!-- SECTION: GEORGIA & EUROPE ALIGNMENT -->
     <section id="europe-alignment" class="py-16 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center"
+                data-translate="life_align_title">
                 How Georgia Aligns with Modern European Living
             </h2>
 
             <div class="section-divider"></div>
 
-            <p class="text-sm md:text-base max-w-3xl mx-auto mb-10 leading-relaxed text-justify text-gray-100">
+            <p class="text-sm md:text-base max-w-3xl mx-auto mb-10 leading-relaxed text-justify text-gray-100"
+               data-translate="life_align_body">
                 Georgia is increasingly integrated with European economic, lifestyle, and tourism flows while 
                 still maintaining its distinct cultural identity and cost advantages. For investors and residents, 
                 it offers a bridge between East and West, combining European-facing standards with a more relaxed, 
@@ -443,12 +483,15 @@
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
                 <!-- Alignment Card 1 -->
                 <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm">
-                    <h3 class="text-lg font-semibold mb-2">
+                    <h3 class="text-lg font-semibold mb-2"
+                        data-translate="life_align_card1_title">
                         European Lifestyle, Lower Cost of Living
                     </h3>
-                    <p class="text-sm leading-relaxed text-gray-100">
+                    <p class="text-sm leading-relaxed text-gray-100"
+                       data-translate="life_align_card1_body">
                         Café culture, walkable neighborhoods, international schools, and modern shopping centres 
                         align closely with many European capitals—yet housing, dining, and services often remain 
                         significantly more affordable.
@@ -457,10 +500,12 @@
 
                 <!-- Alignment Card 2 -->
                 <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm">
-                    <h3 class="text-lg font-semibold mb-2">
+                    <h3 class="text-lg font-semibold mb-2"
+                        data-translate="life_align_card2_title">
                         Increasing Connectivity & Tourism Flows
                     </h3>
-                    <p class="text-sm leading-relaxed text-gray-100">
+                    <p class="text-sm leading-relaxed text-gray-100"
+                       data-translate="life_align_card2_body">
                         Direct and connecting flights from key European cities, rising tourist arrivals, and 
                         a growing base of digital nomads and remote workers connect Georgia into broader EU traffic.
                     </p>
@@ -468,10 +513,12 @@
 
                 <!-- Alignment Card 3 -->
                 <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm">
-                    <h3 class="text-lg font-semibold mb-2">
+                    <h3 class="text-lg font-semibold mb-2"
+                        data-translate="life_align_card3_title">
                         Investor-Friendly, Long-Term Oriented
                     </h3>
-                    <p class="text-sm leading-relaxed text-gray-100">
+                    <p class="text-sm leading-relaxed text-gray-100"
+                       data-translate="life_align_card3_body">
                         Clear ownership rights, simple purchase processes, and a forward-looking tourism and 
                         infrastructure strategy align Georgia with other emerging European investment hotspots.
                     </p>
@@ -479,10 +526,12 @@
 
                 <!-- Alignment Card 4 -->
                 <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm">
-                    <h3 class="text-lg font-semibold mb-2">
+                    <h3 class="text-lg font-semibold mb-2"
+                        data-translate="life_align_card4_title">
                         Cultural Depth Meets Modern Aspirations
                     </h3>
-                    <p class="text-sm leading-relaxed text-gray-100">
+                    <p class="text-sm leading-relaxed text-gray-100"
+                       data-translate="life_align_card4_body">
                         Historic architecture, music, food, and traditions exist alongside modern hospitality, 
                         co-working hubs, and contemporary art—creating a lifestyle that resonates with sophisticated 
                         European travellers and long-stay residents.
@@ -495,15 +544,18 @@
     <!-- CTA: LINK BACK TO MAIN INVESTMENT PAGE -->
     <section class="py-12 bg-white">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-2xl md:text-3xl font-bold mb-3">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3"
+                data-translate="life_cta_title">
                 See How Life in Georgia Connects with Your Investment
             </h2>
-            <p class="text-gray-700 text-sm md:text-base mb-6 leading-relaxed max-w-2xl mx-auto">
+            <p class="text-gray-700 text-sm md:text-base mb-6 leading-relaxed max-w-2xl mx-auto"
+               data-translate="life_cta_body">
                 Combine the emotional appeal of living in Georgia with the financial strength of 
                 investing in Batumi Island Estates—one of the most unique island developments in the Black Sea region.
             </p>
             <a href="/#investment-highlights"
-               class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-amber-600 text-white font-semibold hover:bg-amber-700 shadow-lg">
+               class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-amber-600 text-white font-semibold hover:bg-amber-700 shadow-lg"
+               data-translate="life_cta_btn">
                 Back to Investment Highlights
             </a>
         </div>

@@ -23,7 +23,7 @@ class CustomNavbar extends HTMLElement {
             <a href="/#top" class="nav-luxury text-white">Home</a>
             <a href="/#investment-highlights" class="nav-luxury text-white">Why Batumi</a>
             <a href="/#property-types" class="nav-luxury text-white">Properties</a>
-            <a href="/project-details" class="hover:text-amber-500">Project Details</a>
+            <a href="/project-details" class="nav-luxury text-white">Project Details</a>
             <a href="/life-in-georgia" class="nav-luxury text-white">Life in Georgia</a>
             <a href="/about" class="nav-luxury text-white">About Us</a>
             <a href="/#contact-form" class="nav-luxury text-white">Enquire</a>
@@ -35,6 +35,18 @@ class CustomNavbar extends HTMLElement {
                class="text-xs font-semibold px-4 py-2 rounded-full border border-white text-white nav-call-btn">
               Call: +995 574 100 645
             </a>
+          </div>
+
+          <!-- Desktop language selector -->
+            <select
+              class="nav-language-select js-language-selector text-xs border border-white/70 bg-transparent text-white rounded-full px-3 py-1 focus:outline-none focus:ring-0"
+            >
+              <option value="en">EN</option>
+              <option value="tr">TR</option>
+              <option value="ge">GE</option>
+              <option value="ru">RU</option>
+              <option value="kk">KK</option>
+            </select>
           </div>
 
           <!-- Mobile menu button -->
@@ -52,16 +64,30 @@ class CustomNavbar extends HTMLElement {
           <a href="/#top" class="block text-sm py-1 mobile-link nav-luxury">Home</a>
           <a href="/#investment-highlights" class="block text-sm py-1 mobile-link nav-luxury">Why Batumi</a>
           <a href="/#property-types" class="block text-sm py-1 mobile-link nav-luxury">Properties</a>
-          <a href="/project-details" class="hover:text-amber-500">Project Details</a>
+          <a href="/project-details" class="block text-sm py-1 mobile-link nav-luxury">Project Details</a>
           <a href="/life-in-georgia" class="block text-sm py-1 mobile-link nav-luxury">Life in Georgia</a>
-          <a href="/about" class="nav-luxury text-white">About Us</a>
+          <a href="/about" class="block text-sm py-1 mobile-link nav-luxury">About Us</a>
           <a href="/#contact-form" class="block text-sm py-1 mobile-link nav-luxury">Enquire</a>
           <a href="tel:+995574100645"
              class="inline-flex items-center justify-center mt-2 px-4 py-2 rounded-full border border-white text-xs font-semibold">
             Call: +995 574 100 645
           </a>
+
+        <!-- Mobile language selector -->
+        <div class="pt-3">
+          <label class="block text-[11px] text-white/70 mb-1">Language</label>
+          <select
+            class="js-language-selector w-full bg-black/40 border border-white/40 text-xs rounded-md px-2 py-1 focus:outline-none focus:ring-0"
+          >
+            <option value="en">English</option>
+            <option value="tr">Türkçe</option>
+            <option value="ge">ქართული</option>
+            <option value="ru">Русский</option>
+            <option value="kk">Қазақша</option>
+          </select>
         </div>
-      </header>
+      </div>
+    </header>
     `;
 
     const header = this.querySelector("#site-navbar");

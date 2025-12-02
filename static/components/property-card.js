@@ -1,8 +1,14 @@
 class CustomPropertyCard extends HTMLElement {
   connectedCallback() {
-    const title = this.getAttribute("title") || "Property";
+    // Translation keys from attributes (optional)
+    const titleKey = this.getAttribute("data-title-key") || "";
+    const featureKeysAttr = this.getAttribute("data-feature-keys") || "";
+
+    // Fallback English text from attributes
+    const fallbackTitle = this.getAttribute("title") || "Property";
     const featuresAttr = this.getAttribute("features") || "";
 
+    // Collect images
     const images = Array.from(this.attributes)
       .filter((a) => /^image\d+$/i.test(a.name))
       .sort((a, b) => {
@@ -12,10 +18,18 @@ class CustomPropertyCard extends HTMLElement {
       })
       .map((a) => a.value);
 
-    const features = featuresAttr
+    // Parse feature keys + fallback feature text
+    const featureKeys = featureKeysAttr
       .split(",")
       .map((f) => f.trim())
       .filter(Boolean);
+
+    const featureTexts = featuresAttr
+      .split(",")
+      .map((f) => f.trim())
+      .filter(Boolean);
+
+    const hasFeatures = featureKeys.length || featureTexts.length;
 
     /* MAIN TEMPLATE */
     this.innerHTML = `
@@ -23,15 +37,12 @@ class CustomPropertyCard extends HTMLElement {
 
         <!-- IMAGE CONTAINER -->
         <div class="relative w-full h-56 overflow-hidden group bg-gray-200">
-
           <img class="property-main-image w-full h-full object-cover transition-opacity duration-300"
                src="${images[0] || ""}" />
 
           ${
             images.length > 1
               ? `
-            <!-- LUXURY GLOW ARROWS -->
-
             <!-- LEFT ARROW -->
             <button class="gallery-prev absolute left-4 top-1/2 -translate-y-1/2
                            text-white text-5xl font-semibold leading-none
@@ -72,26 +83,40 @@ class CustomPropertyCard extends HTMLElement {
 
         <!-- TEXT -->
         <div class="p-6 flex flex-col flex-1">
-          <h3 class="text-xl font-semibold mb-2">${title}</h3>
+          <h3 class="text-xl font-semibold mb-2" ${
+            titleKey ? `data-translate="${titleKey}"` : ""
+          }>
+            ${fallbackTitle}
+          </h3>
 
           ${
-            features.length
+            hasFeatures
               ? `<div class="flex flex-wrap gap-2 mb-4">
-                ${features
-                  .map(
-                    (f) =>
-                      `<span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">${f}</span>`
-                  )
-                  .join("")}
+                ${(() => {
+                  const maxLen = Math.max(featureKeys.length, featureTexts.length);
+                  const chips = [];
+                  for (let i = 0; i < maxLen; i++) {
+                    const key = featureKeys[i] || "";
+                    const text =
+                      featureTexts[i] || featureKeys[i] || "Feature";
+                    chips.push(
+                      `<span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full" ${
+                        key ? `data-translate="${key}"` : ""
+                      }>${text}</span>`
+                    );
+                  }
+                  return chips.join("");
+                })()}
               </div>`
               : ""
           }
 
-          <p class="text-sm text-gray-600 mb-4">
+          <p class="text-sm text-gray-600 mb-4" data-translate="property_card_description">
             Discover beautifully designed residences in Batumi’s iconic island development.
           </p>
 
           <button class="mt-auto bg-amber-600 hover:bg-amber-700 text-white py-2 px-4 rounded-md"
+            data-translate="property_card_button"
             onclick="document.getElementById('quick-contact-modal').classList.remove('hidden')">
             Request Details
           </button>
@@ -129,6 +154,13 @@ class CustomPropertyCard extends HTMLElement {
     dots.forEach((d) =>
       d.addEventListener("click", () => update(parseInt(d.dataset.index)))
     );
+
+    // Optional: apply current language if translation system is already loaded
+    if (typeof applyLanguage === "function") {
+      try {
+        applyLanguage(window.BIE_CURRENT_LANG || "en");
+      } catch (_) {}
+    }
   }
 }
 

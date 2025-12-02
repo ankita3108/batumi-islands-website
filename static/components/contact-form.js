@@ -6,18 +6,30 @@ async function sendEnquiry(payload, statusEl, submitBtn) {
   }
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
+    submitBtn.textContent =
+      typeof bieT === "function"
+        ? bieT("enquiry_btn_sending", "Sending...")
+        : "Sending...";
   }
 
   // basic validation
   if (!payload.name || !payload.phone) {
     if (statusEl) {
-      statusEl.textContent = "Please provide your name and phone number.";
+      statusEl.textContent =
+        typeof bieT === "function"
+          ? bieT(
+              "enquiry_validation",
+              "Please provide your name and phone number."
+            )
+          : "Please provide your name and phone number.";
       statusEl.className = "text-xs text-red-500";
     }
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.textContent = "Submit Enquiry";
+      submitBtn.textContent =
+        typeof bieT === "function"
+          ? bieT("enquiry_btn_submit", "Submit Enquiry")
+          : "Submit Enquiry";
     }
     return;
   }
@@ -26,9 +38,9 @@ async function sendEnquiry(payload, statusEl, submitBtn) {
     const res = await fetch("/api/enquiry", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
 
     const data = await res.json().catch(() => ({}));
@@ -40,10 +52,20 @@ async function sendEnquiry(payload, statusEl, submitBtn) {
     if (statusEl) {
       if (data.dryRun) {
         statusEl.textContent =
-          "Thank you. Your enquiry has been received (test mode). Email sending is not yet configured.";
+          typeof bieT === "function"
+            ? bieT(
+                "enquiry_status_dryrun",
+                "Thank you. Your enquiry has been received (test mode). Email sending is not yet configured."
+              )
+            : "Thank you. Your enquiry has been received (test mode). Email sending is not yet configured.";
       } else {
         statusEl.textContent =
-          "Thank you. Your enquiry has been received. Our team will connect with you shortly.";
+          typeof bieT === "function"
+            ? bieT(
+                "enquiry_status_success",
+                "Thank you. Your enquiry has been received. Our team will connect with you shortly."
+              )
+            : "Thank you. Your enquiry has been received. Our team will connect with you shortly.";
       }
       statusEl.className = "text-xs text-emerald-600";
     }
@@ -51,13 +73,21 @@ async function sendEnquiry(payload, statusEl, submitBtn) {
     console.error("Enquiry error:", err);
     if (statusEl) {
       statusEl.textContent =
-        "Something went wrong while sending your enquiry. Please try again or use WhatsApp / Call.";
+        typeof bieT === "function"
+          ? bieT(
+              "enquiry_status_error",
+              "Something went wrong while sending your enquiry. Please try again or use WhatsApp / Call."
+            )
+          : "Something went wrong while sending your enquiry. Please try again or use WhatsApp / Call.";
       statusEl.className = "text-xs text-red-500";
     }
   } finally {
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.textContent = "Submit Enquiry";
+      submitBtn.textContent =
+        typeof bieT === "function"
+          ? bieT("enquiry_btn_submit", "Submit Enquiry")
+          : "Submit Enquiry";
     }
   }
 }
@@ -69,10 +99,12 @@ class CustomContactForm extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-6 md:p-8">
-        <h2 class="text-2xl md:text-3xl font-bold mb-2 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-2 text-center"
+            data-translate="contact_title">
           Request Detailed Investment Information
         </h2>
-        <p class="text-sm text-gray-600 mb-6 text-center">
+        <p class="text-sm text-gray-600 mb-6 text-center"
+           data-translate="contact_subtitle">
           Share your details and our team will connect with you for floor plans, yields,
           payment terms and availability.
         </p>
@@ -80,7 +112,10 @@ class CustomContactForm extends HTMLElement {
         <form id="main-enquiry-form" class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                     data-translate="contact_label_fullname">
+                Full Name *
+              </label>
               <input 
                 type="text" 
                 name="name" 
@@ -89,11 +124,15 @@ class CustomContactForm extends HTMLElement {
               />
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                     data-translate="contact_label_email">
+                Email
+              </label>
               <input 
                 type="email" 
                 name="email"
                 placeholder="you@example.com"
+                data-placeholder="contact_ph_email"
                 class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
               />
             </div>
@@ -102,7 +141,10 @@ class CustomContactForm extends HTMLElement {
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- COUNTRY CODE (SEARCHABLE) -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Country Code *</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                     data-translate="contact_label_country_code">
+                Country Code *
+              </label>
               <input
                 type="text"
                 name="country_code"
@@ -112,14 +154,18 @@ class CustomContactForm extends HTMLElement {
                 class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
                       focus:outline-none focus:ring-amber-500 focus:border-amber-500"
               />
-              <p class="text-xs text-gray-500 mt-1">
+              <p class="text-xs text-gray-500 mt-1"
+                 data-translate="contact_cc_help">
                 Type your country name or dialing code (e.g., India, +91, Georgia, +995).
               </p>
             </div>
 
             <!-- PHONE NUMBER -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                     data-translate="contact_label_phone">
+                Phone Number *
+              </label>
               <input 
                 type="tel" 
                 name="phone" 
@@ -132,34 +178,45 @@ class CustomContactForm extends HTMLElement {
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Apartment Type</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                     data-translate="contact_label_apartment_type">
+                Apartment Type
+              </label>
               <select 
                 name="apartmentType"
                 class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
               >
-                <option value="">Select</option>
-                <option value="Luxury Studio">Luxury Studio</option>
-                <option value="1BHK Apartment">1BHK Apartment</option>
-                <option value="2BHK Apartment">2BHK Apartment</option>
+                <option value="" data-translate="contact_select_type">Select</option>
+                <option value="Luxury Studio" data-translate="quick_opt_studio">Luxury Studio</option>
+                <option value="1BHK Apartment" data-translate="quick_opt_1bhk">1BHK Apartment</option>
+                <option value="2BHK Apartment" data-translate="quick_opt_2bhk">2BHK Apartment</option>
               </select>
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Approx. Budget (USD)</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                     data-translate="contact_label_budget">
+                Approx. Budget (USD)
+              </label>
               <input 
                 type="text" 
                 name="budget"
                 placeholder="e.g. 150,000"
+                data-placeholder="contact_ph_budget"
                 class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
               />
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Message / Requirements</label>
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+                   data-translate="contact_label_message">
+              Message / Requirements
+            </label>
             <textarea 
               name="message"
               rows="4"
               placeholder="Tell us your investment goals, stay duration, rental expectations, etc."
+              data-placeholder="contact_ph_message"
               class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500"
             ></textarea>
           </div>
@@ -170,7 +227,7 @@ class CustomContactForm extends HTMLElement {
               type="submit"
               id="main-enquiry-submit"
               class="inline-flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-6 py-2 rounded-md"
-            >
+              data-translate="enquiry_btn_submit">
               Submit Enquiry
             </button>
           </div>
@@ -190,20 +247,18 @@ class CustomContactForm extends HTMLElement {
       const formData = new FormData(form);
 
       const payload = {
-        form_type: "contact",                                      // snake_case for backend
+        form_type: "contact",
         name: formData.get("name") || "",
         email: formData.get("email") || "",
         phone: formData.get("phone") || "",
-        // FIX: read from "country_code" (matches input name)
         country_code: formData.get("country_code") || "",
-        apartment_type: formData.get("apartmentType") || "",       // "Luxury Studio", etc.
-        budget: formData.get("budget") || "",                      // separate budget
-        message: formData.get("message") || ""                     // only message, no budget text
+        apartment_type: formData.get("apartmentType") || "",
+        budget: formData.get("budget") || "",
+        message: formData.get("message") || "",
       };
 
       await sendEnquiry(payload, statusEl, submitBtn);
 
-      // If success, reset form when status is green
       if (statusEl && statusEl.className.includes("text-emerald-600")) {
         form.reset();
       }
@@ -221,7 +276,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const quickForm = document.getElementById("quick-contact-form");
   if (!quickForm) return;
 
-  // status text element
   let quickStatus = document.createElement("p");
   quickStatus.id = "quick-contact-status";
   quickStatus.className = "text-xs text-gray-500 mt-2";
@@ -236,7 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.getElementById("quick-email")?.value || "";
     const phone = document.getElementById("quick-phone")?.value || "";
 
-    // More robust country code lookup (id OR name)
     let countryCodeInput =
       document.getElementById("quick-country-code") ||
       quickForm.querySelector('[name="country_code"]') ||
@@ -249,14 +302,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = document.getElementById("quick-message")?.value || "";
 
     const payload = {
-      form_type: "quick",                      // snake_case
+      form_type: "quick",
       name: name,
       email: email,
       phone: phone,
       country_code: countryCode,
-      apartment_type: apartmentType,           // matches select value
-      budget: "",                              // no budget field in quick form
-      message: message
+      apartment_type: apartmentType,
+      budget: "",
+      message: message,
     };
 
     await sendEnquiry(payload, quickStatus, quickSubmit);
