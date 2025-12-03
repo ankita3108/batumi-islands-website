@@ -1,7 +1,89 @@
 // ================================
 //  Batumi Island Estates i18n
-//  5 languages: EN, GE, RU, TR, KK
+//  5 languages: EN, GE, RU, TR, KK, DE, ES, PT, AR
 // ================================
+
+const SUPPORTED_LANGUAGES = ["en", "tr", "ge", "ru", "kk", "de", "es", "pt", "ar"];
+
+function detectInitialLanguage() {
+  // 1. If user already chose a language, use that
+  try {
+    const stored = localStorage.getItem("bie_lang");
+    if (stored && SUPPORTED_LANGUAGES.includes(stored)) {
+      return stored;
+    }
+  } catch (e) {
+    // localStorage might be blocked; ignore
+  }
+
+  // 2. Use browser language
+  const navLangRaw =
+    (navigator.languages && navigator.languages[0]) ||
+    navigator.language ||
+    "en";
+
+  const navLang = navLangRaw.toLowerCase();
+
+  // Map browser langs/locales to your codes
+  const langMap = [
+    { match: "en", code: "en" },
+    { match: "tr", code: "tr" },
+    { match: "ka", code: "ge" }, // Georgian
+    { match: "ge", code: "ge" }, // just in case
+    { match: "ru", code: "ru" },
+    { match: "kk", code: "kk" },
+    { match: "de", code: "de" },
+    { match: "es", code: "es" },
+    { match: "pt", code: "pt" },
+    { match: "ar", code: "ar" }
+  ];
+
+  for (const item of langMap) {
+    if (navLang.startsWith(item.match)) {
+      return item.code;
+    }
+  }
+
+  // 3. Fallback
+  return "en";
+}
+
+function updateLanguageSelectors(lang) {
+  document.querySelectorAll(".js-language-selector").forEach((select) => {
+    if ([...select.options].some((o) => o.value === lang)) {
+      select.value = lang;
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. Detect initial language
+  const initialLang = detectInitialLanguage();
+
+  // 2. Apply translations
+  applyLanguage(initialLang);
+
+  // 3. Sync dropdowns
+  updateLanguageSelectors(initialLang);
+
+  // 4. Listen for user changes on all language selectors
+  document.querySelectorAll(".js-language-selector").forEach((select) => {
+    select.addEventListener("change", (e) => {
+      const lang = e.target.value;
+
+      if (!SUPPORTED_LANGUAGES.includes(lang)) return;
+
+      applyLanguage(lang);
+      updateLanguageSelectors(lang); // keep all selects in sync
+
+      try {
+        localStorage.setItem("bie_lang", lang);
+      } catch (err) {
+        // ignore if blocked
+      }
+    });
+  });
+});
 
 const BIE_TRANSLATIONS = {
   // ---------------- ENGLISH ----------------
