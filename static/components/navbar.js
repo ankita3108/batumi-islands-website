@@ -44,6 +44,7 @@ class CustomNavbar extends HTMLElement {
               <option value="en">EN</option>
               <option value="hi">HI</option>
               <option value="ta">TA</option>
+              <option value="bn">BN</option>
               <option value="tr">TR</option>
               <option value="ge">GE</option>
               <option value="ru">RU</option>
@@ -88,6 +89,7 @@ class CustomNavbar extends HTMLElement {
             <option value="en">English</option>
             <option value="hi">हिन्दी</option>
             <option value="ta">தமிழ்</option>
+            <option value="bn">বাংলা</option>
             <option value="tr">Türkçe</option>
             <option value="ge">ქართული</option>
             <option value="ru">Русский</option>
