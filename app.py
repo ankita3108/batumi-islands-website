@@ -309,6 +309,11 @@ def robots():
     resp.headers['Content-Type'] = 'text/plain; charset=utf-8'
     return resp
 
+@app.after_request
+def add_header(response):
+    response.headers['Cache-Control'] = 'public, max-age=31536000'
+    return response
+
 @app.route("/about")
 def about():
     return send_from_directory("static/pages", "about.html")
