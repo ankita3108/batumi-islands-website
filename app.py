@@ -287,6 +287,10 @@ def life_in_georgia():
 def project_details():
     return send_from_directory("static/pages", "project-details.html")
 
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('static', 'sitemap.xml')
+
 @app.route("/about")
 def about():
     return send_from_directory("static/pages", "about.html")

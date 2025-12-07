@@ -2965,7 +2965,456 @@ ta: {
     footer_bottom_privacy: "Gizlilik Politikası",
     footer_bottom_terms: "Şartlar",
 
+  },
 
+  // ---------------- ITALIAN ----------------
+
+  it: {
+    // Navbar
+    nav_home: "Home",
+    nav_why_batumi: "Perché Batumi",
+    nav_properties: "Proprietà",
+    nav_project_details: "Dettagli del Progetto",
+    nav_life_georgia: "Vivere in Georgia",
+    nav_about_us: "Chi Siamo",
+    nav_enquire: "Richiedi Info",
+    nav_call: "Chiama: +995 574 100 645",
+
+    // Hero
+    hero_title: "Batumi Island Estates",
+    hero_subtitle:
+      "La tua porta d’ingresso alla vita di lusso su un’isola, nel cuore del Mar Nero",
+    hero_cta_explore: "Esplora le Proprietà",
+    hero_cta_quick_enquiry: "Richiesta Veloce",
+
+    // Quick enquiry modal
+    quick_title: "Richiesta Veloce",
+    quick_label_name: "Nome *",
+    quick_label_phone: "Telefono",
+    quick_cc_help:
+      "Scrivi il nome del tuo Paese o il prefisso internazionale (es. Georgia +995, Italia +39, India +91).",
+    quick_label_email: "Email",
+    quick_label_apartment_type: "Tipologia di Appartamento",
+    quick_select_type: "Seleziona tipologia",
+    quick_opt_studio: "Monolocale di Lusso",
+    quick_opt_1bhk: "Appartamento 1BHK",
+    quick_opt_2bhk: "Appartamento 2BHK",
+    quick_opt_other: "Altro",
+    quick_label_message: "Messaggio",
+    quick_btn_submit: "Invia Richiesta",
+
+    // Invest Intro Brand
+    invest_intro_after_brand:
+      " è uno dei pochi progetti di isole master-planned nel Mar Nero, che offre uno scenario di investimento esclusivo ispirato a destinazioni di fama mondiale come ",
+    invest_intro_and: " e ",
+    invest_intro_ending:
+      ", garantendo un eccezionale valore a lungo termine e una vera scarsità costiera.",
+
+    // Investment section
+    section_invest_title:
+      "Perché investire in Batumi Island Estates?",
+
+    invest_card1_title: "ROI Elevato",
+    invest_card1_body:
+      "Il mercato in rapida crescita di turismo, gaming e leisure di Batumi sostiene rendimenti da locazione molto interessanti, soprattutto per le proprietà sull’isola fronte mare integrate con resort di alto livello.",
+
+    invest_card2_title: "Golden Visa",
+    invest_card2_body:
+      "Gli investimenti strategici in Georgia possono supportare opzioni di soggiorno prolungato, strutture di proprietà semplificate e un pratico hub tra Europa, Medio Oriente e Asia.",
+
+    invest_card3_title: "Posizione Privilegiata sull’Isola",
+    invest_card3_body:
+      "Accesso diretto al Mar Nero, passeggiate curate, beach club e vita da marina — creando allo stesso tempo appeal di lifestyle e un forte potere di pricing premium.",
+
+    invest_wc_title:
+      "Un’opportunità di investimento di livello mondiale sul Mar Nero",
+
+    invest_card4_title: "Mega Progetto Insulare Unico nel Suo Genere",
+    invest_card4_body:
+      "Uno dei pochissimi sviluppi insulari di classe mondiale nel Mar Nero — un nuovo landmark senza paragoni tra Europa e Asia.",
+
+    invest_card5_title: "Offerta Estremamente Limitata",
+    invest_card5_body:
+      "A differenza delle proprietà in città, il real estate sulle isole è intrinsecamente limitato — questo genera forte esclusività, domanda da parte degli investitori e potenziale di rivendita elevato.",
+
+    invest_card6_title: "Masterplan di Lusso Ispirato a Dubai",
+    invest_card6_body:
+      "Sviluppato con la stessa filosofia architettonica dei progetti insulari iconici di Dubai — spiagge private, marine, hotel di lusso e retail di alto livello.",
+
+    invest_card7_title: "Ecosistema di Resort 5 Stelle",
+    invest_card7_body:
+      "Ospitalità brandizzata, fine dining, beach club, centri wellness e zone di intrattenimento valorizzano ogni singola residenza.",
+
+    invest_card8_title: "Marina Privata e Accesso allo Yacht",
+    invest_card8_body:
+      "L’accesso diretto a una marina di livello mondiale aumenta l’attrattiva turistica e i ricavi da locazione premium.",
+
+    invest_card9_title: "Forte Apprezzamento Futuro del Capitale",
+    invest_card9_body:
+      "Gli investitori nelle fasi iniziali traggono i maggiori benefici man mano che l’isola diventa una destinazione internazionale per turismo, intrattenimento e vita di lusso.",
+
+    invest_card10_title: "Rendimenti da Locazione in Valuta Forte",
+    invest_card10_body:
+      "Guadagna da turisti internazionali con tariffe notturne elevate — in particolare da viaggiatori europei e mediorientali.",
+
+    invest_card11_title: "Crescente Importanza Strategica",
+    invest_card11_body:
+      "La Georgia sta diventando un hub chiave del Mar Nero per business, leisure, gaming e turismo — sostenendo il valore immobiliare nel lungo periodo.",
+
+    invest_card12_title: "Zero Tassa Annuale sulla Proprietà",
+    invest_card12_body:
+      "La Georgia offre condizioni straordinariamente favorevoli agli investitori, senza imposta annuale sulla proprietà per i singoli proprietari.",
+
+    // Transformation strip
+    transformation_title: "La Trasformazione di Lusso di Batumi",
+    transformation_body:
+      "Batumi sta vivendo una straordinaria evoluzione: da cittadina balneare stagionale a hub di lusso e intrattenimento attivo tutto l’anno. Nuovi hotel cinque stelle, casinò, residenze brandizzate e concept lifestyle internazionali stanno ridisegnando il waterfront e attirando un numero crescente di investitori globali, in modo simile alle prime fasi di trasformazione viste a Dubai.",
+
+    // Property types
+    property_types_title: "Le Nostre Tipologie di Proprietà",
+
+    // Property cards
+    property_studio_title: "Monolocali di Lusso",
+    property_1bhk_title: "Appartamenti 1BHK Premium",
+    property_2bhk_title: "Appartamenti 2BHK Premium",
+
+    property_studio_feat_seaview: "Vista Mare",
+    property_studio_feat_smarthome: "Smart Home",
+
+    property_1bhk_feat_panoramic: "Vista Panoramica",
+    property_1bhk_feat_luxurybath: "Bagno di Lusso",
+    property_1bhk_feat_smarthome: "Smart Home",
+
+    property_2bhk_feat_mastersuite: "Master Suite",
+    property_2bhk_feat_gourmetkitchen: "Cucina Gourmet",
+    property_2bhk_feat_walkin: "Cabina Armadio",
+
+    property_card_description:
+      "Scopri residenze dal design raffinato all’interno dell’iconico sviluppo insulare di Batumi.",
+    property_card_button: "Richiedi Dettagli",
+
+    // Contact CTA
+    contact_cta_title: "Pronto a possedere il tuo paradiso sull’isola?",
+    contact_cta_sub:
+      "Contatta oggi i nostri consulenti esperti per fissare una visita o ricevere maggiori informazioni.",
+    contact_cta_call_btn: "Chiama +995 574 100 645",
+    contact_cta_email_btn: "Scrivici via Email",
+
+    // LIFE IN GEORGIA – Hero
+    life_hero_title: "Vivere in Georgia",
+    life_hero_body:
+      "Un vibrante equilibrio tra fascino europeo, vita costiera sul Mar Nero, ospitalità calorosa e uno stile di vita in rapida modernizzazione — la Georgia offre un ambiente unico in cui cultura, libertà e opportunità convergono per residenti e investitori globali.",
+    life_hero_btn_lifestyle: "Scopri lo Stile di Vita Georgiano",
+    life_hero_btn_alignment: "Georgia & Europa: come si allineano",
+
+    // Lifestyle intro
+    life_lifestyle_title:
+      "Georgia: dove la Bellezza Naturale incontra la Vita Moderna",
+    life_lifestyle_body:
+      "La Georgia offre una delle esperienze di lifestyle più uniche in Europa — unendo paesaggi naturali incontaminati, un ricco patrimonio culturale e un’economia moderna in rapida evoluzione. Dalle tranquille coste del Mar Nero allo skyline futuristico di Tbilisi, il Paese offre una rara combinazione di bellezza, opportunità e accessibilità che attrae sia residenti sia investitori internazionali.",
+
+    // Lifestyle cards
+    life_card1_title: "Straordinaria Bellezza Naturale",
+    life_card1_body:
+      "Montagne innevate, foreste antiche, laghi cristallini e coste scenografiche rendono la Georgia una delle destinazioni più affascinanti durante tutto l’anno.",
+
+    life_card2_title: "Stile di Vita Europeo-Moderno",
+    life_card2_body:
+      "Caffè alla moda, scuole internazionali, moderni centri business, internet ad alta velocità e una vivace vita notturna rendono città come Tbilisi e Batumi ideali per una vita contemporanea.",
+
+    life_card3_title: "Polo in Crescita per Tech e Innovazione",
+    life_card3_body:
+      "La Georgia sta emergendo rapidamente come economia digitale — attirando startup, talenti tecnologici e investitori grazie a tasse contenute, regolamentazioni semplici e un governo favorevole all’innovazione.",
+
+    life_card4_title: "Posizione Strategica",
+    life_card4_body:
+      "Situata tra Europa e Asia, la Georgia è una porta d’accesso per commercio, viaggi e affari, diventando una base ideale per operazioni business globali.",
+
+    life_card5_title: "Cultura Accogliente",
+    life_card5_body:
+      "La calda ospitalità georgiana, le comunità amichevoli e un forte senso di sicurezza rendono il Paese una destinazione estremamente confortevole per expat e investitori internazionali.",
+
+    life_card6_title: "Elevato Potenziale di Crescita",
+    life_card6_body:
+      "Con il turismo in crescita, l’aumento degli investimenti esteri e lo sviluppo su larga scala delle aree costiere, la Georgia è uno dei mercati emergenti più promettenti in Europa.",
+
+    // Culture section
+    life_culture_title:
+      "Scopri la Ricca Cultura e l’Eredità della Georgia",
+    life_culture_body:
+      "L’anima della Georgia è plasmata da secoli di tradizioni, folklore affascinante, arte vibrante e ospitalità calorosa. Dai rituali ancestrali di produzione del vino alla musica polifonica e all’architettura che fonde antico e moderno, ogni momento in Georgia racconta una storia da sentire — e da vivere.",
+
+    life_culture_slide1_title: "Danza Tradizionale Georgiana",
+    life_culture_slide1_body:
+      "Una celebrazione artistica di coraggio, eleganza e orgoglio culturale secolare.",
+
+    life_culture_slide2_title: "Antica Cultura del Vino",
+    life_culture_slide2_body:
+      "Patria della tradizione vinicola più antica al mondo — oltre 8.000 anni di maestria e ospitalità.",
+
+    life_culture_slide3_title: "Il Fascino Architettonico di Tbilisi",
+    life_culture_slide3_body:
+      "Un’armoniosa fusione di strade storiche, eleganza moderna e vivace vita cittadina.",
+
+    life_culture_slide4_title: "Il Bagliore Costiero di Batumi",
+    life_culture_slide4_body:
+      "Un paradiso balneare moderno dove cultura, architettura e lifestyle si incontrano.",
+
+    // Alignment section
+    life_align_title:
+      "Come la Georgia si Allinea alla Vita Europea Moderna",
+    life_align_body:
+      "La Georgia è sempre più integrata nei flussi economici, di lifestyle e turistici europei, pur mantenendo una forte identità culturale e vantaggi di costo significativi. Per investitori e residenti, rappresenta un ponte tra Est e Ovest, combinando standard orientati all’Europa con un ritmo di vita più rilassato e accessibile.",
+
+    life_align_card1_title:
+      "Stile di Vita Europeo, Costo della Vita Inferiore",
+    life_align_card1_body:
+      "Cultura dei caffè, quartieri pedonali, scuole internazionali e centri commerciali moderni ricordano molte capitali europee — ma alloggi, ristorazione e servizi restano spesso molto più accessibili.",
+
+    life_align_card2_title:
+      "Connettività in Crescita e Flussi Turistici",
+    life_align_card2_body:
+      "Voli diretti e di collegamento dalle principali città europee, l’aumento dei turisti e una crescente comunità di digital nomads collegano la Georgia alle principali rotte di traffico dell’UE.",
+
+    life_align_card3_title:
+      "Favorevole agli Investitori, con Visione di Lungo Periodo",
+    life_align_card3_body:
+      "Diritti di proprietà chiari, processi di acquisto semplici e una strategia lungimirante in ambito turismo e infrastrutture allineano la Georgia ai più interessanti hotspot emergenti di investimento in Europa.",
+
+    life_align_card4_title:
+      "Profondità Culturale e Aspirazioni Moderne",
+    life_align_card4_body:
+      "Architettura storica, musica, gastronomia e tradizioni coesistono con ospitalità moderna, spazi di co-working e arte contemporanea — offrendo uno stile di vita che attrae viaggiatori sofisticati e residenti di lungo periodo.",
+
+    // CTA section
+    life_cta_title:
+      "Scopri come la Vita in Georgia si Collega al tuo Investimento",
+    life_cta_body:
+      "Combina il fascino emotivo del vivere in Georgia con la solidità finanziaria di investire in Batumi Island Estates — uno degli sviluppi insulari più unici della regione del Mar Nero.",
+    life_cta_btn: "Torna ai Punti Chiave di Investimento",
+
+    // Contact form (main)
+    contact_title: "Richiedi Informazioni Dettagliate sull’Investimento",
+    contact_subtitle:
+      "Condividi i tuoi dati e il nostro team ti contatterà con planimetrie, rendimenti, termini di pagamento e disponibilità.",
+    contact_label_fullname: "Nome e Cognome *",
+    contact_label_email: "Email",
+    contact_ph_email: "you@example.com",
+    contact_label_country_code: "Prefisso Internazionale *",
+    contact_cc_help:
+      "Scrivi il nome del tuo Paese o il prefisso (es. Italia +39, India +91, Georgia +995).",
+    contact_label_phone: "Numero di Telefono *",
+    contact_label_apartment_type: "Tipologia di Appartamento",
+    contact_select_type: "Seleziona",
+    contact_label_budget: "Budget Approssimativo (USD)",
+    contact_ph_budget: "es. 150.000",
+    contact_label_message: "Messaggio / Esigenze",
+    contact_ph_message:
+      "Raccontaci i tuoi obiettivi di investimento, durata del soggiorno, aspettative di rendimento, ecc.",
+
+    // Enquiry buttons & messages
+    enquiry_btn_submit: "Invia Richiesta",
+    enquiry_btn_sending: "Invio in corso...",
+    enquiry_validation:
+      "Per favore inserisci il tuo nome e numero di telefono.",
+    enquiry_status_dryrun:
+      "Grazie. La tua richiesta è stata ricevuta (modalità test). L’invio email non è ancora configurato.",
+    enquiry_status_success:
+      "Grazie. La tua richiesta è stata ricevuta. Il nostro team ti contatterà a breve.",
+    enquiry_status_error:
+      "Si è verificato un errore durante l’invio della richiesta. Riprova o utilizza WhatsApp / Chiamata.",
+
+    // Testimonials
+    testimonials_title: "Cosa dicono i nostri Investitori",
+
+    testimonial1_name: "Olivia K.",
+    testimonial1_role: "Investitrice da Londra, Regno Unito",
+    testimonial1_text:
+      "“Batumi Island Estates ha soddisfatto tutti i miei criteri — vista mare, rendimenti da locazione solidi e un processo completamente trasparente. Il team mi ha guidata in ogni fase come un concierge privato.”",
+
+    testimonial2_name: "Rahul S.",
+    testimonial2_role: "Investitore NRI, Dubai",
+    testimonial2_text:
+      "“Cercavo un’opportunità sicura ma ad alta crescita al di fuori dei mercati tradizionali. La combinazione tra lifestyle insulare e regolamentazioni favorevoli agli investitori in Georgia ha reso la decisione estremamente semplice.”",
+
+    testimonial3_name: "Maria P.",
+    testimonial3_role: "Acquirente di Casa Vacanze, Atene",
+    testimonial3_text:
+      "“Le finiture, i servizi e le viste sono paragonabili ai migliori resort del Mediterraneo. Uso l’appartamento per alcune settimane all’anno e il team di gestione affitti si occupa di tutto nel resto del tempo.”",
+
+    // Project Details Section
+    project_hero_title: "Batumi Island Estates",
+    project_hero_subtitle:
+      "Vivi il futuro del lusso sul waterfront — ponti, canali, resort integrati e vita insulare sul Mar Nero.",
+
+    // Live construction section
+    project_progress_title: "Avanzamento dei Lavori in Tempo Reale",
+    project_progress_body:
+      "Il video qui sopra mostra i progressi reali delle infrastrutture, dei ponti, del paesaggio e delle zone residenziali premium sulle isole. Con l’avanzare di ogni fase, Batumi Island Estates si avvicina sempre più alla realizzazione di una comunità di lusso completamente integrata sul waterfront del Mar Nero.",
+
+    // Island vision section
+    project_islandvision_title: "La Visione dell’Isola a Completamento",
+    project_islandvision_body:
+      "Esplora come Batumi Island Estates si trasformerà in una comunità di lusso sul waterfront completamente integrata — con promenade, terrazze paesaggistiche, piscine resort, caffè, boulevard dello shopping e uno skyline illuminato che si riflette sulle acque serene del Mar Nero.",
+
+    // Carousel slides
+    project_slide1_tag: "Promenade sul Waterfront",
+    project_slide1_title: "Torri Fronte Mare & Vita da Marina",
+    project_slide1_body:
+      "Torri panoramiche affacciate sul mare con accesso privato alla marina per i residenti.",
+
+    project_slide2_tag: "Servizi da Resort",
+    project_slide2_title: "Piscine Infinity & Terrazze Paesaggistiche",
+    project_slide2_body:
+      "Deck rialzati, cabana lounge e percorsi verdi per il massimo relax.",
+
+    project_slide3_tag: "Skyline Notturno",
+    project_slide3_title: "Vita sul Waterfront Illuminato",
+    project_slide3_body:
+      "L’isola che brilla sotto il cielo notturno, creando un nuovo simbolo per la Georgia.",
+
+    project_slide4_tag: "Boulevard di Lifestyle",
+    project_slide4_title: "Caffè • Retail • Promenade sull’Isola",
+    project_slide4_body:
+      "Un boulevard lifestyle premium con boutique di lusso e caffè affacciati sul mare.",
+
+    // Brochure section
+    brochure_title: "Scarica la Brochure Ufficiale del Progetto",
+    brochure_subtitle:
+      "Inserisci la tua email per ricevere immediatamente la brochure.",
+    brochure_ph_email: "Inserisci il tuo indirizzo email",
+    brochure_btn: "Scarica Brochure",
+
+    brochure_msg_empty:
+      "Per favore inserisci il tuo indirizzo email.",
+    brochure_msg_sending: "Invio in corso...",
+    brochure_msg_success:
+      "Brochure inviata! Controlla la tua casella di posta.",
+    brochure_msg_error:
+      "Errore durante l’invio della brochure. Riprova.",
+    brochure_msg_network:
+      "Errore di rete. Per favore riprova.",
+
+    // Google Meet section
+    gmeet_title: "Prenota una Consulenza su Google Meet",
+    gmeet_body:
+      "Prenota una consulenza personalizzata con il nostro team di advisory senior per analizzare i dettagli del progetto, le strutture di investimento e il tuo percorso di acquisizione su misura a Batumi Island Estates.",
+    gmeet_btn: "Prenota un Google Meet",
+
+    // ABOUT PAGE
+    about_hero_title: "Chi è Batumi Island Estates",
+    about_hero_subtitle:
+      "Una divisione di lusso specializzata di Batumi Estates, dedicata alle proprietà premium su isole e waterfront nelle Batumi Islands.",
+
+    about_intro_title: "Dove inizia una Vita Eccezionale",
+    about_intro_p1:
+      "Fondata nel 2022, Batumi Estates è nata con la visione di trasformare il panorama immobiliare georgiano offrendo agli investitori globali consulenza trasparente, insight affidabili e portafogli focalizzati sul lusso. Oggi il brand serve con orgoglio clienti in Europa, Asia, Medio Oriente e Americhe, affermandosi come partner di investimento di riferimento per i progetti ad alta crescita in Georgia.",
+    about_intro_p2:
+      "Nel 2024 abbiamo ampliato la nostra eredità con la creazione di Batumi Island Estates — una divisione dedicata esclusivamente al primo megaprogetto di isole artificiali di lusso della Georgia. Sostenuto da sviluppatori di primo piano e da iniziative infrastrutturali nazionali, questo progetto pionieristico sta ridefinendo la vita costiera premium nella regione del Mar Nero.",
+    about_intro_p3:
+      "Con oltre 100 investitori globali già a bordo e molti altri che esplorano le opportunità del nostro portafoglio in espansione, Batumi Estates continua a rafforzare una tradizione di eccellenza, trasparenza e processi di acquisizione immobiliare senza soluzione di continuità — garantendo a ogni cliente la massima fiducia e soddisfazione lungo tutto il percorso di investimento.",
+
+    about_journey_title: "Il Nostro Percorso",
+    about_journey_2022_title:
+      "2022 — Fondazione di Batumi Estates",
+    about_journey_2022_body:
+      "Nata con la missione di offrire esperienze di acquisto immobiliare trasparenti, premium ed efficienti in Georgia.",
+
+    about_journey_2023_title:
+      "2023 — Espansione Globale",
+    about_journey_2023_body:
+      "Raggiunti clienti in oltre 25 Paesi e ampliate le partnership con sviluppatori e istituzioni governative.",
+
+    about_journey_2024_title:
+      "2024 — Lancio di Batumi Island Estates",
+    about_journey_2024_body:
+      "Creata una divisione esclusiva dedicata al landmark megaprogetto delle Batumi Islands — le prime isole artificiali di lusso della Georgia.",
+
+    about_journey_2025_title:
+      "2025 — Oltre 100 Investitori Globali Serviti",
+    about_journey_2025_body:
+      "Un anno di forte crescita, valutazioni di servizio eccellenti e portafogli di investimento in espansione.",
+
+    about_why_title: "Perché gli Investitori ci Scelgono",
+    about_why_card1_title: "Competenza Focalizzata sul Lusso",
+    about_why_card1_body:
+      "Specializzati in investimenti waterfront e su isole allineati alle zone a più rapida crescita in Georgia.",
+
+    about_why_card2_title: "Assistenza End-to-End",
+    about_why_card2_body:
+      "Supporto legale, documentazione, walkthrough e servizi post-acquisto per un’esperienza di acquisto fluida e senza stress.",
+
+    about_why_card3_title: "Fiducia della Clientela Globale",
+    about_why_card3_body:
+      "Investitori da oltre 30 Paesi si affidano alla nostra consulenza trasparente e al nostro portafoglio di investimenti curato con attenzione.",
+
+    about_testimonials_title:
+      "Cosa dicono i nostri Investitori Globali",
+
+    about_testimonial1_text:
+      "“Un’esperienza di investimento davvero fluida. Il team mi ha guidato dal primo contatto fino alla firma finale dei documenti. Servizio veramente di livello mondiale!”",
+    about_testimonial1_role:
+      "— Daniel M., Regno Unito • Dirigente Tech",
+
+    about_testimonial2_text:
+      "“Ho acquistato un monolocale di lusso sull’isola. Trasparenza assoluta e supporto professionale eccellente.”",
+    about_testimonial2_role:
+      "— Sara K., UAE • Imprenditrice",
+
+    about_testimonial3_text:
+      "“Altamente consigliati per acquirenti internazionali. Processo semplice e ottime informazioni sul mercato.”",
+    about_testimonial3_role:
+      "— Luca R., Italia • Investitore nell’Ospitalità",
+
+    about_testimonial4_text:
+      "“Professionali, onesti e estremamente disponibili. La migliore agenzia in Georgia!”",
+    about_testimonial4_role:
+      "— Aisha M., Qatar • Portafoglio Immobiliare",
+
+    about_testimonial5_text:
+      "“Un acquisto senza complicazioni. Hanno gestito ogni passaggio — perfino la firma da remoto!”",
+    about_testimonial5_role:
+      "— Carlos D., Brasile • Consulente Finanziario",
+
+    about_testimonial6_text:
+      "“La loro conoscenza del mercato di lusso di Batumi è impareggiabile.”",
+    about_testimonial6_role:
+      "— Helene S., Francia • Imprenditrice",
+
+    about_testimonial7_text:
+      "“Perfetti per chi investe per la prima volta all’estero. Un team estremamente affidabile.”",
+    about_testimonial7_role:
+      "— Amir H., Arabia Saudita • Settore Oil & Energy",
+
+    // Brand
+    brand_title: "Batumi Island Estates",
+    brand_tagline: "Residenze di Lusso sull’Isola",
+
+    // Footer – brand section
+    footer_brand_desc:
+      "Monolocali, 1BHK e 2BHK premium nella destinazione insulare più prestigiosa della Georgia, unendo vita da resort e forte potenziale di investimento.",
+
+    // Footer – navigation
+    footer_nav_title: "Naviga",
+    footer_nav_home: "Home",
+    footer_nav_why_batumi: "Perché Batumi",
+    footer_nav_properties: "Proprietà",
+    footer_nav_enquiry: "Modulo di Richiesta",
+
+    // Footer – contact
+    footer_contact_title: "Contatti",
+    footer_contact_name: "Batumi Island Estates",
+    footer_contact_address_line1:
+      "18 Andria Pirveltsodebuli Highway III Deadlock gonio",
+    footer_contact_address_line2: "Batumi, Georgia",
+    footer_contact_phone: "+995 574 100 645",
+    footer_contact_email: "info@batumiislandestates.com",
+
+    // Footer – bottom bar
+    footer_bottom_rights:
+      "© 2025 Batumi Island Estates. Tutti i diritti riservati.",
+    footer_bottom_privacy: "Privacy Policy",
+    footer_bottom_terms: "Termini"
   },
 
   // ---------------- KAZAKH ----------------
