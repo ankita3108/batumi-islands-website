@@ -15,7 +15,7 @@ import ssl, smtplib
 from datetime import datetime
 
 import requests
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_from_directory, current_app
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import re
@@ -289,7 +289,7 @@ def project_details():
 
 @app.route('/sitemap.xml')
 def sitemap():
-    return send_from_directory('static', 'sitemap.xml')
+    return send_from_directory(current_app.static_folder, 'sitemap.xml')
 
 @app.route("/about")
 def about():
