@@ -15,7 +15,7 @@ import ssl, smtplib
 from datetime import datetime
 
 import requests
-from flask import Flask, render_template, request, jsonify, send_from_directory, current_app
+from flask import Flask, render_template, request, jsonify, send_from_directory, current_app, abort, make_response
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import re
@@ -287,9 +287,27 @@ def life_in_georgia():
 def project_details():
     return send_from_directory("static/pages", "project-details.html")
 
+# Serve sitemap.xml from static folder at root URL /sitemap.xml
 @app.route('/sitemap.xml')
 def sitemap():
-    return send_from_directory(current_app.static_folder, 'sitemap.xml')
+    sitemap_path = os.path.join(app.static_folder, 'sitemap.xml')
+    if not os.path.exists(sitemap_path):
+        return "sitemap not found", 404
+    resp = make_response(send_from_directory(app.static_folder, 'sitemap.xml'))
+    resp.headers['Content-Type'] = 'application/xml; charset=utf-8'
+    return resp
+
+# Serve robots.txt
+@app.route('/robots.txt')
+def robots():
+    robots_txt = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Sitemap: https://www.batumiislandestates.net/sitemap.xml\n"
+    )
+    resp = make_response(robots_txt, 200)
+    resp.headers['Content-Type'] = 'text/plain; charset=utf-8'
+    return resp
 
 @app.route("/about")
 def about():
